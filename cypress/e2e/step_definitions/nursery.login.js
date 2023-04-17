@@ -3,7 +3,7 @@ import {
   When,
   Then,
 } from "@badeball/cypress-cucumber-preprocessor";
-const loginPage = require("../../pages/LoginPage");
+const loginPage = require("../../pages/nursery.loginPage");
 
 
 Given("A web browser is at the Salcobrand Online login page", () => {

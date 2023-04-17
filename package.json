@@ -1,7 +1,7 @@
 {
-  "name": "cypress-cucumber-Salcobrand",
+  "name": "hw-automation-api",
   "version": "2.1.0",
-  "description": "Prueba concepto de automation para los portales de Salcobrand",
+  "description": "Web UI Test Automation Framework - GDM Seeds",
   "main": "index.js",
   "scripts": {
     "cypress:runner": "cypress open",

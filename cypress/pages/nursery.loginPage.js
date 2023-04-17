@@ -1,9 +1,10 @@
-class homeSaucePage {
+class loginHeadway {
   elements = {
     usernameInput: () => cy.get("#spree_user_email"),
     passwordInput: () => cy.get("#spree_user_password"),
-    loginBtn: () => cy.get(".login__form-login"),
     errorMessage: () => cy.get(".field-error-message"),
+    welcomeMessage:() => cy.get("h1._title_kojyg_160"),
+    loginBtn:() => cy.get("button._primary_10a2v_160._loginbutton_ybv26_364"),
     //Mapeo de campo custom
     //errorMessage: () => cy.get('h3[data-test="error"]'),
   };
@@ -17,7 +18,7 @@ class homeSaucePage {
     this.elements.passwordInput().type(password);
   }
 
-  clickLogin() {
+  clickLoginButton() {
     this.elements.loginBtn().click();
   }
 
