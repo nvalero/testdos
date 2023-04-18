@@ -1,4 +1,4 @@
-class loginHeadway {
+class homeSaucePage {
   elements = {
     usernameInput: () => cy.get("#spree_user_email"),
     passwordInput: () => cy.get("#spree_user_password"),
@@ -9,8 +9,7 @@ class loginHeadway {
     //errorMessage: () => cy.get('h3[data-test="error"]'),
   };
 
-  typeUsername(username) {
-    
+  typeUsername(username) { 
     this.elements.usernameInput().type(username);
   }
 

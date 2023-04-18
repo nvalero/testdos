@@ -30,7 +30,7 @@ module.exports = defineConfig({
       return config;
     },
     specPattern: "cypress/e2e/features/*.feature",
-    baseUrl: "https://qa.headway.gdmseeds.com",
+    baseUrl: "https://qa.headway.gdmseeds.com/",
     chromeWebSecurity: false,
   },
 });
