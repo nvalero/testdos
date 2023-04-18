@@ -7,7 +7,7 @@ const loginPage = require("../../pages/LoginPage");
 
 
 Given("a web browser is at headway login page with a registered user", () => {
-  cy.visit("/"); // https://qa.headway.gdmseeds.com/
+  cy.visit("/");
 });
 
 Then("the Login Screen is shown with the welcome message {string}", (welcomeMessage) => {
