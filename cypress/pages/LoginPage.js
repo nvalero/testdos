@@ -19,7 +19,7 @@ class headwayHomePage {
       expect(microsoftLoginPopupMessage).to.contains('Sign in');
     })
   }
-
+/**
   submitMicrosoftLoginPopup(username) {
     cy.on('window:alert', () => {
       expect(microsoftLoginPopupMessage).to.contains('Sign in');
@@ -27,6 +27,7 @@ class headwayHomePage {
       this.elements.nextButton().click()
     })
   }
+  */
 
 }
 

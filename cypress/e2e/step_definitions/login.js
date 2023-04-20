@@ -1,8 +1,8 @@
 import {
   Given,
-  And,
   When,
   Then,
+  And
 } from "@badeball/cypress-cucumber-preprocessor";
 const loginPage = require("../../pages/LoginPage");
 
@@ -30,5 +30,5 @@ Then("the Microsoft log in pop-up is shown", () => {
 
 Then("an error message is displayed in the Microsoft log in pop-up {string}", (errorMessage) => {
   cy.wait(3000)
-  loginPage.elements.errorMessage.should("have.text", errorMessage)
+  loginPage.elements.errorMessage().should("have.text", errorMessage)
 });
