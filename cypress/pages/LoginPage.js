@@ -1,15 +1,22 @@
 class headwayHomePage {
   elements = {
     welcomeMessage:() => cy.get("h1._title_kojyg_160"),
-    loginBtn:() => cy.get("button._primary_10a2v_160._loginbutton_ybv26_364"),
+    loginButton:() => cy.get("button._primary_10a2v_160._loginbutton_ybv26_364"),
+    microsoftLoginPopupMessage:() => cy.get('div[role="heading"][data-bind="text: title"]'),
   };
 
   clickLoginButton() {
-    this.elements.loginBtn().click();
+    this.elements.loginButton().click();
   }
 
-  submitLogin(username,password){
-    this.elements.loginBtn().click();
+  submitMicrosoftLoginPopup() {
+    
+    //Checking the microsoft window pop-up
+    cy.on('window:alert',(microsoftLoginPopupMessage)=>{
+    //Assertion
+    expect(microsoftLoginPopupMessage).to.contains('Sign in');
+    })
+
   }
 }
 
