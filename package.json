@@ -14,10 +14,14 @@
   "author": "cucumber",
   "license": "ISC",
   "devDependencies": {
-    "@badeball/cypress-cucumber-preprocessor": "^13.0.2",
+    "@badeball/cypress-cucumber-preprocessor": "^13.1.0",
     "@bahmutov/cypress-esbuild-preprocessor": "^2.1.5",
-    "cypress": "^10.11.0",
+    "cypress": "^12.14.0",
     "esbuild": "^0.15.10",
     "multiple-cucumber-html-reporter": "^3.0.1"
+  },
+  "dependencies": {
+    "@azure/msal-browser": "^2.37.1",
+    "cypress-msal-login": "^1.1.1"
   }
 }
