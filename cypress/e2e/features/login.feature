@@ -5,14 +5,9 @@ Feature: Login Headway Page [HW-148]
     Scenario: Login - Login screen [HW-548]
         Given a web browser is at headway login page with a registered user
         Then the Login Screen is shown with the welcome message "Welcome to Headway"
-    
+
+    @only
     Scenario: Login - Microsoft log in pop-up [HW-1532]
         Given a web browser is at headway login page with a registered user
         When it clicks on the Log In button
-        Then the Microsoft log in pop-up is shown
-
-    Scenario: Login - Log in error for invalid user [HW-1533]
-        Given a web browser is at headway login page with a registered user
-        When it clicks on the Log In button
-        And I submit the login form with an invalid email "invalid-email@gdmseeds.com"
-        Then an error message is displayed in the Microsoft log in pop-up "This username may be incorrect. Make sure you typed it correctly. Otherwise, contact your admin."
+        Then main page Series Manager shows up

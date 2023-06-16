@@ -27,17 +27,13 @@ Configuration for multiple browsers and environments
 3. Execute "npm i --legacy-peer-deps" to execute dependencies
 4. Install cypress.io's latest version: npm install cypress --save-dev
 5. Install API Cypress pluggin: npm i cypress-plugin-api --legacy-peer-deps
-6. Execute the following commands in your favorite terminal:
+6. Install azure/msal browser package: npm install @azure/msal-browser --legacy-peer-deps
+7. Execute the following commands in your favorite terminal:
     - "npm run cypress:runner"
     - "npm run cypress:execution"
     - to run a specific feature: npm run cypress:execution -- --spec "cypress/e2e/features/nursery.modifyNewSerie.feature"
-7. To excecute de report run
+8. To excecute de report run
     - "node cucumber-html-report.js"
     - "node cucumber-report.html"
 
-              
-## Authors
-
- **Hector Matias Martin** - *Initial work & Contributor*
- * hector.martin@globant.com
- * ext.hmartin@gdmseeds.com
+            
