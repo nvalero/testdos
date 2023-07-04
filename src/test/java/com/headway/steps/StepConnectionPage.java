@@ -27,17 +27,21 @@ public class StepConnectionPage extends PageObject {
 
     @FindBy(css = "#lightbox > div:nth-child(3) > div > div.pagination-view.has-identity-banner.animate.slide-in-next" +
             " > div > div:nth-child(8) > div.row.move-buttons > div > div > div:nth-child(2)")
-    WebElementFacade Next2;
+    WebElementFacade signIn;
 
     @FindBy(css = "#root > div > div._leftpanel_1ogk7_29 > div:nth-child(1) > h1")
     WebElementFacade title;
+
+
+    @FindBy(css = "#lightbox > div:nth-child(3) > div > div.pagination-view.has-identity-banner.animate.slide-in-next > div > div:nth-child(8) > div.row.move-buttons > div > div > div:nth-child(2)")
+    WebElementFacade keepSessionButton;
 
     public void connect() {
         username.sendKeys(("ext.nvalero@gdmseeds.com"));
         clickUser.click();
         password.sendKeys("NV2023gdm+");
         clickPassword.click();
-        Next2.click();
+        signIn.click();
     }
 
     public void validate(String title) {
@@ -48,14 +52,34 @@ public class StepConnectionPage extends PageObject {
         assertTrue(username.isDisplayed());
     }
 
-    public void enterValidaEmail() {
+    public void enterValidEmail() {
         username.sendKeys(("ext.nvalero@gdmseeds.com"));
+    }
+
+    public void enterInvalidEmail(String email) {
+        username.sendKeys(email);
     }
 
     public void pressesNext() {
         clickUser.click();
     }
 
-    public void validatesMicrosoftPassword() {
+    public void validatesMicrosoftPasswordIsShown() {assertTrue(password.isDisplayed());
+    }
+
+    public void enterValidPassword() {
+        password.sendKeys(("NV2023gdm+"));
+    }
+
+    public void pressesSignIn() {
+        signIn.click();
+    }
+
+    public void pressesKeepSessionButton() {
+        keepSessionButton.click();
+    }
+
+    public void validateEmailMessage(String message) {
+            assertEquals(this.title.getText(), message);
     }
 }
