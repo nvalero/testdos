@@ -8,7 +8,7 @@ public class HomePageDefinitions {
     @Steps
     com.headway.steps.StepHomePage stepHomePage;
 
-    @Then("User can see Home page")
+    @Then("the Series Manager Page is displayed")
     public void canSeeHomePage() {
         stepHomePage.validate();
     }

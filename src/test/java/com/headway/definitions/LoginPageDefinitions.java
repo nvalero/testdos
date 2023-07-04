@@ -24,6 +24,15 @@ public class LoginPageDefinitions {
         stepConnectionPage.validate(title);
     }
 
+    @Then("I submit the login form with an invalid email {string}")
+    public void invalidateLoginPage(String email) {
+        stepConnectionPage.enterInvalidEmail(email);
+    }
+
+    @Then("an error message is displayed in the Microsoft log in pop-up {string}")
+    public void validateMessageIsDisplayed(String message) {
+        stepConnectionPage.validateEmailMessage(message);
+    }
     @And("User connects through Microsoft")
     public void connect() {
         stepConnectionPage.connect();
@@ -40,8 +49,8 @@ public class LoginPageDefinitions {
     }
 
     @And("it has entered a valid email")
-    public void enterValidaEmail() {
-        stepConnectionPage.enterValidaEmail();
+    public void enterValidEmail() {
+        stepConnectionPage.enterValidEmail();
     }
 
     @And("it presses Next")
@@ -51,6 +60,21 @@ public class LoginPageDefinitions {
 
     @And("the Microsoft log in pop-up switches to allow entering the password")
     public void validatesMicrosoftPassword() {
-        stepConnectionPage.validatesMicrosoftPassword();
+        stepConnectionPage.validatesMicrosoftPasswordIsShown();
+    }
+
+    @And("it has entered a valid password")
+    public void entersPassword() {
+        stepConnectionPage.enterValidPassword();
+    }
+
+    @And("it presses Sign in")
+    public void pressesSignIn() {
+        stepConnectionPage.pressesSignIn();
+    }
+
+    @And("it has presses Verify")
+    public void pressesKeepSessionButton() {
+        stepConnectionPage.pressesKeepSessionButton();
     }
 }

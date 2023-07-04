@@ -34,7 +34,7 @@ public class StepHomePage extends PageObject {
         password.sendKeys("NV2023gdm+");
         clickPassword.click();
         Next2.click();
-        
+
     }
 
     public void validate() {
