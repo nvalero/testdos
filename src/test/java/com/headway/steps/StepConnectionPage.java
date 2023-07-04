@@ -25,13 +25,14 @@ public class StepConnectionPage extends PageObject {
             " > div > div.password-reset-links-container.ext-password-reset-links-container > div.win-button-pin-bottom.boilerplate-button-bottom > div > div > div > div")
     WebElementFacade Next1;
 
-    @FindBy(css = "#lightbox > div:nth-child(3) > div > div.pagination-view.has-identity-banner.animate.slide-in-next" +
-            " > div > div:nth-child(8) > div.row.move-buttons > div > div > div:nth-child(2)")
+    @FindBy(css = "#lightbox > div:nth-child(3) > div > div.pagination-view.animate.has-identity-banner.slide-in-next > div > div.password-reset-links-container.ext-password-reset-links-container > div.win-button-pin-bottom.boilerplate-button-bottom > div > div > div > div")
     WebElementFacade signIn;
 
     @FindBy(css = "#root > div > div._leftpanel_1ogk7_29 > div:nth-child(1) > h1")
     WebElementFacade title;
 
+    @FindBy(id = "passwordError")
+    WebElementFacade passwordError;
 
     @FindBy(css = "#lightbox > div:nth-child(3) > div > div.pagination-view.has-identity-banner.animate.slide-in-next > div > div:nth-child(8) > div.row.move-buttons > div > div > div:nth-child(2)")
     WebElementFacade keepSessionButton;
@@ -64,7 +65,8 @@ public class StepConnectionPage extends PageObject {
         clickUser.click();
     }
 
-    public void validatesMicrosoftPasswordIsShown() {assertTrue(password.isDisplayed());
+    public void validatesMicrosoftPasswordIsShown() {
+        assertTrue(password.isDisplayed());
     }
 
     public void enterValidPassword() {
@@ -81,5 +83,12 @@ public class StepConnectionPage extends PageObject {
 
     public void validateEmailMessage(String message) {
             assertEquals(this.title.getText(), message);
+    }
+
+    public void validatePasswordMessage(String message) {
+        assertEquals(this.passwordError.getText(), message);
+    }
+    public void enterInvalidPassword(String password) {
+        this.password.sendKeys(password);
     }
 }

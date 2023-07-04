@@ -1,6 +1,15 @@
 Feature: Login to GDM Headway
 
   @EnterToLogin
+ Scenario Outline: Login - Login screenXX
+
+    Given paso tal <service>
+
+    Examples:
+      | code | service | user_data             |
+      | 200  | GATEWAY | create_user_data.json |
+
+  @EnterToLogin
   # HW-548
   Scenario: Login - Login screen
 
@@ -26,20 +35,6 @@ Feature: Login to GDM Headway
     Then an error message is displayed in the Microsoft log in pop-up "This username may be incorrect. Make sure you typed it correctly. Otherwise, contact your admin."
 
   @EnterToLogin
-  # HW-1536
-  Scenario: Login - Log in error for invalid password
-
-    Given a web browser is at headway login page with a registered user
-    When it clicks on the Log In button
-    Then the Microsoft log in pop-up is shown
-    And it has entered a valid email
-    And it presses Next
-    Then the Microsoft log in pop-up switches to allow entering the password
-    #And it has entered an invalid password
-    When it presses Sign in
-    #Then an error message is displayed in the Microsoft log in pop-up
-
-  @EnterToLogin
   # HW-1535
   Scenario: Login - Microsoft log in pop-up
 
@@ -49,6 +44,20 @@ Feature: Login to GDM Headway
     And it has entered a valid email
     And it presses Next
     Then the Microsoft log in pop-up switches to allow entering the password
+
+  @EnterToLogin
+  # HW-1536
+  Scenario: Login - Log in error for invalid password
+
+    Given a web browser is at headway login page with a registered user
+    When it clicks on the Log In button
+    Then the Microsoft log in pop-up is shown
+    And it has entered a valid email
+    And it presses Next
+    Then the Microsoft log in pop-up switches to allow entering the password
+    And I submit the login form with an invalid password "xxxx"
+    When it presses Sign in
+    Then an error message for password is displayed in the Microsoft log in pop-up "Su cuenta o contraseña no es correcta. Si no recuerda su contraseña, puede restablecerla ahora."
 
   @EnterToLogin
   # HW-1538
@@ -76,8 +85,6 @@ Feature: Login to GDM Headway
     Then the Microsoft log in pop-up switches to allow entering the password
     And it has entered a valid password
     When it presses Sign in
-    #And it has received call / text message
     When it has presses Verify
-    #Then the user logs in
     And the Series Manager Page is displayed
 

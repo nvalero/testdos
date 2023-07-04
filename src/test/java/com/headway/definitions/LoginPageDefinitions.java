@@ -1,5 +1,6 @@
 package com.headway.definitions;
 
+import io.cucumber.datatable.DataTable;
 import io.cucumber.java.en.And;
 import io.cucumber.java.en.Given;
 import io.cucumber.java.en.Then;
@@ -14,6 +15,24 @@ public class LoginPageDefinitions {
     @Steps
     com.headway.steps.StepLoginHeadway stepFirstLogin;
 
+    /*@BeforeAll
+    String[] readJson() throws IOException, ParseException {
+        JSONParser jsonparser=new JSONParser();
+        FileReader reader=new FileReader(".\\resources\\data\\testdata.json");
+        Object obj=jsonparser.parse(reader);
+        JSONObject userloginsJsonobj=(JSONObject)obj;
+        JSONArray userloginsArray=(JSONArray)userloginsJsonobj.get("userlogins");
+        String arr[]=new String[userloginsArray.size()];
+        for (int i=0; i<userloginsArray.size();i++)
+        {
+            JSONObject users=(JSONObject) userloginsArray.get(i);
+            String user=(String)users.get("username");
+            String pwd=(String)users.get("password");
+            arr[i]=user+"," +pwd ;
+        }
+        return null;
+    }
+*/
     @Given("a web browser is at headway login page with a registered user")
     public void openApplication() {
         stepConnectionPage.open();
@@ -25,14 +44,15 @@ public class LoginPageDefinitions {
     }
 
     @Then("I submit the login form with an invalid email {string}")
-    public void invalidateLoginPage(String email) {
+    public void entersInvalidEmail(String email) {
         stepConnectionPage.enterInvalidEmail(email);
     }
 
-    @Then("an error message is displayed in the Microsoft log in pop-up {string}")
-    public void validateMessageIsDisplayed(String message) {
-        stepConnectionPage.validateEmailMessage(message);
+    @Then("an error message for password is displayed in the Microsoft log in pop-up {string}")
+    public void validatePasswordMessage(String message) {
+        stepConnectionPage.validatePasswordMessage(message);
     }
+
     @And("User connects through Microsoft")
     public void connect() {
         stepConnectionPage.connect();
@@ -68,6 +88,11 @@ public class LoginPageDefinitions {
         stepConnectionPage.enterValidPassword();
     }
 
+    @Then("I submit the login form with an invalid password {string}")
+    public void entersInvalidPassword(String password) {
+        stepConnectionPage.enterInvalidPassword(password);
+    }
+
     @And("it presses Sign in")
     public void pressesSignIn() {
         stepConnectionPage.pressesSignIn();
@@ -77,4 +102,10 @@ public class LoginPageDefinitions {
     public void pressesKeepSessionButton() {
         stepConnectionPage.pressesKeepSessionButton();
     }
+
+    @Given("^paso tal (.*)$")
+    public void pasoTal(DataTable dataTable) {
+        stepConnectionPage.open();
+    }
+
 }
