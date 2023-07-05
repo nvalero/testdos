@@ -5,8 +5,6 @@ import net.serenitybdd.core.pages.PageObject;
 import net.serenitybdd.core.pages.WebElementFacade;
 import org.openqa.selenium.support.FindBy;
 
-import java.time.Duration;
-
 public class StepHomePage extends PageObject {
 
     @FindBy(css = "#i0116")

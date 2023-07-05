@@ -31,11 +31,20 @@ public class StepConnectionPage extends PageObject {
     @FindBy(css = "#root > div > div._leftpanel_1ogk7_29 > div:nth-child(1) > h1")
     WebElementFacade title;
 
+    @FindBy(id = "usernameError")
+    WebElementFacade emailError;
+
     @FindBy(id = "passwordError")
     WebElementFacade passwordError;
 
     @FindBy(css = "#lightbox > div:nth-child(3) > div > div.pagination-view.has-identity-banner.animate.slide-in-next > div > div:nth-child(8) > div.row.move-buttons > div > div > div:nth-child(2)")
     WebElementFacade keepSessionButton;
+
+    @FindBy(css = "#idDiv_SAOTCS_Proofs > div:nth-child(1) > div > div > div.table-cell.text-left.content > div")
+    WebElementFacade textMessageButton;
+
+    @FindBy(id = "idSubmit_SAOTCC_Continue")
+    WebElementFacade continueButton;
 
     public void connect() {
         username.sendKeys(("ext.nvalero@gdmseeds.com"));
@@ -54,7 +63,7 @@ public class StepConnectionPage extends PageObject {
     }
 
     public void enterValidEmail() {
-        username.sendKeys(("ext.nvalero@gdmseeds.com"));
+        username.sendKeys(("ext.nvalero@gdmseeds.com")); //ext.hmartin@gdmseeds.com"));
     }
 
     public void enterInvalidEmail(String email) {
@@ -70,7 +79,7 @@ public class StepConnectionPage extends PageObject {
     }
 
     public void enterValidPassword() {
-        password.sendKeys(("NV2023gdm+"));
+        password.sendKeys(("NV2023gdm+"));// MansaContrasena!"));
     }
 
     public void pressesSignIn() {
@@ -81,14 +90,23 @@ public class StepConnectionPage extends PageObject {
         keepSessionButton.click();
     }
 
+    public void pressesReceiveTextMessage() {
+        textMessageButton.click();
+    }
+
     public void validateEmailMessage(String message) {
-            assertEquals(this.title.getText(), message);
+            assertEquals(this.emailError.getText(), message);
     }
 
     public void validatePasswordMessage(String message) {
         assertEquals(this.passwordError.getText(), message);
     }
+
     public void enterInvalidPassword(String password) {
         this.password.sendKeys(password);
+    }
+
+    public void pressesContinueButton() {
+        continueButton.click();
     }
 }

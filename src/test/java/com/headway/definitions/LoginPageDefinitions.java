@@ -53,6 +53,11 @@ public class LoginPageDefinitions {
         stepConnectionPage.validatePasswordMessage(message);
     }
 
+    @Then("an error message for login is displayed in the Microsoft log in pop-up {string}")
+    public void validateEmailMessage(String message) {
+        stepConnectionPage.validateEmailMessage(message);
+    }
+
     @And("User connects through Microsoft")
     public void connect() {
         stepConnectionPage.connect();
@@ -98,14 +103,23 @@ public class LoginPageDefinitions {
         stepConnectionPage.pressesSignIn();
     }
 
+    @And("it presses receive text message")
+    public void pressesReceiveTextMessage() {
+        stepConnectionPage.pressesReceiveTextMessage();
+    }
+
     @And("it has presses Verify")
     public void pressesKeepSessionButton() {
         stepConnectionPage.pressesKeepSessionButton();
     }
 
-    @Given("^paso tal (.*)$")
+    @Given("paso tal")
     public void pasoTal(DataTable dataTable) {
         stepConnectionPage.open();
     }
 
+    @Given("it has presses Continue")
+    public void pressesContinueButton() {
+        stepConnectionPage.pressesContinueButton();
+    }
 }

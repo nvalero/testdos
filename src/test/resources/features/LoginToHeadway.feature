@@ -1,22 +1,24 @@
 Feature: Login to GDM Headway
 
-  @EnterToLogin
- Scenario Outline: Login - Login screenXX
+#  @EnterToLogin
+# Scenario Outline: Login - Login screenXX
+#
+#    Given paso tal
+#      | service   |
+#      | <service> |
+#
+#    Examples:
+#      | code | service | user_data             |
+#      | 200  | GATEWAY | create_user_data.json |
 
-    Given paso tal <service>
-
-    Examples:
-      | code | service | user_data             |
-      | 200  | GATEWAY | create_user_data.json |
-
-  @EnterToLogin
+  @Login
   # HW-548
   Scenario: Login - Login screen
 
     Given a web browser is at headway login page with a registered user
     Then the Login Screen is shown with the welcome message "Welcome to Headway"
 
-  @EnterToLogin
+  @Login
   # HW-1532
   Scenario: Login - Microsoft log in pop-up
 
@@ -24,67 +26,85 @@ Feature: Login to GDM Headway
     When it clicks on the Log In button
     Then the Microsoft log in pop-up is shown
 
-  @EnterToLogin
+  @Login
   # HW-1533
   Scenario: Login - Log in error for invalid user
 
     Given a web browser is at headway login page with a registered user
     When it clicks on the Log In button
-    Then the Microsoft log in pop-up is shown
-    When I submit the login form with an invalid email "invalid-email@gdmseeds.com"
-    Then an error message is displayed in the Microsoft log in pop-up "This username may be incorrect. Make sure you typed it correctly. Otherwise, contact your admin."
+    And the Microsoft log in pop-up is shown
+    And I submit the login form with an invalid email "invalid-email@gdmseeds.com"
+    And it presses Next
+    Then an error message for login is displayed in the Microsoft log in pop-up "Este nombre de usuario puede ser incorrecto. Asegúrese de que lo ha escrito correctamente. De lo contrario, póngase en contacto con el administrador."
+  #"This username may be incorrect. Make sure you typed it correctly. Otherwise, contact your admin."
 
-  @EnterToLogin
+  @Login
   # HW-1535
   Scenario: Login - Microsoft log in pop-up
 
     Given a web browser is at headway login page with a registered user
     When it clicks on the Log In button
-    Then the Microsoft log in pop-up is shown
+    And the Microsoft log in pop-up is shown
     And it has entered a valid email
     And it presses Next
     Then the Microsoft log in pop-up switches to allow entering the password
 
-  @EnterToLogin
+  @Login
   # HW-1536
   Scenario: Login - Log in error for invalid password
 
     Given a web browser is at headway login page with a registered user
     When it clicks on the Log In button
-    Then the Microsoft log in pop-up is shown
+    And the Microsoft log in pop-up is shown
     And it has entered a valid email
     And it presses Next
-    Then the Microsoft log in pop-up switches to allow entering the password
+    And the Microsoft log in pop-up switches to allow entering the password
     And I submit the login form with an invalid password "xxxx"
-    When it presses Sign in
+    And it presses Sign in
     Then an error message for password is displayed in the Microsoft log in pop-up "Su cuenta o contraseña no es correcta. Si no recuerda su contraseña, puede restablecerla ahora."
 
-  @EnterToLogin
+  @Login @LoginByTextMessage
   # HW-1538
-  Scenario: Login - Login screen - Identity validation
+  Scenario: Login - Login screen - Identity validation - Text message
 
     Given a web browser is at headway login page with a registered user
     When it clicks on the Log In button
-    Then the Microsoft log in pop-up is shown
+    And the Microsoft log in pop-up is shown
     And it has entered a valid email
     And it presses Next
-    Then the Microsoft log in pop-up switches to allow entering the password
+    And the Microsoft log in pop-up switches to allow entering the password
     And it has entered a valid password
-    When it presses Sign in
-    #hen the Microsoft log in pop-up switches to validate the identity (text or call)
+    And it presses Sign in
+    Then it presses receive text message
 
-  @EnterToLogin
+  @Login @LoginByAuthenticator
   # HW-1539
   Scenario: Login - Login screen - Successful login
 
     Given a web browser is at headway login page with a registered user
     When it clicks on the Log In button
-    Then the Microsoft log in pop-up is shown
+    And the Microsoft log in pop-up is shown
     And it has entered a valid email
     And it presses Next
-    Then the Microsoft log in pop-up switches to allow entering the password
+    And the Microsoft log in pop-up switches to allow entering the password
     And it has entered a valid password
-    When it presses Sign in
-    When it has presses Verify
-    And the Series Manager Page is displayed
+    And it presses Sign in
+    And it has presses Verify
+    Then the Series Manager Page is displayed
 
+  @Login @LoginByTextMessage
+  # HW-1539
+  Scenario: Login - Login screen - Successful login - Text message
+
+    Given a web browser is at headway login page with a registered user
+    When it clicks on the Log In button
+    And the Microsoft log in pop-up is shown
+    And it has entered a valid email
+    And it presses Next
+    And the Microsoft log in pop-up switches to allow entering the password
+    And it has entered a valid password
+    And it presses Sign in
+    And it presses receive text message
+    And it has presses Continue
+    And it has presses Verify
+    Then the Series Manager Page is displayed
