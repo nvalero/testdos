@@ -15,24 +15,6 @@ public class LoginPageDefinitions {
     @Steps
     com.headway.steps.StepLoginHeadway stepFirstLogin;
 
-    /*@BeforeAll
-    String[] readJson() throws IOException, ParseException {
-        JSONParser jsonparser=new JSONParser();
-        FileReader reader=new FileReader(".\\resources\\data\\testdata.json");
-        Object obj=jsonparser.parse(reader);
-        JSONObject userloginsJsonobj=(JSONObject)obj;
-        JSONArray userloginsArray=(JSONArray)userloginsJsonobj.get("userlogins");
-        String arr[]=new String[userloginsArray.size()];
-        for (int i=0; i<userloginsArray.size();i++)
-        {
-            JSONObject users=(JSONObject) userloginsArray.get(i);
-            String user=(String)users.get("username");
-            String pwd=(String)users.get("password");
-            arr[i]=user+"," +pwd ;
-        }
-        return null;
-    }
-*/
     @Given("a web browser is at headway login page with a registered user")
     public void openApplication() {
         stepConnectionPage.open();
