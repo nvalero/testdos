@@ -1,15 +1,15 @@
 Feature: Login to GDM Headway
 
-#  @EnterToLogin
-# Scenario Outline: Login - Login screenXX
-#
-#    Given paso tal
-#      | service   |
-#      | <service> |
-#
-#    Examples:
-#      | code | service | user_data             |
-#      | 200  | GATEWAY | create_user_data.json |
+  @EnterToLogin
+ Scenario Outline: Login - Login screenXX
+
+    Given paso tal
+      | service   |
+      | <service> |
+
+    Examples:
+      | code | service | user_data             |
+      | 200  | GATEWAY | create_user_data.json |
 
   @Login
   # HW-548
