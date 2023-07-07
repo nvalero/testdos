@@ -13,7 +13,7 @@ import static io.cucumber.junit.platform.engine.Constants.GLUE_PROPERTY_NAME;
 @SelectClasspathResource("com/headway")
 @SelectClasspathResource("/features")
 @ConfigurationParameter(key = GLUE_PROPERTY_NAME, value = "com.headway")
-@IncludeTags("Login")
-public class CucumberTestSuite {
+@IncludeTags("LoginByTextMessage")
+public class LoginByTextMessageTestSuite {
 
 }

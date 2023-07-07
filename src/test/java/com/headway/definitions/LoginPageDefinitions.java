@@ -1,5 +1,6 @@
 package com.headway.definitions;
 
+import io.cucumber.datatable.DataTable;
 import io.cucumber.java.en.And;
 import io.cucumber.java.en.Given;
 import io.cucumber.java.en.Then;
@@ -25,14 +26,20 @@ public class LoginPageDefinitions {
     }
 
     @Then("I submit the login form with an invalid email {string}")
-    public void invalidateLoginPage(String email) {
+    public void entersInvalidEmail(String email) {
         stepConnectionPage.enterInvalidEmail(email);
     }
 
-    @Then("an error message is displayed in the Microsoft log in pop-up {string}")
-    public void validateMessageIsDisplayed(String message) {
+    @Then("an error message for password is displayed in the Microsoft log in pop-up {string}")
+    public void validatePasswordMessage(String message) {
+        stepConnectionPage.validatePasswordMessage(message);
+    }
+
+    @Then("an error message for login is displayed in the Microsoft log in pop-up {string}")
+    public void validateEmailMessage(String message) {
         stepConnectionPage.validateEmailMessage(message);
     }
+
     @And("User connects through Microsoft")
     public void connect() {
         stepConnectionPage.connect();
@@ -68,13 +75,33 @@ public class LoginPageDefinitions {
         stepConnectionPage.enterValidPassword();
     }
 
+    @Then("I submit the login form with an invalid password {string}")
+    public void entersInvalidPassword(String password) {
+        stepConnectionPage.enterInvalidPassword(password);
+    }
+
     @And("it presses Sign in")
     public void pressesSignIn() {
         stepConnectionPage.pressesSignIn();
     }
 
+    @And("it presses receive text message")
+    public void pressesReceiveTextMessage() {
+        stepConnectionPage.pressesReceiveTextMessage();
+    }
+
     @And("it has presses Verify")
     public void pressesKeepSessionButton() {
         stepConnectionPage.pressesKeepSessionButton();
+    }
+
+    @Given("paso tal")
+    public void pasoTal(DataTable dataTable) {
+        stepConnectionPage.open();
+    }
+
+    @Given("it has presses Continue")
+    public void pressesContinueButton() {
+        stepConnectionPage.pressesContinueButton();
     }
 }
