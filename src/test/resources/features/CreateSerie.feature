@@ -2,7 +2,7 @@ Feature: Login to GDM Headway
 Background: Login to GDM Headway
 
   @Regression @CreateSerie
-  # HW-1077
+  @1077
   Scenario: [FE] Updates Series - Cycle Data (Location - Environment - Cycle Year) - "New Series" drawer
     Given it logins into headway
     And it pressed the Create Series button
