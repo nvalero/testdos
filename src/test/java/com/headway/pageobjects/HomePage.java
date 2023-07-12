@@ -1,4 +1,4 @@
-package com.headway.steps;
+package com.headway.pageobjects;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 
@@ -7,15 +7,15 @@ import net.serenitybdd.core.pages.PageObject;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
 
-public class StepHomePage extends PageObject {
+public class HomePage extends PageObject {
 
-    @FindBy(css = "#i0116")
+    @FindBy(id = "i0116")
     WebElement username;
 
     @FindBy(css = "#lightbox > div:nth-child(3) > div > div > div > div.win-button-pin-bottom.boilerplate-button-bottom > div > div > div > div")
     WebElement clickUser;
 
-    @FindBy(css = "#i0118")
+    @FindBy(id = "i0118")
     WebElement password;
 
     @FindBy(css = "#lightbox > div:nth-child(3) > div > div.pagination-view.animate.has-identity-banner.slide-in-next > div > div.password-reset-links-container.ext-password-reset-links-container > div.win-button-pin-bottom.boilerplate-button-bottom > div > div > div > div")
@@ -28,7 +28,7 @@ public class StepHomePage extends PageObject {
     @FindBy(css = "#root > div > header > div > div > section > h1 > span")
     WebElement title;
 
-    @FindBy(css = "_loading_1cvem_110")
+    @FindBy(css = "._newseriesbutton_1bgk0_26")
     WebElement createSerie;
 
     private static final String SERIE_LINK_LOCATOR_TEMPLATE = "//span[@title=\"%s\"]";
