@@ -1,21 +1,21 @@
-package com.headway.definitions;
+package com.headway.stepsdefinitions;
 
 import com.headway.pageobjects.HomePage;
 import io.cucumber.java.en.And;
 import io.cucumber.java.en.Then;
 import net.thucydides.core.annotations.Steps;
 
-public class HomePageDefinitions {
+public class HomeSteps {
     @Steps
-    HomePage stepHomePage;
+    HomePage homePage;
 
     @Then("the Series Manager Page is displayed")
     public void canSeeHomePage() {
-        stepHomePage.validate();
+        homePage.validate();
     }
 
     @And("it pressed the Create Series button")
     public void createSerie() {
-        stepHomePage.createSerie();
+        homePage.createSerie();
     }
 }

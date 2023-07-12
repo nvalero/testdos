@@ -1,9 +1,9 @@
-package com.headway.definitions;
+package com.headway.stepsdefinitions;
 
 import io.cucumber.java.en.And;
 import net.thucydides.core.annotations.Steps;
 
-public class CreateSeriePageDefinitions {
+public class CreateSerieSteps {
 
     @Steps
     com.headway.pageobjects.CreateSeriePage createSeriePage;
