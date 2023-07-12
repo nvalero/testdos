@@ -17,5 +17,4 @@ public class HomePageDefinitions {
     public void createSerie() {
         stepHomePage.createSerie();
     }
-
 }

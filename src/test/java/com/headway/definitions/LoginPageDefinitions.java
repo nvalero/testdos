@@ -1,5 +1,8 @@
 package com.headway.definitions;
 
+import com.google.inject.Inject;
+import com.headway.steps.StepConnectionPage;
+import com.headway.util.Util;
 import io.cucumber.datatable.DataTable;
 import io.cucumber.java.en.And;
 import io.cucumber.java.en.Given;
@@ -10,10 +13,15 @@ import net.thucydides.core.annotations.Steps;
 public class LoginPageDefinitions {
 
     @Steps
-    com.headway.steps.StepConnectionPage stepConnectionPage;
+    com.headway.steps.StepHomePage stepHomePage;
 
     @Steps
     com.headway.steps.StepLoginHeadway stepFirstLogin;
+
+    StepConnectionPage stepConnectionPage;
+
+    @Inject
+    LocatorsDictionary locatorsDictionary = new LocatorsDictionary();
 
     @Given("a web browser is at headway login page with a registered user")
     public void openApplication() {
@@ -57,7 +65,7 @@ public class LoginPageDefinitions {
 
     @And("it has entered a valid email")
     public void enterValidEmail() {
-        stepConnectionPage.enterValidEmail();
+        stepConnectionPage.enterValidEmail(Util.getInstance().getCredential().getUser());
     }
 
     @And("it presses Next")
@@ -66,13 +74,13 @@ public class LoginPageDefinitions {
     }
 
     @And("the Microsoft log in pop-up switches to allow entering the password")
-    public void validatesMicrosoftPassword() {
+    public void validatesMicrosoftPasswordIsShown() {
         stepConnectionPage.validatesMicrosoftPasswordIsShown();
     }
 
     @And("it has entered a valid password")
-    public void entersPassword() {
-        stepConnectionPage.enterValidPassword();
+    public void enterValidPassword() {
+        stepConnectionPage.enterValidPassword(Util.getInstance().getCredential().getPassword());
     }
 
     @Then("I submit the login form with an invalid password {string}")
@@ -103,5 +111,55 @@ public class LoginPageDefinitions {
     @Given("it has presses Continue")
     public void pressesContinueButton() {
         stepConnectionPage.pressesContinueButton();
+    }
+
+    @Given("it logins into headway by Authenticator")
+    public void loginsIntoHeadwayByAuthenticator() {
+        stepConnectionPage.open();
+        stepFirstLogin.clickLogin();
+        stepConnectionPage.validatesMicrosoftPopOpens();
+        stepConnectionPage.enterValidEmail(Util.getInstance().getCredential().getUser());
+        stepConnectionPage.pressesNext();
+        stepConnectionPage.validatesMicrosoftPasswordIsShown();
+        stepConnectionPage.enterValidPassword(Util.getInstance().getCredential().getPassword());
+        stepConnectionPage.pressesSignIn();
+        stepConnectionPage.pressesKeepSessionButton();
+        stepHomePage.validate();
+    }
+    @Given("it logins into headway by text message")
+    public void loginsIntoHeadwayByTextMessage() {
+        stepConnectionPage.open();
+        stepFirstLogin.clickLogin();
+        stepConnectionPage.validatesMicrosoftPopOpens();
+        stepConnectionPage.enterValidEmail(Util.getInstance().getCredential().getUser());
+        stepConnectionPage.pressesNext();
+        stepConnectionPage.validatesMicrosoftPasswordIsShown();
+        stepConnectionPage.enterValidPassword(Util.getInstance().getCredential().getPassword());
+        stepConnectionPage.pressesSignIn();
+        stepConnectionPage.pressesReceiveTextMessage();
+        stepConnectionPage.pressesContinueButton();
+        stepConnectionPage.pressesKeepSessionButton();
+        stepConnectionPage.pressesKeepSessionButton();
+        stepHomePage.validate();
+    }
+
+    @Given("it logins into headway")
+    public void loginsIntoHeadway() {
+        stepConnectionPage.open();
+        stepFirstLogin.clickLogin();
+        stepConnectionPage.validatesMicrosoftPopOpens();
+        stepConnectionPage.enterValidEmail(Util.getInstance().getCredential().getUser());
+        stepConnectionPage.pressesNext();
+        stepConnectionPage.validatesMicrosoftPasswordIsShown();
+        stepConnectionPage.enterValidPassword(Util.getInstance().getCredential().getPassword());
+        stepConnectionPage.pressesSignIn();
+        try {
+            stepConnectionPage.pressesKeepSessionButton();
+            stepHomePage.validate();
+        }catch (Exception e) {
+            stepConnectionPage.pressesReceiveTextMessage();
+            stepConnectionPage.pressesContinueButton();
+            stepConnectionPage.pressesKeepSessionButton();
+        }
     }
 }

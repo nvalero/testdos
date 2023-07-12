@@ -1,6 +1,5 @@
 Feature: Login to GDM Headway
-
-  @EnterToLogin
+ @Regression @EnterToLogin
  Scenario Outline: Login - Login screenXX
 
     Given paso tal
@@ -11,14 +10,14 @@ Feature: Login to GDM Headway
       | code | service | user_data             |
       | 200  | GATEWAY | create_user_data.json |
 
-  @Login
+  @Regression @Login
   # HW-548
   Scenario: Login - Login screen
 
     Given a web browser is at headway login page with a registered user
     Then the Login Screen is shown with the welcome message "Welcome to Headway"
 
-  @Login
+  @Regression @Login
   # HW-1532
   Scenario: Login - Microsoft log in pop-up
 
@@ -26,7 +25,7 @@ Feature: Login to GDM Headway
     When it clicks on the Log In button
     Then the Microsoft log in pop-up is shown
 
-  @Login
+  @Regression @Login
   # HW-1533
   Scenario: Login - Log in error for invalid user
 
@@ -38,7 +37,7 @@ Feature: Login to GDM Headway
     Then an error message for login is displayed in the Microsoft log in pop-up "Este nombre de usuario puede ser incorrecto. Asegúrese de que lo ha escrito correctamente. De lo contrario, póngase en contacto con el administrador."
   #"This username may be incorrect. Make sure you typed it correctly. Otherwise, contact your admin."
 
-  @Login
+  @Regression @Login
   # HW-1535
   Scenario: Login - Microsoft log in pop-up
 
@@ -49,7 +48,7 @@ Feature: Login to GDM Headway
     And it presses Next
     Then the Microsoft log in pop-up switches to allow entering the password
 
-  @Login
+  @Regression @Login
   # HW-1536
   Scenario: Login - Log in error for invalid password
 
@@ -79,7 +78,7 @@ Feature: Login to GDM Headway
 
   @Login @LoginByAuthenticator
   # HW-1539
-  Scenario: Login - Login screen - Successful login
+  Scenario: Login - Login screen - Successful login - Authenticator
 
     Given a web browser is at headway login page with a registered user
     When it clicks on the Log In button

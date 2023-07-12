@@ -1,41 +1,24 @@
 package com.headway.steps;
 
-import net.serenitybdd.core.annotations.findby.By;
+import com.google.inject.Inject;
+import com.headway.definitions.LocatorsDictionary;
 import net.serenitybdd.core.pages.PageObject;
+import org.openqa.selenium.By;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
+
+import java.util.List;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 
 public class CreateSeriePage extends PageObject {
 
-    @FindBy(id = "company")
-    WebElement companyList;
-
-    @FindBy(id = "year")
-    WebElement yearList;
+    @Inject
+    LocatorsDictionary locatorsDictionary = new LocatorsDictionary();
 
     @FindBy(id = "description")
     WebElement description;
-
-    @FindBy(id = "trait")
-    WebElement traitList;
-
-    @FindBy(id = "breeding")
-    WebElement breedingList;
-
-    @FindBy(id = "cycle")
-    WebElement cycleList;
-
-    @FindBy(id = "location")
-    WebElement locationList;
-
-    @FindBy(id = "environment")
-    WebElement environmentList;
-
-    @FindBy(id = "cycleYear")
-    WebElement cycleYearList;
 
     @FindBy(css = "._loading_1cvem_110")
     WebElement submit;
@@ -58,6 +41,18 @@ public class CreateSeriePage extends PageObject {
     @FindBy(css = "._primary_1cvem_5")
     WebElement addParentsButton;
 
+    @FindBy(css = ".MuiDialog-root")
+    WebElement createSerieWindow;
+
+    @FindBy(css = "._large_ypyit_5")
+    WebElement aboutMessage;
+
+    @FindBy(css = "._contextual_phx9n_1")
+    WebElement notificationWindow;
+
+    @FindBy(css = "._icon_phx9n_39")
+    WebElement notificationWindowIcon;
+
     private static final String COMPANY_ITEM_LOCATOR_TEMPLATE = "react-select-2-option-0";//GDM ARGENTINA
     private static final String YEAR_ITEM_LOCATOR_TEMPLATE = "react-select-3-option-0";//2023
     private static final String TRAIT_ITEM_LOCATOR_TEMPLATE = "react-select-4-option-0";//CONVENTIONAL
@@ -74,42 +69,87 @@ public class CreateSeriePage extends PageObject {
     }
 
     public void clickSelectCompanyItem() {
-        description.sendKeys("description");
-        companyList.click();
+        //description.sendKeys("description");
+    }
+
+    public String getValueInAttributteInField(By by, String  attribute) {
+        return getDriver().findElement(by).getAttribute(attribute);
+    }
+
+    public void cycleYearIsDisabled() {
+        assertTrue(getValueInAttributteInField(By.name("cycleYearInput"), "class").contains("react-select--is" +
+                "-disabled"));
+    }
+
+    public void cycleYearHasValue(String value) {
+        getDriver().findElement((By.name("cycleYearInput"))).getAttribute("value").contains(value);
+    }
+
+    public void dropDownIsDisplayed(String dropDown) {
+        assertTrue(getDriver().findElement((By) locatorsDictionary.dropDownDictionary.get(
+                dropDown)).isDisplayed());
+    }
+    public int countDropDownElements(String dropDown) {
+        getDriver().findElement((By) locatorsDictionary.dropDownDictionary.get(
+                dropDown)).click();
+        return getDriver().findElement((By) locatorsDictionary.dropDownDictionary.get(
+                dropDown)).findElements(By.cssSelector(".react-select__option")).size();
+    }
+
+    public boolean validateDropDownElements(String dropDown, List expected) {
+        getDriver().findElement((By) locatorsDictionary.dropDownDictionary.get(
+                dropDown)).click();
+        List<WebElement> list = getDriver().findElement((By) locatorsDictionary.dropDownDictionary.get(
+                dropDown)).findElements(By.cssSelector(".react-select__option"));
+        return list.stream()
+                .filter(x -> expected.contains(x.getText())).count() == 0;
+    };
+
+    public void dropDownDisplaysOptions(String dropDown, String optionsString) {
+        List options = List.of(optionsString.split(","));
+        validateDropDownElements(dropDown, options);
     }
 
     public void clickSelectYearItem() {
-        yearList.click();
+        getDriver().findElement((By) locatorsDictionary.dropDownDictionary.get(
+                "year")).click();
         getDriver().findElement(By.id(YEAR_ITEM_LOCATOR_TEMPLATE)).click();
     }
 
     public void clickBreedingItem() {
-        breedingList.click();
+         getDriver().findElement((By) locatorsDictionary.dropDownDictionary.get(
+                        "breeding")).click();
         getDriver().findElement(By.id(BREEDING_ITEM_LOCATOR_TEMPLATE)).click();
     }
 
     public void clickTraitItem() {
-        traitList.click();
+        getDriver().findElement((By) locatorsDictionary.dropDownDictionary.get(
+                "trait")).click();
         getDriver().findElement(By.id(TRAIT_ITEM_LOCATOR_TEMPLATE)).click();
     }
 
     public void clickCycleItem() {
-        cycleList.click();
+        getDriver().findElement((By) locatorsDictionary.dropDownDictionary.get(
+                "cycle")).click();
         getDriver().findElement(By.id(CYCLE_ITEM_LOCATOR_TEMPLATE)).click();
     }
 
     public void clickLocationItem() {
-        locationList.click();
+        click((By) locatorsDictionary.dropDownDictionary.get(
+                "location"));
         getDriver().findElement(By.id(LOCATION_ITEM_LOCATOR_TEMPLATE)).click();
     }
 
+    private void click(By by) {
+        getDriver().findElement((By) locatorsDictionary.dropDownDictionary.get(
+                "location")).click();
+    }
+
     public void clickEnvironmentItem() {
-        environmentList.click();
         getDriver().findElement(By.id(ENVIRONMENT_ITEM_LOCATOR_TEMPLATE)).click();
     }
 
     public void clickCycleYearItem() {
-        cycleYearList.click();
         getDriver().findElement(By.id(CYCLE_YEAR_ITEM_LOCATOR_TEMPLATE)).click();//class="_icon_41q16_1"
     }
 
@@ -117,13 +157,16 @@ public class CreateSeriePage extends PageObject {
         this.description.sendKeys(description);
     }
 
+    public void descriptionIsDisplayed() {
+        this.description.isDisplayed();
+    }
+
     public void clickSubmit() {
         submit.click();
     }
 
-
-    public void validateCreatedMessage() {
-        assertEquals(createdMessage.getText(), "The Series was successfully Created");
+    public void validateCreatedMessage(String message) {
+        assertEquals(createdMessage.getText(), message);
     }
 
     public void logoCreatedMessageIsDisplayed() {
@@ -145,11 +188,37 @@ public class CreateSeriePage extends PageObject {
     public void addParentsButtonButtonIsDisplayed() {
         assertTrue(addParentsButton.isDisplayed());
     }
+
     public void clickGoToSeries() {
         goToSeriesButton.click();
     }
 
     public void clickAddParents() {
         addParentsButton.click();
+    }
+
+    public void createSerieWindowIsDisplayed(boolean isDisplayed) {
+        assertTrue(createSerieWindow.isDisplayed() == isDisplayed);
+    }
+
+    public void aboutMessageIsDisplayed() {
+        assertTrue(aboutMessage.getText().equals("You are about to create a series in the crop category \"soybean\". " +
+                "You must complete the required fields to continue."));
+    }
+
+    public void notificationWindowIsDisplayed() {
+        assertTrue(notificationWindow.isDisplayed());
+    }
+
+    public void submitIsDisplayed() {
+        assertTrue(submit.isDisplayed());
+    }
+
+    public void notificationWindowContains(String message) {
+        assertTrue(notificationWindow.getText().contains(message));
+    }
+
+    public void notificationWindowIconIsDisplayed() {
+        assertTrue(notificationWindowIcon.isDisplayed());
     }
 }
