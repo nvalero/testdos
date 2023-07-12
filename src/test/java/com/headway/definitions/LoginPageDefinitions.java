@@ -1,7 +1,9 @@
 package com.headway.definitions;
 
 import com.google.inject.Inject;
-import com.headway.steps.StepConnectionPage;
+import com.headway.pageobjects.ConnectionPage;
+import com.headway.pageobjects.HomePage;
+import com.headway.pageobjects.LoginHeadway;
 import com.headway.util.Util;
 import io.cucumber.datatable.DataTable;
 import io.cucumber.java.en.And;
@@ -13,12 +15,12 @@ import net.thucydides.core.annotations.Steps;
 public class LoginPageDefinitions {
 
     @Steps
-    com.headway.steps.StepHomePage stepHomePage;
+    HomePage stepHomePage;
 
     @Steps
-    com.headway.steps.StepLoginHeadway stepFirstLogin;
+    LoginHeadway stepFirstLogin;
 
-    StepConnectionPage stepConnectionPage;
+    ConnectionPage stepConnectionPage;
 
     @Inject
     LocatorsDictionary locatorsDictionary = new LocatorsDictionary();

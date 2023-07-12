@@ -1,4 +1,4 @@
-package com.headway.steps;
+package com.headway.pageobjects;
 
 import net.serenitybdd.core.pages.PageObject;
 import org.openqa.selenium.WebElement;
@@ -7,7 +7,7 @@ import org.openqa.selenium.support.FindBy;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 
-public class StepConnectionPage extends PageObject {
+public class ConnectionPage extends PageObject {
 
     @FindBy(css = "#i0116")
     WebElement username;

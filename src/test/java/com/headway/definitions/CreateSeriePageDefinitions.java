@@ -6,7 +6,7 @@ import net.thucydides.core.annotations.Steps;
 public class CreateSeriePageDefinitions {
 
     @Steps
-    com.headway.steps.CreateSeriePage createSeriePage;
+    com.headway.pageobjects.CreateSeriePage createSeriePage;
 
     @And("it completed all fields with the correct data")
     public void completedFieldsNewSerie() {
