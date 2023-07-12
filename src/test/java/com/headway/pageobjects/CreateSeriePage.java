@@ -1,7 +1,6 @@
 package com.headway.pageobjects;
 
 import com.google.inject.Inject;
-import com.headway.definitions.LocatorsDictionary;
 import net.serenitybdd.core.pages.PageObject;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebElement;

@@ -1,4 +1,4 @@
-package com.headway.definitions;
+package com.headway.pageobjects;
 
 import org.openqa.selenium.By;
 
