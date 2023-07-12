@@ -1,5 +1,7 @@
-package com.headway.definitions;
+package com.headway.stepsdefinitions;
 
+import com.headway.pageobjects.ConnectionPage;
+import com.headway.pageobjects.LoginHeadway;
 import io.cucumber.datatable.DataTable;
 import io.cucumber.java.en.And;
 import io.cucumber.java.en.Given;
@@ -7,42 +9,42 @@ import io.cucumber.java.en.Then;
 import io.cucumber.java.en.When;
 import net.thucydides.core.annotations.Steps;
 
-public class LoginPageDefinitions {
+public class LoginSteps {
 
     @Steps
-    com.headway.steps.StepConnectionPage stepConnectionPage;
+    ConnectionPage connectionPage;
 
     @Steps
-    com.headway.steps.StepLoginHeadway stepFirstLogin;
+    LoginHeadway stepFirstLogin;
 
     @Given("a web browser is at headway login page with a registered user")
     public void openApplication() {
-        stepConnectionPage.open();
+        connectionPage.open();
     }
 
     @Then("the Login Screen is shown with the welcome message {string}")
     public void validateLoginPage(String title) {
-        stepConnectionPage.validate(title);
+        connectionPage.validate(title);
     }
 
     @Then("I submit the login form with an invalid email {string}")
     public void entersInvalidEmail(String email) {
-        stepConnectionPage.enterInvalidEmail(email);
+        connectionPage.enterInvalidEmail(email);
     }
 
     @Then("an error message for password is displayed in the Microsoft log in pop-up {string}")
     public void validatePasswordMessage(String message) {
-        stepConnectionPage.validatePasswordMessage(message);
+        connectionPage.validatePasswordMessage(message);
     }
 
     @Then("an error message for login is displayed in the Microsoft log in pop-up {string}")
     public void validateEmailMessage(String message) {
-        stepConnectionPage.validateEmailMessage(message);
+        connectionPage.validateEmailMessage(message);
     }
 
     @And("User connects through Microsoft")
     public void connect() {
-        stepConnectionPage.connect();
+        connectionPage.connect();
     }
 
     @When("it clicks on the Log In button")
@@ -52,56 +54,56 @@ public class LoginPageDefinitions {
 
     @When("the Microsoft log in pop-up is shown")
     public void validatesMicrosoftPopOpens() {
-        stepConnectionPage.validatesMicrosoftPopOpens();
+        connectionPage.validatesMicrosoftPopOpens();
     }
 
     @And("it has entered a valid email")
     public void enterValidEmail() {
-        stepConnectionPage.enterValidEmail();
+        connectionPage.enterValidEmail();
     }
 
     @And("it presses Next")
     public void pressesNext() {
-        stepConnectionPage.pressesNext();
+        connectionPage.pressesNext();
     }
 
     @And("the Microsoft log in pop-up switches to allow entering the password")
     public void validatesMicrosoftPassword() {
-        stepConnectionPage.validatesMicrosoftPasswordIsShown();
+        connectionPage.validatesMicrosoftPasswordIsShown();
     }
 
     @And("it has entered a valid password")
     public void entersPassword() {
-        stepConnectionPage.enterValidPassword();
+        connectionPage.enterValidPassword();
     }
 
     @Then("I submit the login form with an invalid password {string}")
     public void entersInvalidPassword(String password) {
-        stepConnectionPage.enterInvalidPassword(password);
+        connectionPage.enterInvalidPassword(password);
     }
 
     @And("it presses Sign in")
     public void pressesSignIn() {
-        stepConnectionPage.pressesSignIn();
+        connectionPage.pressesSignIn();
     }
 
     @And("it presses receive text message")
     public void pressesReceiveTextMessage() {
-        stepConnectionPage.pressesReceiveTextMessage();
+        connectionPage.pressesReceiveTextMessage();
     }
 
     @And("it has presses Verify")
     public void pressesKeepSessionButton() {
-        stepConnectionPage.pressesKeepSessionButton();
+        connectionPage.pressesKeepSessionButton();
     }
 
     @Given("paso tal")
     public void pasoTal(DataTable dataTable) {
-        stepConnectionPage.open();
+        connectionPage.open();
     }
 
     @Given("it has presses Continue")
     public void pressesContinueButton() {
-        stepConnectionPage.pressesContinueButton();
+        connectionPage.pressesContinueButton();
     }
 }

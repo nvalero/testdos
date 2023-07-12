@@ -12,7 +12,7 @@ Feature: Login to GDM Headway
       | 200  | GATEWAY | create_user_data.json |
 
   @Login
-  # HW-548
+  @548
   Scenario: Login - Login screen
 
     Given a web browser is at headway login page with a registered user

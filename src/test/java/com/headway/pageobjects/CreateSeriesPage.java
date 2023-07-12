@@ -1,4 +1,4 @@
-package com.headway.steps;
+package com.headway.pageobjects;
 
 import net.serenitybdd.core.annotations.findby.By;
 import net.serenitybdd.core.pages.PageObject;
@@ -8,7 +8,7 @@ import org.openqa.selenium.support.FindBy;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 
-public class CreateSeriePage extends PageObject {
+public class CreateSeriesPage extends PageObject {
 
     @FindBy(id = "company")
     WebElement companyList;
