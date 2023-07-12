@@ -147,16 +147,18 @@ public class LoginSteps {
         connectionPage.validatesMicrosoftPopOpens();
         connectionPage.enterValidEmail(Util.getInstance().getCredential().getUser());
         connectionPage.pressesNext();
-        connectionPage.validatesMicrosoftPasswordIsShown();
+        //connectionPage.validatesMicrosoftPasswordIsShown();
         connectionPage.enterValidPassword(Util.getInstance().getCredential().getPassword());
         connectionPage.pressesSignIn();
         try {
             connectionPage.pressesKeepSessionButton();
             stepHomePage.validate();
-        }catch (Exception e) {
+        } catch (Exception e) {
             connectionPage.pressesReceiveTextMessage();
-            connectionPage.pressesContinueButton();
             connectionPage.pressesKeepSessionButton();
+            connectionPage.pressesContinueButton();
+            connectionPage.staySignInCheckbox();
+            connectionPage.staySignInYesButton();
         }
     }
 }

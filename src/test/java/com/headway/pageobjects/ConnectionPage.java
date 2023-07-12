@@ -25,8 +25,8 @@ public class ConnectionPage extends PageObject {
             " > div > div.password-reset-links-container.ext-password-reset-links-container > div.win-button-pin-bottom.boilerplate-button-bottom > div > div > div > div")
     WebElement Next1;
 
-    @FindBy(css = "#lightbox > div:nth-child(3) > div > div.pagination-view.animate.has-identity-banner.slide-in-next > div > div.password-reset-links-container.ext-password-reset-links-container > div.win-button-pin-bottom.boilerplate-button-bottom > div > div > div > div")
-    WebElement signIn;
+    @FindBy(id = "idSIButton9")
+    WebElement signinButton;
 
     @FindBy(css = "#root > div > div._leftpanel_1ogk7_29 > div:nth-child(1) > h1")
     WebElement title;
@@ -40,18 +40,27 @@ public class ConnectionPage extends PageObject {
     @FindBy(css = "#lightbox > div:nth-child(3) > div > div.pagination-view.has-identity-banner.animate.slide-in-next > div > div:nth-child(8) > div.row.move-buttons > div > div > div:nth-child(2)")
     WebElement keepSessionButton;
 
-    @FindBy(css = "#idDiv_SAOTCS_Proofs > div:nth-child(1) > div > div > div.table-cell.text-left.content > div")
+    @FindBy(css = "div[data-bind='text: display']")
     WebElement textMessageButton;
 
+    @FindBy(id = "idChkBx_SAOTCC_TD")
+    WebElement enterCodeCheckbox;
+
     @FindBy(id = "idSubmit_SAOTCC_Continue")
-    WebElement continueButton;
+    WebElement verifyButton;
+
+    @FindBy(id = "KmsiCheckboxField")
+    WebElement staySingInCheckbox;
+
+    @FindBy(id = "idSIButton9")
+    WebElement yesButton;
 
     public void connect() {
         username.sendKeys(("ext.nvalero@gdmseeds.com"));
         clickUser.click();
         password.sendKeys("NV2023gdm+");
         clickPassword.click();
-        signIn.click();
+        signinButton.click();
     }
 
     public void validate(String title) {
@@ -82,21 +91,25 @@ public class ConnectionPage extends PageObject {
         try {
             password.sendKeys(text);
         }catch (Exception e){
-
             password.sendKeys(text);
         }
     }
 
     public void pressesSignIn() {
-        signIn.click();
+        signinButton.click();
     }
 
     public void pressesKeepSessionButton() {
-        keepSessionButton.click();
+        enterCodeCheckbox.click();
     }
 
     public void pressesReceiveTextMessage() {
         textMessageButton.click();
+        try {
+            Thread.sleep(20000); // Wait for 20 seconds
+        } catch (InterruptedException e) {
+            // Handle InterruptedException
+        }
     }
 
     public void validateEmailMessage(String message) {
@@ -112,6 +125,14 @@ public class ConnectionPage extends PageObject {
     }
 
     public void pressesContinueButton() {
-        continueButton.click();
+        verifyButton.click();
+    }
+
+    public void staySignInCheckbox() {
+        staySingInCheckbox.click();
+    }
+
+    public void staySignInYesButton() {
+        yesButton.click();
     }
 }
