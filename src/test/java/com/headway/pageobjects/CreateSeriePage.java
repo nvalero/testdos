@@ -1,4 +1,4 @@
-package com.headway.steps;
+package com.headway.pageobjects;
 
 import com.google.inject.Inject;
 import com.headway.definitions.LocatorsDictionary;
