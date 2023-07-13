@@ -135,4 +135,9 @@ public class ConnectionPage extends PageObject {
     public void staySignInYesButton() {
         yesButton.click();
     }
+
+    public void quitDriver() {
+        getDriver().quit();
+    }
+
 }
