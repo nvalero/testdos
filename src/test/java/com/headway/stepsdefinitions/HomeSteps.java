@@ -20,11 +20,11 @@ public class HomeSteps {
     }
 
     @And("the Hamburger Menu is displayed")
-    public void hamburgerMenuisDisplayed(){ homePage.isHamburgerMenuDisplayed(); }
+    public void hamburgerMenuIsDisplayed(){ homePage.isHamburgerMenuDisplayed(); }
 
     @And("the Header Menu is displayed")
-    public void headerMenuisDisplayed(){ homePage.isHeaderDisplayed(); }
+    public void headerMenuIsDisplayed(){ homePage.isHeaderDisplayed(); }
 
     @And("the Middle Section Menu is displayed")
-    public void middleMenuisDisplayed(){ homePage.isMiddleDisplayed(); }
+    public void middleMenuIsDisplayed(){ homePage.isMiddleDisplayed(); }
 }
