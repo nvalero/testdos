@@ -18,4 +18,13 @@ public class HomeSteps {
     public void createSerie() {
         homePage.createSerie();
     }
+
+    @And("the Hamburger Menu is displayed")
+    public void hamburgerMenuisDisplayed(){ homePage.isHamburgerMenuDisplayed(); }
+
+    @And("the Header Menu is displayed")
+    public void headerMenuisDisplayed(){ homePage.isHeaderDisplayed(); }
+
+    @And("the Middle Section Menu is displayed")
+    public void middleMenuisDisplayed(){ homePage.isMiddleDisplayed(); }
 }
