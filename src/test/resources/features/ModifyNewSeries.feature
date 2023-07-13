@@ -30,8 +30,43 @@ Feature: [Epic HW-156] Modify New Series
     When it pushes the close icon button
     Then the Series Manager Page is displayed
 
-  Scenario: Edit Series - Drop-down field Company Test
+  Scenario: [HW-1569] Edit Series - Drop-down field Company Test
     Given it logins into headway
     And it presses the Edit icon
     When it pushes the dropdown company field
     Then the platform displays the drop-down with the options GDM ARGENTINA, GDM BRAZIL, GDM CHINA, GDM EUROPE UNION, GDM UNITED STATES
+
+  Scenario: [HW-1570] Edit Series - Filter field Company Test
+    Given it logins into headway
+    And it presses the Edit icon
+    And edit Series drawer is displayed
+    Then it types INA in the field Company
+    And the platform performs a sequential search and displays the following options in the drop-down list: GDM ARGENTINA, GDM CHINA
+
+  Scenario: [HW-1571] Edit Series - Filter field Company No-Options Test
+    Given it logins into headway
+    And it presses the Edit icon
+    And edit Series drawer is displayed
+    When it types ZZ in the field Company
+    Then the platform performs a sequential search and displays the message No Options in the dropdown
+
+  Scenario: [HW-1572] Edit Series - Drop-down field Year Test
+    Given it logins into headway
+    And it presses the Edit icon
+    And edit Series drawer is displayed
+    When it pushes the dropdown field Year
+    Then the platform displays a dropdown with the actual year and the next
+
+  Scenario: [HW-1573] Edit Series - Filter field Year Test
+    Given it logins into headway
+    And it presses the Edit icon
+    And edit Series drawer is displayed
+    When it types 0 in the field Year
+    Then the platform displays a dropdown with the actual year and the next
+
+  Scenario: [HW-1574] Edit Series - Filter field Year No-Options Test
+    Given it logins into headway
+    And it presses the Edit icon
+    And edit Series drawer is displayed
+    When it types AA in the field Year
+    Then the platform performs a sequential search and displays the message No Options in the dropdown for year field

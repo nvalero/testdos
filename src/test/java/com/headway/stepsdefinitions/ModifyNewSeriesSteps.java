@@ -119,4 +119,50 @@ public class ModifyNewSeriesSteps {
     public void validateCompanyOption() {
         modifyNewSeriesPage.validateCompanyOption();
     }
+
+    @Then("it types INA in the field Company")
+    public void TypeINAFieldCompany() {
+        modifyNewSeriesPage.TypeINAFieldCompany();
+    }
+
+    @And("the platform performs a sequential search and displays the following options in the drop-down list: GDM ARGENTINA, GDM CHINA")
+    public void sequentialSearchDisplayed() {
+        modifyNewSeriesPage.sequentialSearchDisplayed();
+    }
+
+    @When("it types ZZ in the field Company")
+    public void TypeZZFieldCompany() {
+        modifyNewSeriesPage.TypeZZFieldCompany();
+    }
+
+    @Then("the platform performs a sequential search and displays the message No Options in the dropdown")
+    public void displaysMessageNoOptions() {
+        modifyNewSeriesPage.displaysMessageNoOptions();
+    }
+
+    @When("it pushes the dropdown field Year")
+    public void clickYearDropdown() {
+        modifyNewSeriesPage.clickYearDropdown();
+    }
+
+    @Then("the platform displays a dropdown with the actual year and the next")
+    public void sequentialSearchDisplayedForYearField() {
+        modifyNewSeriesPage.sequentialSearchDisplayedForYearField();
+    }
+
+    @When("it types 0 in the field Year")
+    public void typeInTheFieldYear() {
+        modifyNewSeriesPage.typeInTheFieldYear();
+    }
+
+
+    @When("it types AA in the field Year")
+    public void typesInTheFieldYearWrong() {
+        modifyNewSeriesPage.typeInTheFieldYearWrong();
+    }
+
+    @Then("the platform performs a sequential search and displays the message No Options in the dropdown for year field")
+    public void displaysMessageNoOptionsForYear() {
+        modifyNewSeriesPage.displaysMessageNoOptionsForYear();
+    }
 }

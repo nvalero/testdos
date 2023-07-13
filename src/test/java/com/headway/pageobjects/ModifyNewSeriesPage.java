@@ -96,6 +96,18 @@ public class ModifyNewSeriesPage extends PageObject {
     @FindBy(xpath = "//div[@class='react-select__menu-list']//div[@class='react-select__option']")
     private List<WebElement> companyDropdownOptions;
 
+    @FindBy(id = "react-select-18-listbox")
+    private WebElement noOptionMessage;
+
+    @FindBy(id = "react-select-19-listbox")
+    private WebElement yearNoOptionMessage;
+
+    @FindBy(id = "react-select-19-option-0")
+    private WebElement yearOption2023;
+
+    @FindBy(id = "react-select-19-option-1")
+    private WebElement yearOption2024;
+
     public void clickEditIconButton() {
         editIconButton.click();
     }
@@ -198,4 +210,51 @@ public class ModifyNewSeriesPage extends PageObject {
             assert optionTexts.contains(expectedOption) : "Option '" + expectedOption + "' is missing in the dropdown.";
         }
     }
+
+    public void TypeINAFieldCompany() {
+        companyIconDropdown.sendKeys("INA");
+    }
+
+    public void sequentialSearchDisplayed() {
+        List<String> optionTexts = companyDropdownOptions.stream()
+                .map(WebElement::getText)
+                .collect(Collectors.toList());
+
+        List<String> expectedOptions = Arrays.asList("GDM ARGENTINA", "GDM CHINA");
+
+        for (String expectedOption : expectedOptions) {
+            assert optionTexts.contains(expectedOption) : "Option '" + expectedOption + "' is missing in the dropdown.";
+        }
+    }
+
+    public void TypeZZFieldCompany(){
+        companyIconDropdown.sendKeys("ZZ");
+    }
+
+    public void displaysMessageNoOptions() {
+        noOptionMessage.isDisplayed();
+    }
+
+    public void clickYearDropdown() {
+        yearIconDropDown.click();
+    }
+
+    public void sequentialSearchDisplayedForYearField() {
+        yearOption2023.isDisplayed();
+        yearOption2024.isDisplayed();
+    }
+
+    public void typeInTheFieldYear() {
+        yearIconDropDown.sendKeys("0");
+    }
+
+    public void typeInTheFieldYearWrong() {
+        yearIconDropDown.sendKeys("AA");
+    }
+
+    public void displaysMessageNoOptionsForYear() {
+        yearNoOptionMessage.isDisplayed();
+    }
+
+
 }
