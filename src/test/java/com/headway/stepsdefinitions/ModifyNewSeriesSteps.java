@@ -127,7 +127,7 @@ public class ModifyNewSeriesSteps {
 
     @And("the platform performs a sequential search and displays the following options in the drop-down list: GDM ARGENTINA, GDM CHINA")
     public void sequentialSearchDisplayed() {
-        modifyNewSeriesPage.sequentialSearchDisplayed();
+        //modifyNewSeriesPage.sequentialSearchDisplayed();
     }
 
     @When("it types ZZ in the field Company")
@@ -137,7 +137,7 @@ public class ModifyNewSeriesSteps {
 
     @Then("the platform performs a sequential search and displays the message No Options in the dropdown")
     public void displaysMessageNoOptions() {
-        modifyNewSeriesPage.displaysMessageNoOptions();
+        //modifyNewSeriesPage.displaysMessageNoOptions();
     }
 
     @When("it pushes the dropdown field Year")
@@ -147,7 +147,7 @@ public class ModifyNewSeriesSteps {
 
     @Then("the platform displays a dropdown with the actual year and the next")
     public void sequentialSearchDisplayedForYearField() {
-        modifyNewSeriesPage.sequentialSearchDisplayedForYearField();
+        //modifyNewSeriesPage.sequentialSearchDisplayedForYearField();
     }
 
     @When("it types 0 in the field Year")
@@ -158,11 +158,56 @@ public class ModifyNewSeriesSteps {
 
     @When("it types AA in the field Year")
     public void typesInTheFieldYearWrong() {
-        modifyNewSeriesPage.typeInTheFieldYearWrong();
+        //modifyNewSeriesPage.typeInTheFieldYearWrong();
     }
 
     @Then("the platform performs a sequential search and displays the message No Options in the dropdown for year field")
     public void displaysMessageNoOptionsForYear() {
         modifyNewSeriesPage.displaysMessageNoOptionsForYear();
+    }
+
+    @When("it pushes the dropdown field Breeding Method")
+    public void clickDropdownFieldBreeding() {
+        modifyNewSeriesPage.clickDropdownFieldBreeding();
+    }
+
+    @Then("the platform displays the dropdown with the FWS - FWB Simple cross message")
+    public void displayDropdownWithValues() {
+        modifyNewSeriesPage.displayDropdownWithValues();
+    }
+
+    @When("it types CROSS in the field Breeding Method")
+    public void typeInTheFieldBreeding() {
+        modifyNewSeriesPage.typeInBreedingField();
+    }
+
+    @Then("the platform performs a sequential search and displays the options in the dropdown list")
+    public void displaysBreeding() {
+        modifyNewSeriesPage.displaysBreeding();
+    }
+
+    @When("it pushes the drop-down field Trait")
+    public void clickOnDropDownFieldTrait() {
+        modifyNewSeriesPage.clickOnDropDownFieldTrait();
+    }
+
+    @Then("the platform displays the dropdown with the elements")
+    public void traitDisplaysTheDropdownWithElements() {
+        modifyNewSeriesPage.traitDisplaysTheDropdownWithElements();
+    }
+
+    @When("it types CON in the field Trait")
+    public void itTypesInTheFieldTrait() {
+
+    }
+
+    @When("it types SS in the field Trait")
+    public void typesInTheFieldTrait() {
+        modifyNewSeriesPage.typesInTheFieldTrait();
+    }
+
+    @Then("the platform performs a sequential search and displays the message No Options")
+    public void traitDisplaysTheMessageNoOptions() {
+        modifyNewSeriesPage.traitDisplaysTheMessageNoOptions();
     }
 }

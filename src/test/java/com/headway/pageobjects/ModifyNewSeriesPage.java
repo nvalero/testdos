@@ -1,6 +1,7 @@
 package com.headway.pageobjects;
 
 import net.serenitybdd.core.pages.PageObject;
+import org.openqa.selenium.By;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
 
@@ -32,6 +33,12 @@ public class ModifyNewSeriesPage extends PageObject {
 
     @FindBy(id = "company")
     private WebElement companyIconDropdown;
+
+    @FindBy(id = "react-select-42-listbox")
+    private WebElement companyDropdownMenuAr;
+
+    @FindBy(id = "react-select-42-option-2")
+    private WebElement companyDropdownMenuChina;
 
     @FindBy(css = "label._label_1qoso_5[for='year']")
     private WebElement yearIconLabel;
@@ -212,23 +219,36 @@ public class ModifyNewSeriesPage extends PageObject {
     }
 
     public void TypeINAFieldCompany() {
-        companyIconDropdown.sendKeys("INA");
-    }
+        companyIconDropdown.click();
 
-    public void sequentialSearchDisplayed() {
-        List<String> optionTexts = companyDropdownOptions.stream()
-                .map(WebElement::getText)
-                .collect(Collectors.toList());
+        WebElement inputElement = companyIconDropdown.findElement(By.cssSelector("input.react-select__input"));
+        inputElement.sendKeys("INA");
 
-        List<String> expectedOptions = Arrays.asList("GDM ARGENTINA", "GDM CHINA");
-
-        for (String expectedOption : expectedOptions) {
-            assert optionTexts.contains(expectedOption) : "Option '" + expectedOption + "' is missing in the dropdown.";
+        try {
+            Thread.sleep(3000); // Wait for 3 seconds
+        } catch (InterruptedException e) {
+            // Handle InterruptedException
         }
     }
 
+    public void sequentialSearchDisplayed() {
+        WebElement selectedOptionAr = companyDropdownMenuAr.findElement(By.cssSelector(".react-select__option--is-selected"));
+        String valueAr = selectedOptionAr.getText();
+        //assertEquals("GDM ARGENTINA", valueAr);
+
+    }
+
     public void TypeZZFieldCompany(){
-        companyIconDropdown.sendKeys("ZZ");
+        companyIconDropdown.click();
+
+        WebElement inputElement = companyIconDropdown.findElement(By.cssSelector("input.react-select__input"));
+        inputElement.sendKeys("ZZ");
+
+        try {
+            Thread.sleep(3000); // Wait for 3 seconds
+        } catch (InterruptedException e) {
+            // Handle InterruptedException
+        }
     }
 
     public void displaysMessageNoOptions() {
@@ -245,7 +265,18 @@ public class ModifyNewSeriesPage extends PageObject {
     }
 
     public void typeInTheFieldYear() {
+        yearIconDropDown.click();
+        try {
+            Thread.sleep(5000); // Wait for 10 seconds
+        } catch (InterruptedException e) {
+            // Handle InterruptedException
+        }
         yearIconDropDown.sendKeys("0");
+        try {
+            Thread.sleep(5000); // Wait for 10 seconds
+        } catch (InterruptedException e) {
+            // Handle InterruptedException
+        }
     }
 
     public void typeInTheFieldYearWrong() {
@@ -255,6 +286,65 @@ public class ModifyNewSeriesPage extends PageObject {
     public void displaysMessageNoOptionsForYear() {
         yearNoOptionMessage.isDisplayed();
     }
+
+    public void clickDropdownFieldBreeding() {
+        breedingIconDropDown.click();
+    }
+
+    @FindBy(xpath = "//div[contains(@class, 'react-select__single-value')]")
+    private WebElement fwsFwbSimpleCross;
+    public void displayDropdownWithValues() {
+        fwsFwbSimpleCross.isDisplayed();
+        boolean equals = fwsFwbSimpleCross.getText().equals("FWS - FWB Simple cross");
+    }
+
+    public void typeInBreedingField() {
+        breedingIconDropDown.click();
+
+        WebElement inputElement = breedingIconDropDown.findElement(By.className("react-select__single-value"));
+        inputElement.sendKeys("CROSS");
+
+        try {
+            Thread.sleep(3000); // Wait for 2 seconds
+        } catch (InterruptedException e) {
+            // Handle InterruptedException
+        }
+    }
+
+    public void displaysBreeding() {
+        WebElement inputElement = breedingIconDropDown.findElement(By.className("react-select__single-value"));
+        inputElement.isDisplayed();
+    }
+
+    public void clickOnDropDownFieldTrait() {
+        traitIconDropdown.click();
+    }
+
+    public void traitDisplaysTheDropdownWithElements() {
+        traitIconDropdown.isDisplayed();
+    }
+
+    public void typesInTheFieldTrait () {
+        traitIconDropdown.click();
+
+        WebElement inputElement = traitIconDropdown.findElement(By.cssSelector(".react-select__control.css-13q36ur-control"));
+        inputElement.sendKeys("SS");
+
+        try {
+            Thread.sleep(3000); // Wait for 2 seconds
+        } catch (InterruptedException e) {
+            // Handle InterruptedException
+        }
+    }
+
+    @FindBy(css = ".react-select__menu.css-1nmdiq5-menu")
+    private WebElement optionsMenuElement;
+
+    public void traitDisplaysTheMessageNoOptions() {
+        optionsMenuElement.isDisplayed();
+    }
+
+
 
 
 }

@@ -1,9 +1,8 @@
-
+@ModifyNewSeries
 Feature: [Epic HW-156] Modify New Series
 
   As Nursery Manager, I want to be able to modify a New Breeding Series to change the name and type if necessary according to business decision.
 
- @1567 @ModifyNewSeries
   Scenario: [HW-1567] Updates Series - Edit Series drawer
     Given it logins into headway
     When it presses the Edit icon
@@ -23,7 +22,6 @@ Feature: [Epic HW-156] Modify New Series
     And the message Make sure the information is correct is displayed
     Then the Create Series button is displayed
 
-  @ModifyNewSeries
   Scenario: [HW-1568] Edit Series - Cross button in Edit Series confirmation window
     Given it logins into headway
     When it presses the Edit icon
@@ -31,14 +29,12 @@ Feature: [Epic HW-156] Modify New Series
     When it pushes the close icon button
     Then the Series Manager Page is displayed
 
-
   Scenario: [HW-1569] Edit Series - Drop-down field Company Test
     Given it logins into headway
     And it presses the Edit icon
     When it pushes the dropdown company field
     Then the platform displays the drop-down with the options GDM ARGENTINA, GDM BRAZIL, GDM CHINA, GDM EUROPE UNION, GDM UNITED STATES
 
-  @ModifyNewSeries
   Scenario: [HW-1570] Edit Series - Filter field Company Test
     Given it logins into headway
     And it presses the Edit icon
@@ -52,6 +48,7 @@ Feature: [Epic HW-156] Modify New Series
     And edit Series drawer is displayed
     When it types ZZ in the field Company
     Then the platform performs a sequential search and displays the message No Options in the dropdown
+
 
   Scenario: [HW-1572] Edit Series - Drop-down field Year Test
     Given it logins into headway
@@ -73,3 +70,37 @@ Feature: [Epic HW-156] Modify New Series
     And edit Series drawer is displayed
     When it types AA in the field Year
     Then the platform performs a sequential search and displays the message No Options in the dropdown for year field
+
+
+  Scenario: [HW-1575] Edit Series - Drop-down field Breeding Method Test
+    Given it logins into headway
+    And it presses the Edit icon
+    And edit Series drawer is displayed
+    When it pushes the dropdown field Breeding Method
+    Then the platform displays the dropdown with the FWS - FWB Simple cross message
+
+  Scenario: [HW-1576] Edit Series - Filter field Breeding Method Test
+    Given it logins into headway
+    And it presses the Edit icon
+    And edit Series drawer is displayed
+    When it types CROSS in the field Breeding Method
+    Then the platform performs a sequential search and displays the options in the dropdown list
+
+    @1580
+  Scenario: [HW-1578] Edit Series - Drop-down field Trait Test
+    Given it logins into headway
+    And it presses the Edit icon
+    And edit Series drawer is displayed
+    When it pushes the drop-down field Trait
+    Then the platform displays the dropdown with the elements
+
+    @1580
+  Scenario: [HW-1580] Edit Series - Filter field Trait No-Options Test
+    Given it logins into headway
+    And it presses the Edit icon
+    And edit Series drawer is displayed
+    When it types SS in the field Trait
+    Then the platform performs a sequential search and displays the message No Options
+
+
+
