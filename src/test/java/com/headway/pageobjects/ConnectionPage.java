@@ -84,7 +84,7 @@ public class ConnectionPage extends PageObject {
     }
 
     public void validatesMicrosoftPasswordIsShown() {
-   //     assertTrue(password.isDisplayed());
+        assertTrue(password.isDisplayed());
     }
 
     public void enterValidPassword(String text) {
@@ -100,7 +100,7 @@ public class ConnectionPage extends PageObject {
     }
 
     public void pressesKeepSessionButton() {
-        enterCodeCheckbox.click();
+        yesButton.click();
     }
 
     public void pressesReceiveTextMessage() {
@@ -134,5 +134,9 @@ public class ConnectionPage extends PageObject {
 
     public void staySignInYesButton() {
         yesButton.click();
+    }
+
+    public void quitDriver() {
+        getDriver().quit();
     }
 }
