@@ -8,53 +8,62 @@ public class CreateSerieSteps {
     @Steps
     com.headway.pageobjects.CreateSeriePage createSeriePage;
 
+    @Steps
+    com.headway.pageobjects.SuccessCreateSeriePage successCreateSeriePage;
+
     @And("it completed all fields with the correct data")
     public void completedFieldsNewSerie() {
         createSeriePage.clickSelectCompanyItem();
-        createSeriePage.clickSelectYearItem();
+     /*   createSeriePage.clickSelectYearItem();
         createSeriePage.editDescription("new test");
         createSeriePage.clickBreedingItem();
         createSeriePage.clickTraitItem();
         createSeriePage.clickCycleItem();
         createSeriePage.clickEnvironmentItem();
         createSeriePage.clickLocationItem();
-        createSeriePage.clickSubmit();
-    }
-
-    //TODO fix this method
-    @And("it displays the Confirmation Window of Success")
-    public void validateCreatedMessage() {
-        //createSeriePage.validateCreatedMessage();
+        createSeriePage.clickSubmit();*/
     }
 
     @And("it displays the cross button")
     public void validateCrossButton() {
-        createSeriePage.crossCreatedMessageIsDisplayed();
+        successCreateSeriePage.crossCreatedMessageIsDisplayed();
     }
 
     @And("it displays the Success logo")
     public void validateSuccessLog() {
-        createSeriePage.logoCreatedMessageIsDisplayed();
+        successCreateSeriePage.logoCreatedMessageIsDisplayed();
     }
 
     @And("it displays title {string}")
     public void validateSeriesCreated(String message) {
-        createSeriePage.validateCreatedMessage(message);
+        successCreateSeriePage.validateCreatedMessage(message);
     }
 
     @And("it displays the long title Series Created")
     public void validateLongTitleSeriesCreated() {
-        createSeriePage.longCreatedMessageIsCorrect();
+        successCreateSeriePage.longCreatedMessageIsCorrect();
+    }
+
+    @And("it presses the button Go to Series Manager")
+    public void pressesButtonGoToSeriesManager() {
+        successCreateSeriePage.clickGoToSeries();
+        createSeriePage.createSerieWindowIsDisplayed(false);
     }
 
     @And("it displays the button Go to Series Manager")
     public void validateButtonGoToSeriesManager() {
-        createSeriePage.goToSeriesButtonIsDisplayed();
+        successCreateSeriePage.goToSeriesButtonIsDisplayed();
     }
 
     @And("it displays the button Add Parents List")
     public void validateButtonGoToAddParentsList() {
-        createSeriePage.addParentsButtonButtonIsDisplayed();
+        successCreateSeriePage.addParentsButtonButtonIsDisplayed();
+    }
+
+    @And("it presses Add Parents List button")
+    public void pressesButtonGoToAddParentsList() {
+        successCreateSeriePage.clickAddParents();
+        createSeriePage.createSerieWindowIsDisplayed(false);
     }
 
     @And("the {string} drop-down is displayed")
@@ -97,8 +106,27 @@ public class CreateSerieSteps {
         createSeriePage.dropDownDisplaysOptions(dropDown, options);
     }
 
-    @And("it selects a year")
-    public void selectYear(String dropDown) {
-        createSeriePage.clickSelectYearItem();
+    @And("the cycleyear has value {string}")
+    public void cycleYearHasValue(String value) {
+        createSeriePage.cycleYearHasValue(value);
+    }
+
+    @And("it selects item {int} in drop-down {string}")
+    public void selectYear(int item, String dropDown) {
+        createSeriePage.selectItemInDropDown(dropDown, item);
+    }
+    @And("the {string} drop-down has value {string}")
+    public void dropDownHasValue(String dropDown, String value) {
+        createSeriePage.dropDownHasValue(dropDown, value);
+    }
+    @And("it presses the cross button")
+    public void pressesCrossButton() {
+        createSeriePage.pressesCrossButton();
+        createSeriePage.createSerieWindowIsDisplayed(false);
+    }
+
+    @And("it presses the Go Back button")
+    public void clickGoBackButton() {
+        successCreateSeriePage.clickGoBackButton();
     }
 }

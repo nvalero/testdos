@@ -6,7 +6,11 @@ import org.openqa.selenium.By;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
 
+import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.Collections;
 import java.util.List;
+import java.util.stream.Collectors;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertTrue;
@@ -22,24 +26,6 @@ public class CreateSeriePage extends PageObject {
     @FindBy(css = "._loading_1cvem_110")
     WebElement submit;
 
-    @FindBy(css = ".MuiDialog-root ._title_x6167_5")
-    WebElement createdMessage;
-
-    @FindBy(css = ".MuiDialog-root ._title_x6167_5")
-    WebElement logoCreatedMessage;
-
-    @FindBy(css = ".MuiDialog-root ._icon_41q16_1 svg")
-    WebElement crossCreatedMessage;
-
-    @FindBy(css = "._container_1iw2j_1._drawerContent_1t7x3_25")
-    WebElement longCreatedMessage;
-
-    @FindBy(css = "._secondary_1cvem_39")
-    WebElement goToSeriesButton;
-
-    @FindBy(css = "._primary_1cvem_5")
-    WebElement addParentsButton;
-
     @FindBy(css = ".MuiDialog-root")
     WebElement createSerieWindow;
 
@@ -52,7 +38,10 @@ public class CreateSeriePage extends PageObject {
     @FindBy(css = "._icon_phx9n_39")
     WebElement notificationWindowIcon;
 
-    private static final String COMPANY_ITEM_LOCATOR_TEMPLATE = "react-select-2-option-0";//GDM ARGENTINA
+    @FindBy(css = ".MuiDialog-root ._icon_41q16_1 svg")
+    WebElement crossCreatedMessage;
+
+/*    private static final String COMPANY_ITEM_LOCATOR_TEMPLATE = "react-select-2-option-0";//GDM ARGENTINA
     private static final String YEAR_ITEM_LOCATOR_TEMPLATE = "react-select-3-option-0";//2023
     private static final String TRAIT_ITEM_LOCATOR_TEMPLATE = "react-select-4-option-0";//CONVENTIONAL
     private static final String BREEDING_ITEM_LOCATOR_TEMPLATE = "react-select-5-option-0";//FWS - FWB Simple cross
@@ -60,12 +49,11 @@ public class CreateSeriePage extends PageObject {
     private static final String LOCATION_ITEM_LOCATOR_TEMPLATE = "react-select-7-option-0";//CHACABUCO
     private static final String ENVIRONMENT_ITEM_LOCATOR_TEMPLATE = "react-select-8-option-0";//GREENHOUSE
     private static final String CYCLE_YEAR_ITEM_LOCATOR_TEMPLATE = "react-select-9-option-0";//2024
-    private static final String SERIE_NAME_LOCATOR_TEMPLATE = "NOMBREX";
-    private static final String SERIE_LINK_LOCATOR_TEMPLATE = "//span[@title=\"%s\"]";
+    private static final String SERIE_LINK_LOCATOR_TEMPLATE = "//span[@title=\"%s\"]";*/
 
-    public void getSerie(String serie) {
+/*    public void getSerie(String serie) {
         getDriver().findElement(By.xpath(String.format(SERIE_LINK_LOCATOR_TEMPLATE, serie)));//_loading_1cvem_110
-    }
+    }*/
 
     public void clickSelectCompanyItem() {
         //description.sendKeys("description");
@@ -105,16 +93,31 @@ public class CreateSeriePage extends PageObject {
     };
 
     public void dropDownDisplaysOptions(String dropDown, String optionsString) {
-        List options = List.of(optionsString.split(","));
-        validateDropDownElements(dropDown, options);
+        String options[] = optionsString.split(",");
+        validateDropDownElements(dropDown, Arrays.stream(options).map(x -> x.trim()).collect(Collectors.toList()));
     }
 
-    public void clickSelectYearItem() {
+/*    public void clickSelectYearItem() {
         getDriver().findElement((By) locatorsDictionary.dropDownDictionary.get(
                 "year")).click();
         getDriver().findElement(By.id(YEAR_ITEM_LOCATOR_TEMPLATE)).click();
+    }*/
+
+    public void selectItemInDropDown(String dropDown, int item) {
+        getDriver().findElement((By) locatorsDictionary.dropDownDictionary.get(
+                dropDown)).click();
+
+        getDriver().findElement(By.id(String.format((String) locatorsDictionary.dropDownItemDictionary.get(dropDown),
+                item))).click();
     }
 
+    public void dropDownHasValue(String dropDown, String value) {
+        WebElement parent = getDriver().findElement((By) locatorsDictionary.dropDownDictionary.get(
+                dropDown));
+        WebElement input = parent.findElement(By.cssSelector(".react-select__single-value"));
+        assertTrue(input.getText().contains(value));
+    }
+/*
     public void clickBreedingItem() {
          getDriver().findElement((By) locatorsDictionary.dropDownDictionary.get(
                         "breeding")).click();
@@ -137,20 +140,20 @@ public class CreateSeriePage extends PageObject {
         click((By) locatorsDictionary.dropDownDictionary.get(
                 "location"));
         getDriver().findElement(By.id(LOCATION_ITEM_LOCATOR_TEMPLATE)).click();
-    }
+    }*/
 
     private void click(By by) {
         getDriver().findElement((By) locatorsDictionary.dropDownDictionary.get(
                 "location")).click();
     }
 
-    public void clickEnvironmentItem() {
+   /* public void clickEnvironmentItem() {
         getDriver().findElement(By.id(ENVIRONMENT_ITEM_LOCATOR_TEMPLATE)).click();
     }
 
     public void clickCycleYearItem() {
         getDriver().findElement(By.id(CYCLE_YEAR_ITEM_LOCATOR_TEMPLATE)).click();//class="_icon_41q16_1"
-    }
+    }*/
 
     public void editDescription(String description) {
         this.description.sendKeys(description);
@@ -162,38 +165,6 @@ public class CreateSeriePage extends PageObject {
 
     public void clickSubmit() {
         submit.click();
-    }
-
-    public void validateCreatedMessage(String message) {
-        assertEquals(createdMessage.getText(), message);
-    }
-
-    public void logoCreatedMessageIsDisplayed() {
-        assertTrue(logoCreatedMessage.isDisplayed());
-    }
-
-    public void crossCreatedMessageIsDisplayed() {
-        assertTrue(crossCreatedMessage.isDisplayed());
-    }
-
-    public void longCreatedMessageIsCorrect() {
-        assertTrue(longCreatedMessage.getText().contains(SERIE_NAME_LOCATOR_TEMPLATE));
-    }
-
-    public void goToSeriesButtonIsDisplayed() {
-        assertTrue(goToSeriesButton.isDisplayed());
-    }
-
-    public void addParentsButtonButtonIsDisplayed() {
-        assertTrue(addParentsButton.isDisplayed());
-    }
-
-    public void clickGoToSeries() {
-        goToSeriesButton.click();
-    }
-
-    public void clickAddParents() {
-        addParentsButton.click();
     }
 
     public void createSerieWindowIsDisplayed(boolean isDisplayed) {
@@ -219,5 +190,9 @@ public class CreateSeriePage extends PageObject {
 
     public void notificationWindowIconIsDisplayed() {
         assertTrue(notificationWindowIcon.isDisplayed());
+    }
+
+    public void pressesCrossButton() {
+        crossCreatedMessage.click();
     }
 }
