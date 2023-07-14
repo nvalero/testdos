@@ -84,7 +84,7 @@ public class ConnectionPage extends PageObject {
     }
 
     public void validatesMicrosoftPasswordIsShown() {
-   //     assertTrue(password.isDisplayed());
+        assertTrue(password.isDisplayed());
     }
 
     public void enterValidPassword(String text) {

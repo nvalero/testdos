@@ -1,8 +1,5 @@
 package com.headway.pageobjects;
 
-import com.google.inject.Inject;
-import net.serenitybdd.core.pages.PageObject;
-import org.openqa.selenium.By;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
 
@@ -27,9 +24,6 @@ public class SuccessCreateSeriePage {
 
     @FindBy(css = "._primary_1cvem_5")
     WebElement addParentsButton;
-
-    @FindBy(css = "XXX")
-    WebElement goBackButton;
 
     private static final String SERIE_NAME_LOCATOR_TEMPLATE = "NOMBREX";
 
@@ -65,7 +59,4 @@ public class SuccessCreateSeriePage {
         addParentsButton.click();
     }
 
-    public void clickGoBackButton() {
-        goBackButton.click();
-    }
 }

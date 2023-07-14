@@ -13,15 +13,15 @@ public class CreateSerieSteps {
 
     @And("it completed all fields with the correct data")
     public void completedFieldsNewSerie() {
-        createSeriePage.clickSelectCompanyItem();
-     /*   createSeriePage.clickSelectYearItem();
+        createSeriePage.selectItemInDropDown("company", 0);
+        createSeriePage.selectItemInDropDown("year", 0);
         createSeriePage.editDescription("new test");
-        createSeriePage.clickBreedingItem();
-        createSeriePage.clickTraitItem();
-        createSeriePage.clickCycleItem();
-        createSeriePage.clickEnvironmentItem();
-        createSeriePage.clickLocationItem();
-        createSeriePage.clickSubmit();*/
+        createSeriePage.selectItemInDropDown("breeding", 0);
+        createSeriePage.selectItemInDropDown("trait", 0);
+        createSeriePage.selectItemInDropDown("cycle", 0);
+        createSeriePage.selectItemInDropDown("environment", 0);
+        createSeriePage.selectItemInDropDown("location", 0);
+        createSeriePage.clickSubmit();
     }
 
     @And("it displays the cross button")
@@ -123,10 +123,5 @@ public class CreateSerieSteps {
     public void pressesCrossButton() {
         createSeriePage.pressesCrossButton();
         createSeriePage.createSerieWindowIsDisplayed(false);
-    }
-
-    @And("it presses the Go Back button")
-    public void clickGoBackButton() {
-        successCreateSeriePage.clickGoBackButton();
     }
 }
