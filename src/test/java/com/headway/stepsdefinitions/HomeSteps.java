@@ -1,6 +1,7 @@
 package com.headway.stepsdefinitions;
 
 import com.headway.pageobjects.HomePage;
+import io.cucumber.java.bs.A;
 import io.cucumber.java.en.And;
 import io.cucumber.java.en.Then;
 import net.thucydides.core.annotations.Steps;
@@ -27,4 +28,11 @@ public class HomeSteps {
 
     @And("the Middle Section Menu is displayed")
     public void middleMenuIsDisplayed(){ homePage.isMiddleDisplayed(); }
+
+    @And("it pressed the Delete Series button")
+    public void deleteSerie(){ homePage.deleteSerie();}
+
+    @Then("the Delete Series Button is displayed")
+    public void validateDeleteSerie(){ homePage.isDeleteSerieDisplayed();}
+
 }

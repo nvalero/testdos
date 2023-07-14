@@ -1,6 +1,7 @@
 package com.headway.pageobjects;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertTrue;
 
 import net.serenitybdd.core.annotations.findby.By;
 import net.serenitybdd.core.pages.PageObject;
@@ -58,6 +59,12 @@ public class HomePage extends PageObject {
     @FindBy(css = "#root > div > nav > div > ul > li:nth-child(1) > div > button > svg")
     WebElement closeHamburgerBtn;
 
+    @FindBy(css = "#root > div > section > main > div > article > table > tbody > tr:nth-child(1) > td:nth-child(14) > span > div > a:nth-child(2) > svg")
+    WebElement deleteSerie;
+
+    @FindBy(css = "_container_1rw5t_8 _new_1rw5t_18")
+    WebElement statusSerie;
+
     private static final String SERIE_LINK_LOCATOR_TEMPLATE = "//span[@title=\"%s\"]";
     private static final String SERIE_ANCESTOR_LINK_LOCATOR_TEMPLATE = "//span[@title=\"%s\"]/ancestor::td/ancestor::tr";
     private static final String EDIT_SERIE_LINK_LOCATOR_TEMPLATE = "//span[@title=\"%s\"]/ancestor::td/ancestor::tr//td[14]//span//div//a[1]";
@@ -105,6 +112,8 @@ public class HomePage extends PageObject {
         createSerie.isDisplayed();
     }
 
+    public void isDeleteSerieDisplayed(){ assertTrue(deleteSerie.isDisplayed()); }
+
     public void validate() {
         assertEquals(title.getText(), "Series Manager");
     }
@@ -112,5 +121,7 @@ public class HomePage extends PageObject {
     public void createSerie() {
         createSerie.click();
     }
+
+    public void deleteSerie(){ deleteSerie.click();}
 
 }
