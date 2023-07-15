@@ -210,4 +210,34 @@ public class ModifyNewSeriesSteps {
     public void traitDisplaysTheMessageNoOptions() {
         modifyNewSeriesPage.traitDisplaysTheMessageNoOptions();
     }
+
+    @When("it pushes the dropdown field Cycle")
+    public void clickOnDropdownFieldCycle() {
+        modifyNewSeriesPage.clickOnDropdownFieldCycle();
+    }
+
+    @Then("the platform displays the dropdown with data")
+    public void displaysCycleDropdownWithData() {
+        modifyNewSeriesPage.displaysCycleDropdownWithData();
+    }
+
+    @When("it types CR in the field Cycle")
+    public void typesInTheFieldCycle() {
+        modifyNewSeriesPage.typesInTheFieldCycle();
+    }
+
+    @When("it types {string} in the field Cycle")
+    public void typeInFieldCycle(String var) {
+        modifyNewSeriesPage.typeInFieldCycle(var);
+    }
+
+    @Then("the platform performs a sequential search and displays the message {string} in the drop-down")
+    public void cycleNoOptionMessage(String var) {
+        modifyNewSeriesPage.cycleNoOptionMessage(var);
+    }
+
+    @When("it pushes the cancel button")
+    public void clickOnCancelButton() {
+        modifyNewSeriesPage.clickOnCancelButton();
+    }
 }

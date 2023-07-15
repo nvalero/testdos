@@ -115,6 +115,18 @@ public class ModifyNewSeriesPage extends PageObject {
     @FindBy(id = "react-select-19-option-1")
     private WebElement yearOption2024;
 
+    @FindBy(css = ".react-select__menu.css-1nmdiq5-menu")
+    private WebElement optionsMenuElement;
+
+    @FindBy(css = ".react-select__menu-list.css-qr46ko .react-select__option")
+    private List<WebElement> cycleDropdownOptionsDisplayed;
+
+    //@FindBy(css = ".react-select__input")
+    //private WebElement cycleClickeableDropdownField;
+
+    @FindBy(css = ".react-select__menu-notice")
+    private WebElement cycleNoOptionMessage;
+
     public void clickEditIconButton() {
         editIconButton.click();
     }
@@ -337,14 +349,47 @@ public class ModifyNewSeriesPage extends PageObject {
         }
     }
 
-    @FindBy(css = ".react-select__menu.css-1nmdiq5-menu")
-    private WebElement optionsMenuElement;
-
     public void traitDisplaysTheMessageNoOptions() {
         optionsMenuElement.isDisplayed();
     }
 
+    public void clickOnDropdownFieldCycle() {
+        cycleIconDropDown.click();
+    }
 
+    public void displaysCycleDropdownWithData() {
+        for (WebElement cycleElements : cycleDropdownOptionsDisplayed) {
+            cycleElements.isDisplayed();
+        }
+    }
 
+    public void typesInTheFieldCycle() {
+        WebElement cycleClickeableDropdownField = cycleIconDropDown.findElement(By.cssSelector(".react-select__input"));
+        cycleClickeableDropdownField.sendKeys("CR");
+        try {
+            Thread.sleep(2000); // Wait for 2 seconds
+        } catch (InterruptedException ignored) { }
+        for (WebElement cycleElements : cycleDropdownOptionsDisplayed) {
+            String optionText = cycleElements.getText();
+            cycleElements.isDisplayed();
+            assertEquals(optionText, "AxB - Initial cross>");
+        }
+    }
 
+    public void typeInFieldCycle(String var) {
+        WebElement cycleClickeableDropdownField = cycleIconDropDown.findElement(By.cssSelector(".react-select__input"));
+        cycleClickeableDropdownField.sendKeys(var);
+        try {
+            Thread.sleep(2000); // Wait for 2 seconds
+        } catch (InterruptedException ignored) { }
+    }
+
+    public void cycleNoOptionMessage(String var) {
+        String noOptionText = cycleNoOptionMessage.getText();
+        assertEquals(noOptionText, var);
+    }
+
+    public void clickOnCancelButton() {
+        cancelButton.click();;
+    }
 }

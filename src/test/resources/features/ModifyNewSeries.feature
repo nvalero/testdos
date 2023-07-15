@@ -49,7 +49,6 @@ Feature: [Epic HW-156] Modify New Series
     When it types ZZ in the field Company
     Then the platform performs a sequential search and displays the message No Options in the dropdown
 
-
   Scenario: [HW-1572] Edit Series - Drop-down field Year Test
     Given it logins into headway
     And it presses the Edit icon
@@ -71,7 +70,6 @@ Feature: [Epic HW-156] Modify New Series
     When it types AA in the field Year
     Then the platform performs a sequential search and displays the message No Options in the dropdown for year field
 
-
   Scenario: [HW-1575] Edit Series - Drop-down field Breeding Method Test
     Given it logins into headway
     And it presses the Edit icon
@@ -86,7 +84,6 @@ Feature: [Epic HW-156] Modify New Series
     When it types CROSS in the field Breeding Method
     Then the platform performs a sequential search and displays the options in the dropdown list
 
-    @1580
   Scenario: [HW-1578] Edit Series - Drop-down field Trait Test
     Given it logins into headway
     And it presses the Edit icon
@@ -94,13 +91,43 @@ Feature: [Epic HW-156] Modify New Series
     When it pushes the drop-down field Trait
     Then the platform displays the dropdown with the elements
 
-    @1580
   Scenario: [HW-1580] Edit Series - Filter field Trait No-Options Test
     Given it logins into headway
     And it presses the Edit icon
     And edit Series drawer is displayed
     When it types SS in the field Trait
     Then the platform performs a sequential search and displays the message No Options
+
+    Scenario: [HW-1581] Edit Series - Drop-down field Cycle Test
+      Given it logins into headway
+      And it presses the Edit icon
+      And edit Series drawer is displayed
+      When it pushes the dropdown field Cycle
+      Then the platform displays the dropdown with data
+
+    Scenario: [HW-1582] Edit Series - Filter field Cycle Test
+      Given it logins into headway
+      And it presses the Edit icon
+      And edit Series drawer is displayed
+      And it pushes the dropdown field Cycle
+      When it types CR in the field Cycle
+      Then the platform performs a sequential search and displays the options in the dropdown list
+
+    Scenario: [HW-1583] Edit Series - Filter field Cycle No-Options Test
+      Given it logins into headway
+      And it presses the Edit icon
+      And edit Series drawer is displayed
+      And it pushes the dropdown field Cycle
+      When it types "11" in the field Cycle
+      Then the platform performs a sequential search and displays the message "No options" in the drop-down
+
+    Scenario: [HW-1585] Edit Series - Cancel button test
+      Given it logins into headway
+      And it presses the Edit icon
+      And edit Series drawer is displayed
+      When it pushes the cancel button
+      #Then the platform redirects the user to the Series Manager
+      #And the Series will not be modified
 
 
 
