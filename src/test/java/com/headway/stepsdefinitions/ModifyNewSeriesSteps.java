@@ -240,4 +240,9 @@ public class ModifyNewSeriesSteps {
     public void clickOnCancelButton() {
         modifyNewSeriesPage.clickOnCancelButton();
     }
+
+    @And("the Series will not be modified")
+    public void seriesNotModified() {
+        modifyNewSeriesPage.seriesNotModified();
+    }
 }

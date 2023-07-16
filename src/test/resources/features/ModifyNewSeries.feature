@@ -121,13 +121,13 @@ Feature: [Epic HW-156] Modify New Series
       When it types "11" in the field Cycle
       Then the platform performs a sequential search and displays the message "No options" in the drop-down
 
+      @1585
     Scenario: [HW-1585] Edit Series - Cancel button test
       Given it logins into headway
       And it presses the Edit icon
       And edit Series drawer is displayed
       When it pushes the cancel button
-      #Then the platform redirects the user to the Series Manager
-      #And the Series will not be modified
-
+      Then the Login Screen is shown with the welcome message "Welcome to Headway"
+      And the Series will not be modified
 
 

@@ -127,6 +127,9 @@ public class ModifyNewSeriesPage extends PageObject {
     @FindBy(css = ".react-select__menu-notice")
     private WebElement cycleNoOptionMessage;
 
+    public ModifyNewSeriesPage() {
+    }
+
     public void clickEditIconButton() {
         editIconButton.click();
     }
@@ -391,5 +394,19 @@ public class ModifyNewSeriesPage extends PageObject {
 
     public void clickOnCancelButton() {
         cancelButton.click();;
+    }
+
+    @FindBy(css = "tr._rows_16dgm_83 td")
+    private List<WebElement> columnRows;
+
+    public void seriesNotModified() {
+        for (WebElement row : columnRows) {
+            List<WebElement> spanElements = row.findElements(By.tagName("span"));
+            System.out.println("print all the elements inside the row: " + spanElements);
+            // for (WebElement span : spanElements) {
+            //     String spanText = span.getText();
+            //     System.out.println("print a specific column inside the row: " + spanText);
+            // }
+        }
     }
 }
