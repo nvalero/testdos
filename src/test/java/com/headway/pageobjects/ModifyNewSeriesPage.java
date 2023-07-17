@@ -10,6 +10,7 @@ import java.util.List;
 import java.util.stream.Collectors;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertNotEquals;
 
 public class ModifyNewSeriesPage extends PageObject {
 
@@ -136,6 +137,9 @@ public class ModifyNewSeriesPage extends PageObject {
 
     public void editSeriesDrawerIsDisplayed() {
         editSeriesTitle.isDisplayed();
+        try {
+            Thread.sleep(3000); // Wait for 3 seconds
+        } catch (InterruptedException ignored) { }
     }
 
     public void closeIconIsDisplayed() {
@@ -396,17 +400,14 @@ public class ModifyNewSeriesPage extends PageObject {
         cancelButton.click();;
     }
 
-    @FindBy(css = "tr._rows_16dgm_83 td")
-    private List<WebElement> columnRows;
+    @FindBy(css = "tr._rows_16dgm_83 td._cell_16dgm_87")
+    private List<WebElement> tdElements;
 
     public void seriesNotModified() {
-        for (WebElement row : columnRows) {
-            List<WebElement> spanElements = row.findElements(By.tagName("span"));
-            System.out.println("print all the elements inside the row: " + spanElements);
-            // for (WebElement span : spanElements) {
-            //     String spanText = span.getText();
-            //     System.out.println("print a specific column inside the row: " + spanText);
-            // }
+        for (WebElement tdElement : tdElements) {
+            String tdText = tdElement.getText();
+            System.out.println("Elements displayed: " + tdText);
+            assertNotEquals(tdText, "", "Cell text is empty");
         }
     }
 }
