@@ -127,5 +127,7 @@ Feature: [Epic HW-156] Modify New Series
       And it presses the Edit icon
       And edit Series drawer is displayed
       When it pushes the cancel button
-      #Then the Login Screen is shown with the welcome message "Welcome to Headway"
+      Then the Login Screen is shown with the welcome message "Welcome to Headway"
       And the Series will not be modified
+
+
