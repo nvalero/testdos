@@ -71,8 +71,9 @@ public class HomePage extends BasePage {
 
     private static final String SERIE_LINK_LOCATOR_TEMPLATE = "//span[@title=\"%s\"]";
     private static final String SERIE_ANCESTOR_LINK_LOCATOR_TEMPLATE = "//span[@title=\"%s\"]/ancestor::td/ancestor::tr";
-    private static final String EDIT_SERIE_LINK_LOCATOR_TEMPLATE = "//span[@title=\"%s\"]/ancestor::td/ancestor::tr//td[14]//span//div//a[1]";
-    private static final String DELETE_SERIE_LINK_LOCATOR_TEMPLATE = "//span[@title=\"%s\"]/ancestor::td/ancestor::tr" +
+    private static final String EDIT_SERIE_LINK_LOCATOR_TEMPLATE = "//td[@title=\"%s\"]/ancestor::tr/ancestor::tr//td" +
+            "[14]//span//div//a[1]";
+    private static final String DELETE_SERIE_LINK_LOCATOR_TEMPLATE = "//td[@title=\"%s\"]/ancestor::tr/ancestor::tr" +
             "//td[14]//span//div//a[2]";
 
     private static final String SERIE_LINK_LOCATOR_TEMPLATEXX = "//td[@title=\"%s\"]";
@@ -81,7 +82,7 @@ public class HomePage extends BasePage {
 
 
     public void statusIsValue(String serie, String status) {
-        assertEquals(getStatus(serie), status);
+        assertEquals(getStatus(serie), status.toLowerCase());
     }
 
     public String getStatus(String serie) {
@@ -93,6 +94,11 @@ public class HomePage extends BasePage {
         disableButton.click();
     }
 
+    public void disableSerieRowisEnabled(String serie) {
+        getDriver().findElement(By.xpath(String.format(DISABLE_SERIE_LINK_LOCATOR_TEMPLATE, serie))).click();
+        disableButton.click();
+    }
+
     public void getSerie(String serie) {
         getDriver().findElement(By.xpath(String.format(SERIE_LINK_LOCATOR_TEMPLATE, serie)));
     }
@@ -100,12 +106,12 @@ public class HomePage extends BasePage {
         getDriver().findElement(By.xpath(String.format(SERIE_ANCESTOR_LINK_LOCATOR_TEMPLATE, serie)));
     }
 
-    public void editSerieRow(String serie) {
-        getDriver().findElement(By.xpath(String.format(EDIT_SERIE_LINK_LOCATOR_TEMPLATE, serie)));
+    public WebElement editSerieRow(String serie) {
+        return getDriver().findElement(By.xpath(String.format(EDIT_SERIE_LINK_LOCATOR_TEMPLATE, serie)));
     }
 
-    public void deleteSerieRow(String serie) {
-        getDriver().findElement(By.xpath(String.format(DELETE_SERIE_LINK_LOCATOR_TEMPLATE, serie)));
+    public WebElement deleteSerieRow(String serie) {
+        return getDriver().findElement(By.xpath(String.format(DELETE_SERIE_LINK_LOCATOR_TEMPLATE, serie)));
     }
 
     public void connect() {
@@ -135,8 +141,27 @@ public class HomePage extends BasePage {
         createSerie.isDisplayed();
     }
 
-    public void isDeleteSerieDisplayed(){ assertTrue(deleteSerie.isDisplayed()); }
+    public void isDeleteSerieDisplayed(boolean displayed){ assertEquals(deleteSerie.isDisplayed(), displayed); }
 
+    public void isEditSerieDisplayed(boolean isDisplayed, String serie){
+        boolean foundElement;
+        try{
+            foundElement = editSerieRow(serie).isDisplayed();
+        } catch (Exception exception){
+            foundElement = false;
+        }
+        assertEquals(isDisplayed, foundElement);
+    }
+
+    public void isSpecificDeleteSerieDisplayed(boolean isDisplayed, String serie){
+        boolean foundElement;
+        try{
+            foundElement = deleteSerieRow(serie).isDisplayed();
+        } catch (Exception exception){
+            foundElement = false;
+        }
+        assertEquals(isDisplayed, foundElement);
+    }
     public void validate() {
         waitForElement().until(ExpectedConditions.visibilityOf(title));
         assertEquals(title.getText(), "Series Manager");

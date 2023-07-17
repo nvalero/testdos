@@ -31,8 +31,8 @@ public class HomeSteps {
     @And("the Middle Section Menu is displayed")
     public void middleMenuIsDisplayed(){ homePage.isMiddleDisplayed(); }
 
-    @And("disable serie {string}")
-    @And("enable serie {string}")
+    @And("it selects disable serie {string}")
+    @And("it selects enable serie {string}")
     public void disableSerie(String serie){ homePage.disableSerieRow(serie); }
 
     @And("the serie {string} has status {string}")
@@ -40,9 +40,12 @@ public class HomeSteps {
         homePage.statusIsValue(serie, status);
     }
 
-    @And("complete {string} serie {string}")
-    public void completeDisableSerie(String status, String serie){
-        if (!homePage.getStatus(serie).equals(status)){
+    @And("it sets serie {string} to status {string}")
+    public void completeDisableSerie(String serie, String status){
+        String currentStatus= homePage.getStatus(serie);
+        if (currentStatus.toLowerCase().equals("new"))
+            currentStatus = "enabled";
+        if (!currentStatus.equals(status.toLowerCase())){
             homePage.disableSerieRow(serie);
             enableDisableSeriePage.clickSubmit();
             enableDisableSeriePage.disableSerieWindowIsDisplayed(false);
@@ -53,6 +56,18 @@ public class HomeSteps {
     public void deleteSerie(){ homePage.deleteSerie();}
 
     @Then("the Delete Series Button is displayed")
-    public void validateDeleteSerie(){ homePage.isDeleteSerieDisplayed();}
+    public void validateDeleteSerie(){ homePage.isDeleteSerieDisplayed(true);}
 
+    @And("the Delete Series Button is not displayed")
+    public void validateDeleteSerieNotDisplayed(){ homePage.isDeleteSerieDisplayed(false);}
+
+    @And("the Edit Series Button is not displayed for serie {string}")
+    public void editSpecificSerieIsNotDisplayed(String serie) {
+        homePage.isEditSerieDisplayed(false, serie);
+    }
+
+    @And("the Delete Series Button is not displayed for serie {string}")
+    public void deleteSpecificSerieIsNotDisplayed(String serie) {
+        homePage.isSpecificDeleteSerieDisplayed(false, serie);
+    }
 }

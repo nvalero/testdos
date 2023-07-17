@@ -1,9 +1,13 @@
 package com.headway.pageobjects;
 
 import com.google.inject.Inject;
+import org.openqa.selenium.By;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
+import org.openqa.selenium.support.ui.ExpectedConditions;
 
+import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 
 public class EnableDisableSeriePage extends BasePage {
@@ -43,19 +47,26 @@ public class EnableDisableSeriePage extends BasePage {
     public void clickSubmit() {
         submit.click();
         try {
-            Thread.sleep(20000);
+            Thread.sleep(30000);
         } catch (InterruptedException e) {
         }
         getDriver().navigate().refresh();
     }
 
-
     public void disableSerieWindowIsDisplayed(boolean isDisplayed) {
+        boolean foundElement;
         try {
-            assertTrue(enableSerieWindow.isDisplayed() == isDisplayed);
+            if (isDisplayed) {
+                waitFor(ExpectedConditions.visibilityOf(enableSerieWindow));
+                foundElement = true;
+            }else {
+                waitFor(ExpectedConditions.not(ExpectedConditions.visibilityOf(enableSerieWindow)));
+                foundElement = false;
+            }
         } catch (Exception exception){
-            assertTrue(true);
+            foundElement = false;
         }
+        assertEquals(isDisplayed, foundElement);
     }
 
     public void aboutMessageIsDisplayed() {

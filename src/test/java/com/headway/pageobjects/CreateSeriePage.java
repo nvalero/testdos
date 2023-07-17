@@ -9,6 +9,8 @@ import org.openqa.selenium.support.FindBy;
 import java.util.Arrays;
 import java.util.List;
 import java.util.stream.Collectors;
+
+import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 
 public class CreateSeriePage extends BasePage {
@@ -104,11 +106,13 @@ public class CreateSeriePage extends BasePage {
     }
 
     public void createSerieWindowIsDisplayed(boolean isDisplayed) {
+        boolean foundElement;
         try{
-            assertTrue(createSerieWindow.isDisplayed() == isDisplayed);
+            foundElement = createSerieWindow.isDisplayed();
         } catch (Exception exception){
-            assertTrue(true);
+            foundElement = false;
         }
+        assertEquals(isDisplayed, foundElement);
     }
 
     public void aboutMessageIsDisplayed() {
