@@ -58,6 +58,11 @@ public class CreateSerieSteps {
         successCreateSeriePage.goToSeriesButtonIsDisplayed();
     }
 
+    @And("it pressed the button Go to Series Manager")
+    public void pressedButtonGoToSeriesManager() {
+        createSeriePage.clickGoToSeries();
+    }
+
     @And("it displays the button Add Parents List")
     public void validateButtonGoToAddParentsList() {
         successCreateSeriePage.addParentsButtonButtonIsDisplayed();

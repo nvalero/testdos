@@ -48,4 +48,11 @@ public class HomeSteps {
             enableDisableSeriePage.disableSerieWindowIsDisplayed(false);
         }
     }
+
+    @And("it pressed the Delete Series button")
+    public void deleteSerie(){ homePage.deleteSerie();}
+
+    @Then("the Delete Series Button is displayed")
+    public void validateDeleteSerie(){ homePage.isDeleteSerieDisplayed();}
+
 }

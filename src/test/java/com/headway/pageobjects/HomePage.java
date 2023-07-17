@@ -63,12 +63,17 @@ public class HomePage extends BasePage {
     @FindBy(css = ".MuiPopover-root.MuiMenu-root.MuiModal-root a")
     WebElement disableButton;
 
+    @FindBy(css = "#root > div > section > main > div > article > table > tbody > tr:nth-child(1) > td:nth-child(14) > span > div > a:nth-child(2) > svg")
+    WebElement deleteSerie;
+
+    @FindBy(css = "_container_1rw5t_8 _new_1rw5t_18")
+    WebElement statusSerie;
+
     private static final String SERIE_LINK_LOCATOR_TEMPLATE = "//span[@title=\"%s\"]";
     private static final String SERIE_ANCESTOR_LINK_LOCATOR_TEMPLATE = "//span[@title=\"%s\"]/ancestor::td/ancestor::tr";
     private static final String EDIT_SERIE_LINK_LOCATOR_TEMPLATE = "//span[@title=\"%s\"]/ancestor::td/ancestor::tr//td[14]//span//div//a[1]";
     private static final String DELETE_SERIE_LINK_LOCATOR_TEMPLATE = "//span[@title=\"%s\"]/ancestor::td/ancestor::tr" +
             "//td[14]//span//div//a[2]";
-
 
     private static final String SERIE_LINK_LOCATOR_TEMPLATEXX = "//td[@title=\"%s\"]";
     private static final String DISABLE_SERIE_LINK_LOCATOR_TEMPLATE = "//td[@title=\"%s\"]//ancestor::tr//td[14]//span//div//span";
@@ -130,6 +135,8 @@ public class HomePage extends BasePage {
         createSerie.isDisplayed();
     }
 
+    public void isDeleteSerieDisplayed(){ assertTrue(deleteSerie.isDisplayed()); }
+
     public void validate() {
         waitForElement().until(ExpectedConditions.visibilityOf(title));
         assertEquals(title.getText(), "Series Manager");
@@ -139,7 +146,6 @@ public class HomePage extends BasePage {
         createSerie.click();
     }
 
-    public void selectStatusSerieRow(String status, String serie) {
+    public void deleteSerie(){ deleteSerie.click();}
 
-    }
 }
