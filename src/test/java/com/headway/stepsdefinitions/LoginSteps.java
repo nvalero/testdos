@@ -11,6 +11,8 @@ import io.cucumber.java.en.Given;
 import io.cucumber.java.en.Then;
 import io.cucumber.java.en.When;
 import net.thucydides.core.annotations.Steps;
+import org.openqa.selenium.By;
+import org.openqa.selenium.support.ui.ExpectedConditions;
 
 import java.util.Arrays;
 import java.util.List;
@@ -151,7 +153,6 @@ public class LoginSteps {
         connectionPage.validatesMicrosoftPopOpens();
         connectionPage.enterValidEmail(Util.getInstance().getCredential().getUser());
         connectionPage.pressesNext();
-        //connectionPage.validatesMicrosoftPasswordIsShown();
         connectionPage.enterValidPassword(Util.getInstance().getCredential().getPassword());
         connectionPage.pressesSignIn();
         try {
@@ -164,5 +165,10 @@ public class LoginSteps {
             connectionPage.staySignInCheckbox();
             connectionPage.staySignInYesButton();
         }
+    }
+
+    @And("it selects the serie to disable")
+    public void selectsTheSerieToDisable() {
+        connectionPage.pressesKeepSessionButton();
     }
 }

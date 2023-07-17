@@ -5,7 +5,7 @@ import org.openqa.selenium.support.FindBy;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertTrue;
-public class SuccessCreateSeriePage {
+public class SuccessCreateSeriePage extends BasePage {
 
     @FindBy(css = ".MuiDialog-root ._title_x6167_5")
     WebElement createdMessage;
