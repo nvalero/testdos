@@ -1,13 +1,15 @@
 package com.headway.pageobjects;
 
 import net.serenitybdd.core.pages.PageObject;
+import org.openqa.selenium.By;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
+import org.openqa.selenium.support.ui.ExpectedConditions;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 
-public class ConnectionPage extends PageObject {
+public class ConnectionPage extends BasePage {
 
     @FindBy(css = "#i0116")
     WebElement username;
@@ -89,8 +91,10 @@ public class ConnectionPage extends PageObject {
 
     public void enterValidPassword(String text) {
         try {
+            waitForElement().until(ExpectedConditions.presenceOfElementLocated(By.id("i0118")));
             password.sendKeys(text);
         }catch (Exception e){
+            waitForElement().until(ExpectedConditions.presenceOfElementLocated(By.id("i0118")));
             password.sendKeys(text);
         }
     }
@@ -100,7 +104,13 @@ public class ConnectionPage extends PageObject {
     }
 
     public void pressesKeepSessionButton() {
-        yesButton.click();
+        try {
+            waitFor(ExpectedConditions.presenceOfElementLocated(By.id("idSIButton9")));
+            yesButton.click();
+        } catch (Exception e){
+            waitFor(ExpectedConditions.presenceOfElementLocated(By.id("idSIButton9")));
+            yesButton.click();
+        }
     }
 
     public void pressesReceiveTextMessage() {

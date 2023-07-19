@@ -7,8 +7,9 @@ import net.serenitybdd.core.annotations.findby.By;
 import net.serenitybdd.core.pages.PageObject;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
+import org.openqa.selenium.support.ui.ExpectedConditions;
 
-public class HomePage extends PageObject {
+public class HomePage extends BasePage {
 
     @FindBy(id = "i0116")
     WebElement username;
@@ -59,6 +60,9 @@ public class HomePage extends PageObject {
     @FindBy(css = "#root > div > nav > div > ul > li:nth-child(1) > div > button > svg")
     WebElement closeHamburgerBtn;
 
+    @FindBy(css = ".MuiPopover-root.MuiMenu-root.MuiModal-root a")
+    WebElement disableButton;
+
     @FindBy(css = "#root > div > section > main > div > article > table > tbody > tr:nth-child(1) > td:nth-child(14) > span > div > a:nth-child(2) > svg")
     WebElement deleteSerie;
 
@@ -67,9 +71,33 @@ public class HomePage extends PageObject {
 
     private static final String SERIE_LINK_LOCATOR_TEMPLATE = "//span[@title=\"%s\"]";
     private static final String SERIE_ANCESTOR_LINK_LOCATOR_TEMPLATE = "//span[@title=\"%s\"]/ancestor::td/ancestor::tr";
-    private static final String EDIT_SERIE_LINK_LOCATOR_TEMPLATE = "//span[@title=\"%s\"]/ancestor::td/ancestor::tr//td[14]//span//div//a[1]";
-    private static final String DELETE_SERIE_LINK_LOCATOR_TEMPLATE = "//span[@title=\"%s\"]/ancestor::td/ancestor::tr" +
+    private static final String EDIT_SERIE_LINK_LOCATOR_TEMPLATE = "//td[@title=\"%s\"]/ancestor::tr/ancestor::tr//td" +
+            "[14]//span//div//a[1]";
+    private static final String DELETE_SERIE_LINK_LOCATOR_TEMPLATE = "//td[@title=\"%s\"]/ancestor::tr/ancestor::tr" +
             "//td[14]//span//div//a[2]";
+
+    private static final String SERIE_LINK_LOCATOR_TEMPLATEXX = "//td[@title=\"%s\"]";
+    private static final String DISABLE_SERIE_LINK_LOCATOR_TEMPLATE = "//td[@title=\"%s\"]//ancestor::tr//td[14]//span//div//span";
+    private static final String STATUS_SERIE_LINK_LOCATOR_TEMPLATE = "//td[@title=\"%s\"]//ancestor::tr//td[6]";
+
+
+    public void statusIsValue(String serie, String status) {
+        assertEquals(getStatus(serie), status.toLowerCase());
+    }
+
+    public String getStatus(String serie) {
+        return getDriver().findElement(By.xpath(String.format(STATUS_SERIE_LINK_LOCATOR_TEMPLATE, serie))).getText().toLowerCase();
+    }
+
+    public void disableSerieRow(String serie) {
+        getDriver().findElement(By.xpath(String.format(DISABLE_SERIE_LINK_LOCATOR_TEMPLATE, serie))).click();
+        disableButton.click();
+    }
+
+    public void disableSerieRowisEnabled(String serie) {
+        getDriver().findElement(By.xpath(String.format(DISABLE_SERIE_LINK_LOCATOR_TEMPLATE, serie))).click();
+        disableButton.click();
+    }
 
     public void getSerie(String serie) {
         getDriver().findElement(By.xpath(String.format(SERIE_LINK_LOCATOR_TEMPLATE, serie)));
@@ -78,13 +106,14 @@ public class HomePage extends PageObject {
         getDriver().findElement(By.xpath(String.format(SERIE_ANCESTOR_LINK_LOCATOR_TEMPLATE, serie)));
     }
 
-    public void editSerieRow(String serie) {
-        getDriver().findElement(By.xpath(String.format(EDIT_SERIE_LINK_LOCATOR_TEMPLATE, serie)));
+    public WebElement editSerieRow(String serie) {
+        return getDriver().findElement(By.xpath(String.format(EDIT_SERIE_LINK_LOCATOR_TEMPLATE, serie)));
     }
 
-    public void deleteSerieRow(String serie) {
-        getDriver().findElement(By.xpath(String.format(DELETE_SERIE_LINK_LOCATOR_TEMPLATE, serie)));
+    public WebElement deleteSerieRow(String serie) {
+        return getDriver().findElement(By.xpath(String.format(DELETE_SERIE_LINK_LOCATOR_TEMPLATE, serie)));
     }
+
     public void connect() {
         username.sendKeys(("ext.nvalero@gdmseeds.com"));
         clickUser.click();
@@ -112,9 +141,29 @@ public class HomePage extends PageObject {
         createSerie.isDisplayed();
     }
 
-    public void isDeleteSerieDisplayed(){ assertTrue(deleteSerie.isDisplayed()); }
+    public void isDeleteSerieDisplayed(boolean displayed){ assertEquals(deleteSerie.isDisplayed(), displayed); }
 
+    public void isEditSerieDisplayed(boolean isDisplayed, String serie){
+        boolean foundElement;
+        try{
+            foundElement = editSerieRow(serie).isDisplayed();
+        } catch (Exception exception){
+            foundElement = false;
+        }
+        assertEquals(isDisplayed, foundElement);
+    }
+
+    public void isSpecificDeleteSerieDisplayed(boolean isDisplayed, String serie){
+        boolean foundElement;
+        try{
+            foundElement = deleteSerieRow(serie).isDisplayed();
+        } catch (Exception exception){
+            foundElement = false;
+        }
+        assertEquals(isDisplayed, foundElement);
+    }
     public void validate() {
+        waitForElement().until(ExpectedConditions.visibilityOf(title));
         assertEquals(title.getText(), "Series Manager");
     }
 

@@ -6,16 +6,14 @@ import org.openqa.selenium.By;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
 
-import java.util.ArrayList;
 import java.util.Arrays;
-import java.util.Collections;
 import java.util.List;
 import java.util.stream.Collectors;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 
-public class CreateSeriePage extends PageObject {
+public class CreateSeriePage extends BasePage {
 
     @Inject
     LocatorsDictionary locatorsDictionary = new LocatorsDictionary();
@@ -40,10 +38,6 @@ public class CreateSeriePage extends PageObject {
 
     @FindBy(css = ".MuiDialog-root ._icon_41q16_1 svg")
     WebElement crossCreatedMessage;
-
-    public String getValueInAttributteInField(By by, String  attribute) {
-        return getDriver().findElement(by).getAttribute(attribute);
-    }
 
     public void cycleYearIsDisabled() {
         assertTrue(getValueInAttributteInField(By.name("cycleYearInput"), "class").contains("react-select--is" +
@@ -104,7 +98,7 @@ public class CreateSeriePage extends PageObject {
     }
 
     public void descriptionIsDisplayed() {
-        this.description.isDisplayed();
+        description.isDisplayed();
     }
 
     public void clickSubmit() {
@@ -112,7 +106,13 @@ public class CreateSeriePage extends PageObject {
     }
 
     public void createSerieWindowIsDisplayed(boolean isDisplayed) {
-        assertTrue(createSerieWindow.isDisplayed() == isDisplayed);
+        boolean foundElement;
+        try{
+            foundElement = createSerieWindow.isDisplayed();
+        } catch (Exception exception){
+            foundElement = false;
+        }
+        assertEquals(isDisplayed, foundElement);
     }
 
     public void aboutMessageIsDisplayed() {
@@ -139,4 +139,6 @@ public class CreateSeriePage extends PageObject {
     public void pressesCrossButton() {
         crossCreatedMessage.click();
     }
+
+
 }

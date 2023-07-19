@@ -9,6 +9,9 @@ public class CreateSerieSteps {
     com.headway.pageobjects.CreateSeriePage createSeriePage;
 
     @Steps
+    com.headway.pageobjects.EnableDisableSeriePage enableDisableSeriePage;
+
+    @Steps
     com.headway.pageobjects.SuccessCreateSeriePage successCreateSeriePage;
 
     @And("it completed all fields with the correct data")
@@ -57,7 +60,7 @@ public class CreateSerieSteps {
 
     @And("it pressed the button Go to Series Manager")
     public void pressedButtonGoToSeriesManager() {
-        createSeriePage.clickGoToSeries();
+        successCreateSeriePage.clickGoToSeries();
     }
 
     @And("it displays the button Add Parents List")
@@ -120,13 +123,46 @@ public class CreateSerieSteps {
     public void selectYear(int item, String dropDown) {
         createSeriePage.selectItemInDropDown(dropDown, item);
     }
+
     @And("the {string} drop-down has value {string}")
     public void dropDownHasValue(String dropDown, String value) {
         createSeriePage.dropDownHasValue(dropDown, value);
     }
+
     @And("it presses the cross button")
     public void pressesCrossButton() {
         createSeriePage.pressesCrossButton();
         createSeriePage.createSerieWindowIsDisplayed(false);
+    }
+
+    @And("the cancel button is displayed")
+    public void cancelButtonIsDisplayed() {
+        enableDisableSeriePage.cancelButtonIsDisplayed();
+    }
+
+    @And("the disable window is displayed")
+    @And("the enable window is displayed")
+    public void disableSerieWindowIsDisplayed() {
+        enableDisableSeriePage.disableSerieWindowIsDisplayed(true);
+    }
+
+    @And("it presses the submit button")
+    public void pressesSubmitButton() {
+        enableDisableSeriePage.clickSubmit();
+    }
+
+    @And("it presses the cancel button")
+    public void pressesCancelButton() {
+        enableDisableSeriePage.pressesCancelButton();
+    }
+
+    @And("the description field is edited")
+    public void editDescriptionInput() {
+        enableDisableSeriePage.editDescription("Automation test");
+    }
+
+    @And("the disable window is not displayed")
+    public void disableSerieWindowIsNotDisplayed() {
+        enableDisableSeriePage.disableSerieWindowIsDisplayed(false);
     }
 }
