@@ -1,7 +1,6 @@
 package com.headway.pageobjects;
 
 import com.google.inject.Inject;
-import net.serenitybdd.core.pages.PageObject;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
@@ -24,7 +23,7 @@ public class CreateSeriePage extends BasePage {
     @FindBy(css = "._loading_1cvem_110")
     WebElement submit;
 
-    @FindBy(css = ".MuiDialog-root")
+    @FindBy(css = ".MuiDialog-root._container_gyx38_1.MuiModal-root.css-126xj0f .css-101i5ei ._header_11e1g_27")
     WebElement createSerieWindow;
 
     @FindBy(css = "._large_ypyit_5")

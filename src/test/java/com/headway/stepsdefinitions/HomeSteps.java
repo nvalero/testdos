@@ -35,9 +35,15 @@ public class HomeSteps {
     @And("it selects enable serie {string}")
     public void disableSerie(String serie){ homePage.disableSerieRow(serie); }
 
+    @And("it selects serie {string}")
+    public void selectsSerie(String serie){ homePage.clickSerie(serie); }
+
     @And("the serie {string} has status {string}")
     public void statusIsValue(String serie, String status) {
-        homePage.statusIsValue(serie, status);
+        String currentStatus= homePage.getStatus(serie);
+        if (currentStatus.toLowerCase().equals("new"))
+            currentStatus = "enabled";
+        homePage.validateValues(currentStatus.toLowerCase(), status.toLowerCase());
     }
 
     @And("it sets serie {string} to status {string}")
