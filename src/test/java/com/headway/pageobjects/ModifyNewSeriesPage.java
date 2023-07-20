@@ -403,10 +403,10 @@ public class ModifyNewSeriesPage extends PageObject {
         for (WebElement row : columnRows) {
             List<WebElement> spanElements = row.findElements(By.tagName("span"));
             System.out.println("print all the elements inside the row: " + spanElements);
-            // for (WebElement span : spanElements) {
-            //     String spanText = span.getText();
-            //     System.out.println("print a specific column inside the row: " + spanText);
-            // }
+             for (WebElement span : spanElements) {
+                 String spanText = span.getText();
+                 System.out.println("print a specific column inside the row: " + spanText);
+             }
         }
     }
 }
