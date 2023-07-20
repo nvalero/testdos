@@ -31,6 +31,33 @@ public class HomePage extends PageObject {
     @FindBy(css = "._newseriesbutton_1bgk0_26")
     WebElement createSerie;
 
+    @FindBy(className = "_companylogo_yahwz_54")
+    WebElement companyLogo;
+
+    @FindBy(className = "_medium_1cvem_146_ghost_1cvem_75")
+    WebElement signOutBtn;
+
+    @FindBy(className = "_xxl_ypyit_72")
+    WebElement seriesManagerLogo;
+
+    @FindBy(className = "_hamburgerMenu_yahwz_13")
+    WebElement hamburgerMenuBtn;
+
+    @FindBy(className = "_container_1bgk0_77")
+    WebElement seriesContainer;
+
+    @FindBy(css = "#root > div > nav > div > ul > li:nth-child(2) > a > div > svg")
+    WebElement nurseryAppBtn;
+
+    @FindBy(css = "#root > div > nav > div > ul > li:nth-child(4) > a > div > svg")
+    WebElement seriesManagerBtn;
+
+    @FindBy(css = "#root > div > nav > div > ul > li:nth-child(5) > a > div > svg")
+    WebElement addNewSeriesHamburgerBtn;
+
+    @FindBy(css = "#root > div > nav > div > ul > li:nth-child(1) > div > button > svg")
+    WebElement closeHamburgerBtn;
+
     private static final String SERIE_LINK_LOCATOR_TEMPLATE = "//span[@title=\"%s\"]";
     private static final String SERIE_ANCESTOR_LINK_LOCATOR_TEMPLATE = "//span[@title=\"%s\"]/ancestor::td/ancestor::tr";
     private static final String EDIT_SERIE_LINK_LOCATOR_TEMPLATE = "//span[@title=\"%s\"]/ancestor::td/ancestor::tr//td[14]//span//div//a[1]";
@@ -57,6 +84,25 @@ public class HomePage extends PageObject {
         password.sendKeys("NV2023gdm+");
         clickPassword.click();
         Next2.click();
+    }
+
+    public void isHamburgerMenuDisplayed(){
+        hamburgerMenuBtn.click();
+        nurseryAppBtn.isDisplayed();
+        seriesManagerBtn.isDisplayed();
+        addNewSeriesHamburgerBtn.isDisplayed();
+        companyLogo.isDisplayed();
+        closeHamburgerBtn.click();
+    }
+
+    public void isHeaderDisplayed(){
+        signOutBtn.isDisplayed();
+        seriesManagerLogo.isDisplayed();
+    }
+
+    public void isMiddleDisplayed(){
+        seriesContainer.isDisplayed();
+        createSerie.isDisplayed();
     }
 
     public void validate() {
