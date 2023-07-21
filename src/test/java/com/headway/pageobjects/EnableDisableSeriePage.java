@@ -44,12 +44,10 @@ public class EnableDisableSeriePage extends BasePage {
     public void cancelButtonIsDisplayed() {
         cancelButton.isDisplayed();
     }
+
     public void clickSubmit() {
         submit.click();
-        try {
-            Thread.sleep(30000);
-        } catch (InterruptedException e) {
-        }
+        disableSerieWindowIsDisplayed(false);
         getDriver().navigate().refresh();
     }
 

@@ -79,6 +79,7 @@ public class HomePage extends BasePage {
     private static final String SERIE_LINK_LOCATOR_TEMPLATEXX = "//td[@title=\"%s\"]";
     private static final String DISABLE_SERIE_LINK_LOCATOR_TEMPLATE = "//td[@title=\"%s\"]//ancestor::tr//td[14]//span//div//span";
     private static final String STATUS_SERIE_LINK_LOCATOR_TEMPLATE = "//td[@title=\"%s\"]//ancestor::tr//td[6]";
+    private static final String LINK_SERIE_LOCATOR_TEMPLATE = "//td[@title=\"%s\"]//ancestor::tr//td[1]//a";
 
 
     public void statusIsValue(String serie, String status) {
@@ -99,8 +100,8 @@ public class HomePage extends BasePage {
         disableButton.click();
     }
 
-    public void getSerie(String serie) {
-        getDriver().findElement(By.xpath(String.format(SERIE_LINK_LOCATOR_TEMPLATE, serie)));
+    public void clickSerie(String serie) {
+        getDriver().findElement(By.xpath(String.format(LINK_SERIE_LOCATOR_TEMPLATE, serie))).click();
     }
     public void getSerieRow(String serie) {
         getDriver().findElement(By.xpath(String.format(SERIE_ANCESTOR_LINK_LOCATOR_TEMPLATE, serie)));

@@ -11,12 +11,6 @@ import io.cucumber.java.en.Given;
 import io.cucumber.java.en.Then;
 import io.cucumber.java.en.When;
 import net.thucydides.core.annotations.Steps;
-import org.openqa.selenium.By;
-import org.openqa.selenium.support.ui.ExpectedConditions;
-
-import java.util.Arrays;
-import java.util.List;
-import java.util.stream.Collectors;
 
 public class LoginSteps {
 
@@ -27,9 +21,6 @@ public class LoginSteps {
     LoginHeadway loginHeadway;
     
     ConnectionPage connectionPage;
-
-    @Inject
-    LocatorsDictionary locatorsDictionary = new LocatorsDictionary();
 
     @Given("a web browser is at headway login page with a registered user")
     public void openApplication() {
@@ -155,20 +146,7 @@ public class LoginSteps {
         connectionPage.pressesNext();
         connectionPage.enterValidPassword(Util.getInstance().getCredential().getPassword());
         connectionPage.pressesSignIn();
-        try {
-            connectionPage.pressesKeepSessionButton();
-            stepHomePage.validate();
-        } catch (Exception e) {
-            connectionPage.pressesReceiveTextMessage();
-            connectionPage.pressesKeepSessionButton();
-            connectionPage.pressesContinueButton();
-            connectionPage.staySignInCheckbox();
-            connectionPage.staySignInYesButton();
-        }
-    }
-
-    @And("it selects the serie to disable")
-    public void selectsTheSerieToDisable() {
         connectionPage.pressesKeepSessionButton();
     }
+
 }
