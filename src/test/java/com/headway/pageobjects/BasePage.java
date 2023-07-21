@@ -1,0 +1,33 @@
+package com.headway.pageobjects;
+
+import net.serenitybdd.core.pages.PageObject;
+import org.openqa.selenium.By;
+import org.openqa.selenium.support.ui.ExpectedConditions;
+
+import static org.junit.jupiter.api.Assertions.assertEquals;
+
+public class BasePage extends PageObject {
+
+    public String getValueInAttributteInField(By by, String  attribute) {
+        return getDriver().findElement(by).getAttribute(attribute);
+    }
+
+    public void validateValues(String firstValue, String secondValue) {
+        assertEquals(firstValue, secondValue);
+    }
+
+    public void validatePageIsDisplayed(String url) {
+        waitFor(ExpectedConditions.urlContains(url));
+    }
+
+    public void webElementIsDisplayed(By by, boolean isDisplayed) {
+        boolean foundElement;
+        try{
+            foundElement = getDriver().findElement(by).isDisplayed();
+        } catch (Exception exception){
+            foundElement = false;
+        }
+        assertEquals(isDisplayed, foundElement);
+    }
+
+}

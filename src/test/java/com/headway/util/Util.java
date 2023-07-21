@@ -11,13 +11,11 @@ public class Util {
     private Credential credential;
 
     private Util() {
-        //TODO fix constants values, and path for json
-        String fileName = "src/test/java/com/headway/util/login.json";
+        String fileName = "src/test/resources/data/login.json";
         ObjectMapper objectMapper = new ObjectMapper();
         try {
             credential =  objectMapper.readValue(new File(fileName), Credential.class);
         } catch (IOException e) {
-
             e.printStackTrace();
         }
     }

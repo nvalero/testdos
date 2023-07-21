@@ -22,9 +22,6 @@ public class LoginSteps {
     
     ConnectionPage connectionPage;
 
-    @Inject
-    LocatorsDictionary locatorsDictionary = new LocatorsDictionary();
-
     @Given("a web browser is at headway login page with a registered user")
     public void openApplication() {
         connectionPage.open();
@@ -147,18 +144,9 @@ public class LoginSteps {
         connectionPage.validatesMicrosoftPopOpens();
         connectionPage.enterValidEmail(Util.getInstance().getCredential().getUser());
         connectionPage.pressesNext();
-        //connectionPage.validatesMicrosoftPasswordIsShown();
         connectionPage.enterValidPassword(Util.getInstance().getCredential().getPassword());
         connectionPage.pressesSignIn();
-        try {
-            connectionPage.pressesKeepSessionButton();
-            stepHomePage.validate();
-        } catch (Exception e) {
-            connectionPage.pressesReceiveTextMessage();
-            connectionPage.pressesKeepSessionButton();
-            connectionPage.pressesContinueButton();
-            connectionPage.staySignInCheckbox();
-            connectionPage.staySignInYesButton();
-        }
+        connectionPage.pressesKeepSessionButton();
     }
+
 }
