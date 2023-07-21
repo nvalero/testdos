@@ -1,5 +1,4 @@
-@deleteSerieFeature
-
+@deleteSerieFeature @regression
 
 Feature: Delete Serie
 

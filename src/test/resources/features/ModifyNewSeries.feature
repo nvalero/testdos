@@ -1,4 +1,4 @@
-@ModifyNewSeries
+@ModifyNewSeries @regression
 Feature: [Epic HW-156] Modify New Series
 
   As Nursery Manager, I want to be able to modify a New Breeding Series to change the name and type if necessary according to business decision.

@@ -1,5 +1,4 @@
-@dashboardFeature
-
+@dashboardFeature @regression
 
 Feature: Dashboard Home Page
 

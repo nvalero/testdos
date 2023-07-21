@@ -1,5 +1,5 @@
 
-  @loginFeature
+  @loginFeature @regression
 
 Feature: [Epic HW-148] - Login
   As a Headway product owner I want only users with valid and active credentials to have access to the system to prevent unauthorized access
