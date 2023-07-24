@@ -80,6 +80,7 @@ public class HomePage extends BasePage {
     private static final String DISABLE_SERIE_LINK_LOCATOR_TEMPLATE = "//td[@title=\"%s\"]//ancestor::tr//td[14]//span//div//span";
     private static final String STATUS_SERIE_LINK_LOCATOR_TEMPLATE = "//td[@title=\"%s\"]//ancestor::tr//td[6]";
     private static final String LINK_SERIE_LOCATOR_TEMPLATE = "//td[@title=\"%s\"]//ancestor::tr//td[1]//a";
+    private static final String STATUS_SERIE_LOCATOR_TEMPLATE = "//div[text()=\"%s\"]//ancestor::tr//td[1]//a";
 
 
     public void statusIsValue(String serie, String status) {
@@ -174,4 +175,7 @@ public class HomePage extends BasePage {
 
     public void deleteSerie(){ deleteSerie.click();}
 
+    public void selectsSerieWithStatus(String status) {
+        getDriver().findElement(By.xpath(String.format(STATUS_SERIE_LOCATOR_TEMPLATE, status))).click();
+    }
 }
