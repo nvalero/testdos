@@ -34,21 +34,11 @@ public class AddParentsListsPage extends BasePage {
      WebElement errorMessage; --> Something went wrong adding the parent lists.
  */
     @FindBy(css = "._large_ypyit_5")
-    WebElement aboutMessage; //--We were unable to add 3 rows from one or more files because we could not find a match
-    // for the GID number of the materials. Please revise the data and try again later.
-
+    WebElement aboutMessage;
     By filesErrorMessages = By.cssSelector("._infoContainer_1t7x3_34");// --> 3 elementos con los archivos que fallaron
     By AddParentsListsWindow = By.cssSelector(".MuiDialog-root._container_gyx38_1.MuiModal-root.css-126xj0f " +
             ".css-101i5ei");
-    /*parents_001_Serie.csv
-1 Errors found
-    parents_nuevo_formato_JC.csv
-1 Errors found
-    parents_001_Serie(2).csv
-1 Errors found*/
-
-    //getDriver().findElements((By.cssSelector("._spanSize_h75ck_5"))).get(0).click() --> You have selected 0 files
-
+    
     public void filesWithErrors(int countExpected) {
         try {
             assertEquals(getDriver().findElements(filesErrorMessages).size(), countExpected);
