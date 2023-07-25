@@ -2,6 +2,7 @@ package com.headway.pageobjects;
 
 import net.serenitybdd.core.pages.PageObject;
 import org.openqa.selenium.By;
+import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
@@ -30,4 +31,14 @@ public class BasePage extends PageObject {
         assertEquals(isDisplayed, foundElement);
     }
 
+
+    public void webElementIsEnabled(By by, boolean isEnabled) {
+        boolean foundElement;
+        try{
+            foundElement = getDriver().findElement(by).isEnabled();
+        } catch (Exception exception){
+            foundElement = false;
+        }
+        assertEquals(isEnabled, foundElement);
+    }
 }

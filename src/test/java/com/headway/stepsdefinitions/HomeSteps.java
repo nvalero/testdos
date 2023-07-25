@@ -76,4 +76,9 @@ public class HomeSteps {
     public void deleteSpecificSerieIsNotDisplayed(String serie) {
         homePage.isSpecificDeleteSerieDisplayed(false, serie);
     }
+
+    @And("it selects serie with status {string}")
+    public void selectsSerieWithStatus(String status) {
+        homePage.selectsSerieWithStatus(status.toLowerCase());
+    }
 }
