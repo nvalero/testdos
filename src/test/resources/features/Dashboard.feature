@@ -1,5 +1,4 @@
-@dashboardFeature
-
+@dashboardFeature @regression
 
 Feature: Dashboard Home Page
    #TODO Add steps corresponding to each test

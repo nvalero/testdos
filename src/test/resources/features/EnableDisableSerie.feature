@@ -1,4 +1,5 @@
-@EnableDisableSerie
+@EnableDisableSerie @regression
+
 Feature: Login to GDM Headway
 Background: Login to GDM Headway
 
