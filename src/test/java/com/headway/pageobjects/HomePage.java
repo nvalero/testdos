@@ -3,13 +3,16 @@ package com.headway.pageobjects;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 
+import com.google.inject.Inject;
 import net.serenitybdd.core.annotations.findby.By;
-import net.serenitybdd.core.pages.PageObject;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 
 public class HomePage extends BasePage {
+
+    @Inject
+    LocatorsDictionary locatorsDictionary = new LocatorsDictionary();
 
     @FindBy(id = "i0116")
     WebElement username;
@@ -81,6 +84,9 @@ public class HomePage extends BasePage {
     private static final String STATUS_SERIE_LINK_LOCATOR_TEMPLATE = "//td[@title=\"%s\"]//ancestor::tr//td[6]";
     private static final String LINK_SERIE_LOCATOR_TEMPLATE = "//td[@title=\"%s\"]//ancestor::tr//td[1]//a";
     private static final String STATUS_SERIE_LOCATOR_TEMPLATE = "//div[text()=\"%s\"]//ancestor::tr//td[1]//a";
+    private static final String COLUMN_LOCATOR_TEMPLATE = "//td[@title=\"%s\"]//ancestor::tr//td[%s]//span";
+    private static final String ENVIRONMENT_LOCATOR_TEMPLATE = "//td[@title=\"%s\"]//ancestor::tr//td[11]//span";
+    private static final String CYCLEYEAR_LOCATOR_TEMPLATE = "//td[@title=\"%s\"]//ancestor::tr//td[12]//span";
 
 
     public void statusIsValue(String serie, String status) {
@@ -114,14 +120,6 @@ public class HomePage extends BasePage {
 
     public WebElement deleteSerieRow(String serie) {
         return getDriver().findElement(By.xpath(String.format(DELETE_SERIE_LINK_LOCATOR_TEMPLATE, serie)));
-    }
-
-    public void connect() {
-        username.sendKeys(("ext.nvalero@gdmseeds.com"));
-        clickUser.click();
-        password.sendKeys("NV2023gdm+");
-        clickPassword.click();
-        Next2.click();
     }
 
     public void isHamburgerMenuDisplayed(){
@@ -177,5 +175,12 @@ public class HomePage extends BasePage {
 
     public void selectsSerieWithStatus(String status) {
         getDriver().findElement(By.xpath(String.format(STATUS_SERIE_LOCATOR_TEMPLATE, status))).click();
+    }
+
+    public void hasValuesInColumn(String value, String serie, String column) {
+        waitForElement().until(ExpectedConditions.visibilityOfElementLocated(By.xpath(String.format(COLUMN_LOCATOR_TEMPLATE, serie, locatorsDictionary.columnDictionary.get(
+                column)))));
+        assert(getDriver().findElement(By.xpath(String.format(COLUMN_LOCATOR_TEMPLATE, serie, locatorsDictionary.columnDictionary.get(
+                column)))).getText().equals(value));
     }
 }

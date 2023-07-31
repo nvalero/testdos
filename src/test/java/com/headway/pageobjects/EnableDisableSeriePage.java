@@ -1,13 +1,11 @@
 package com.headway.pageobjects;
 
 import com.google.inject.Inject;
-import org.openqa.selenium.By;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
-import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 
 public class EnableDisableSeriePage extends BasePage {
@@ -32,6 +30,10 @@ public class EnableDisableSeriePage extends BasePage {
 
     @FindBy(css = ".MuiDialog-root ._icon_41q16_1 svg")
     WebElement crossMessage;
+
+
+    @FindBy(css = ".MuiDivider-root.MuiDivider-fullWidth._divider_11e1g_49.css-39bbo6")
+    WebElement greySeparator;
 
     public void editDescription(String description) {
         this.description.sendKeys(description);
@@ -82,5 +84,9 @@ public class EnableDisableSeriePage extends BasePage {
 
     public void pressesCancelButton() {
         cancelButton.click();
+    }
+
+    public void greySeparatorIsDisplayed(boolean displayed) {
+        assertTrue(greySeparator.isDisplayed());
     }
 }

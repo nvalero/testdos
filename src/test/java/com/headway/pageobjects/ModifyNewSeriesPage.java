@@ -11,7 +11,7 @@ import java.util.stream.Collectors;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 
-public class ModifyNewSeriesPage extends PageObject {
+public class ModifyNewSeriesPage extends BasePage {
 
     @FindBy(css = "svg[data-testid='EditOutlinedIcon']")
     private WebElement editIconButton;
@@ -238,12 +238,7 @@ public class ModifyNewSeriesPage extends PageObject {
 
         WebElement inputElement = companyIconDropdown.findElement(By.cssSelector("input.react-select__input"));
         inputElement.sendKeys("INA");
-
-        try {
-            Thread.sleep(3000); // Wait for 3 seconds
-        } catch (InterruptedException e) {
-            // Handle InterruptedException
-        }
+        sleep(3000);
     }
 
     public void sequentialSearchDisplayed() {
@@ -258,12 +253,7 @@ public class ModifyNewSeriesPage extends PageObject {
 
         WebElement inputElement = companyIconDropdown.findElement(By.cssSelector("input.react-select__input"));
         inputElement.sendKeys("ZZ");
-
-        try {
-            Thread.sleep(3000); // Wait for 3 seconds
-        } catch (InterruptedException e) {
-            // Handle InterruptedException
-        }
+        sleep(3000);
     }
 
     public void displaysMessageNoOptions() {
@@ -281,17 +271,9 @@ public class ModifyNewSeriesPage extends PageObject {
 
     public void typeInTheFieldYear() {
         yearIconDropDown.click();
-        try {
-            Thread.sleep(5000); // Wait for 10 seconds
-        } catch (InterruptedException e) {
-            // Handle InterruptedException
-        }
+        sleep(5000);
         yearIconDropDown.sendKeys("0");
-        try {
-            Thread.sleep(5000); // Wait for 10 seconds
-        } catch (InterruptedException e) {
-            // Handle InterruptedException
-        }
+        sleep(5000);
     }
 
     public void typeInTheFieldYearWrong() {
@@ -318,12 +300,7 @@ public class ModifyNewSeriesPage extends PageObject {
 
         WebElement inputElement = breedingIconDropDown.findElement(By.className("react-select__single-value"));
         inputElement.sendKeys("CROSS");
-
-        try {
-            Thread.sleep(3000); // Wait for 2 seconds
-        } catch (InterruptedException e) {
-            // Handle InterruptedException
-        }
+        sleep(3000);
     }
 
     public void displaysBreeding() {
@@ -344,12 +321,7 @@ public class ModifyNewSeriesPage extends PageObject {
 
         WebElement inputElement = traitIconDropdown.findElement(By.cssSelector(".react-select__control.css-13q36ur-control"));
         inputElement.sendKeys("SS");
-
-        try {
-            Thread.sleep(3000); // Wait for 2 seconds
-        } catch (InterruptedException e) {
-            // Handle InterruptedException
-        }
+        sleep(3000);
     }
 
     public void traitDisplaysTheMessageNoOptions() {
@@ -382,9 +354,7 @@ public class ModifyNewSeriesPage extends PageObject {
     public void typeInFieldCycle(String var) {
         WebElement cycleClickeableDropdownField = cycleIconDropDown.findElement(By.cssSelector(".react-select__input"));
         cycleClickeableDropdownField.sendKeys(var);
-        try {
-            Thread.sleep(2000); // Wait for 2 seconds
-        } catch (InterruptedException ignored) { }
+        sleep(2000); // Wait for 2 seconds
     }
 
     public void cycleNoOptionMessage(String var) {

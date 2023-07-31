@@ -11,7 +11,7 @@ Background: Login to GDM Headway
     And the cancel button is displayed
     And the disable window is displayed
     And the description field is displayed
-    And it presses the submit button
+    And it presses the submit button in enable modal
     Then the serie "TESTTODELETENATHACHA" has status "DISABLED"
 
   Scenario:  [HW-1616] [FE] Enable/Disable a serie - Enable a serie
@@ -22,7 +22,7 @@ Background: Login to GDM Headway
     And the cancel button is displayed
     And the disable window is displayed
     And the description field is displayed
-    And it presses the submit button
+    And it presses the submit button in enable modal
     And the disable window is not displayed
     Then the serie "TESTTODELETENATHACHA" has status "ENABLED"
 
@@ -34,7 +34,7 @@ Background: Login to GDM Headway
     And the cancel button is displayed
     And the disable window is displayed
     And the description field is displayed
-    And the description field is edited
+    And the description field is edited with "TESTTODELETENATHACHA"
     And it presses the cancel button
     Then the disable window is not displayed
     And the Edit Series Button is not displayed for serie "TESTTODELETENATHACHA"
@@ -60,8 +60,8 @@ Background: Login to GDM Headway
     And the cancel button is displayed
     And the disable window is displayed
     And the description field is displayed
-    And the description field is edited
-    And it presses the submit button
+    And the description field is edited with "TESTTODELETENATHACHA"
+    And it presses the submit button in enable modal
     And the disable window is not displayed
     Then the serie "TESTTODELETENATHACHA" has status "ENABLED"
 
@@ -73,7 +73,7 @@ Background: Login to GDM Headway
     And the cancel button is displayed
     And the disable window is displayed
     And the description field is displayed
-    And the description field is edited
-    And it presses the submit button
+    And the description field is edited with "TESTTODELETENATHACHA"
+    And it presses the submit button in enable modal
     And the disable window is not displayed
     Then the serie "TESTTODELETENATHACHA" has status "DISABLED"

@@ -1,14 +1,14 @@
 package com.headway.pageobjects;
 
+import net.serenitybdd.core.pages.WebElementFacade;
+import org.openqa.selenium.By;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
+import org.openqa.selenium.support.ui.ExpectedConditions;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 public class SuccessCreateSeriePage extends BasePage {
-
-    @FindBy(css = ".MuiDialog-root ._title_x6167_5")
-    WebElement createdMessage;
 
     @FindBy(css = ".MuiDialog-root ._title_x6167_5")
     WebElement logoCreatedMessage;
@@ -25,10 +25,15 @@ public class SuccessCreateSeriePage extends BasePage {
     @FindBy(css = "._primary_1cvem_5")
     WebElement addParentsButton;
 
-    private static final String SERIE_NAME_LOCATOR_TEMPLATE = "NOMBREX";
+    By createdMessage = By.cssSelector(".MuiDialog-root ._title_x6167_5");
+
+    private static final String LONG_MESSAGE_LOCATOR_TEMPLATE = "has been successfully created. Now you can go back to the " +
+            "beginning or add the list of parents.";
 
     public void validateCreatedMessage(String message) {
-        assertEquals(createdMessage.getText(), message);
+        sleep(10000);
+        waitFor(ExpectedConditions.textToBePresentInElementLocated(createdMessage, message));
+        assertEquals(getDriver().findElement(createdMessage).getText(), message);
     }
 
     public void logoCreatedMessageIsDisplayed() {
@@ -40,7 +45,7 @@ public class SuccessCreateSeriePage extends BasePage {
     }
 
     public void longCreatedMessageIsCorrect() {
-        assertTrue(longCreatedMessage.getText().contains(SERIE_NAME_LOCATOR_TEMPLATE));
+        assertTrue(longCreatedMessage.getText().contains(LONG_MESSAGE_LOCATOR_TEMPLATE));
     }
 
     public void goToSeriesButtonIsDisplayed() {

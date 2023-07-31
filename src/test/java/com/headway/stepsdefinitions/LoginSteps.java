@@ -47,11 +47,6 @@ public class LoginSteps {
         connectionPage.validateEmailMessage(message);
     }
 
-    @And("User connects through Microsoft")
-    public void connect() {
-        connectionPage.connect();
-    }
-
     @When("it clicks on the Log In button")
     public void clickLogin() {
         loginHeadway.clickLogin();
