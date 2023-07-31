@@ -41,4 +41,11 @@ public class BasePage extends PageObject {
         }
         assertEquals(isEnabled, foundElement);
     }
+
+    public void sleep(long i) {
+        try {
+            Thread.sleep(i);
+        } catch (InterruptedException e) {
+        }
+    }
 }

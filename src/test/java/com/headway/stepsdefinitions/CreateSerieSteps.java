@@ -19,7 +19,7 @@ public class CreateSerieSteps {
         createSeriePage.selectItemInDropDown("company", 0);
         createSeriePage.selectItemInDropDown("year", 0);
         createSeriePage.editDescription("new test");
-        createSeriePage.selectItemInDropDown("breeding", 0);
+        createSeriePage.selectItemInDropDown("breed", 0);
         createSeriePage.selectItemInDropDown("trait", 0);
         createSeriePage.selectItemInDropDown("cycle", 0);
         createSeriePage.selectItemInDropDown("environment", 0);
@@ -146,9 +146,9 @@ public class CreateSerieSteps {
         enableDisableSeriePage.disableSerieWindowIsDisplayed(true);
     }
 
-    @And("it presses the submit button")
+    @And("it presses the submit button in create modal")
     public void pressesSubmitButton() {
-        enableDisableSeriePage.clickSubmit();
+        createSeriePage.clickSubmit();
     }
 
     @And("it presses the cancel button")
@@ -156,13 +156,23 @@ public class CreateSerieSteps {
         enableDisableSeriePage.pressesCancelButton();
     }
 
-    @And("the description field is edited")
-    public void editDescriptionInput() {
-        enableDisableSeriePage.editDescription("Automation test");
+    @And("the description field is edited with {string}")
+    public void editDescriptionInput(String serie) {
+        enableDisableSeriePage.editDescription(serie);
     }
 
     @And("the disable window is not displayed")
     public void disableSerieWindowIsNotDisplayed() {
         enableDisableSeriePage.disableSerieWindowIsDisplayed(false);
+    }
+
+
+    @And("the grey separator line is displayed")
+    public void greySeparatorIsDisplayed() {
+        enableDisableSeriePage.greySeparatorIsDisplayed(false);
+    }
+    @And("it presses the submit button in enable modal")
+    public void pressesSubmitButtonEnableModal() {
+        enableDisableSeriePage.clickSubmit();
     }
 }

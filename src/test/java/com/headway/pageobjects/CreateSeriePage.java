@@ -2,8 +2,10 @@ package com.headway.pageobjects;
 
 import com.google.inject.Inject;
 import org.openqa.selenium.By;
+import org.openqa.selenium.JavascriptExecutor;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
+import org.openqa.selenium.support.ui.ExpectedConditions;
 
 import java.util.Arrays;
 import java.util.List;
@@ -48,9 +50,12 @@ public class CreateSeriePage extends BasePage {
     }
 
     public void dropDownIsDisplayed(String dropDown) {
+        waitForElement().until(ExpectedConditions.presenceOfElementLocated((By) locatorsDictionary.dropDownDictionary.get(
+                dropDown)));
         assertTrue(getDriver().findElement((By) locatorsDictionary.dropDownDictionary.get(
                 dropDown)).isDisplayed());
     }
+
     public int countDropDownElements(String dropDown) {
         getDriver().findElement((By) locatorsDictionary.dropDownDictionary.get(
                 dropDown)).click();
@@ -59,10 +64,14 @@ public class CreateSeriePage extends BasePage {
     }
 
     public boolean validateDropDownElements(String dropDown, List expected) {
-        getDriver().findElement((By) locatorsDictionary.dropDownDictionary.get(
-                dropDown)).click();
+
+        waitForElement().until(ExpectedConditions.elementToBeClickable((By) locatorsDictionary.dropDownDictionary.get(
+                dropDown)));
+        ((JavascriptExecutor) getDriver()).executeScript("arguments[0].scrollIntoView();",
+                getDriver().findElement((By) locatorsDictionary.dropDownDictionary.get(dropDown)));
+        getDriver().findElement((By) locatorsDictionary.dropDownDictionary.get(dropDown)).click();
         List<WebElement> list = getDriver().findElement((By) locatorsDictionary.dropDownDictionary.get(
-                dropDown)).findElements(By.cssSelector(".react-select__option"));
+                        dropDown)).findElements(By.cssSelector(".react-select__option"));
         return list.stream()
                 .filter(x -> expected.contains(x.getText())).count() == 0;
     };
@@ -73,9 +82,12 @@ public class CreateSeriePage extends BasePage {
     }
 
     public void selectItemInDropDown(String dropDown, int item) {
+        waitForElement().until(ExpectedConditions.presenceOfElementLocated((By) locatorsDictionary.dropDownDictionary.get(
+                dropDown)));
         getDriver().findElement((By) locatorsDictionary.dropDownDictionary.get(
                 dropDown)).click();
-
+        waitForElement().until(ExpectedConditions.presenceOfElementLocated(By.id(String.format((String) locatorsDictionary.dropDownItemDictionary.get(dropDown),
+                item))));
         getDriver().findElement(By.id(String.format((String) locatorsDictionary.dropDownItemDictionary.get(dropDown),
                 item))).click();
     }

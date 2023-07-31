@@ -11,8 +11,7 @@ import static org.junit.jupiter.api.Assertions.assertTrue;
 
 public class ConnectionPage extends BasePage {
 
-    @FindBy(css = "#i0116")
-    WebElement username;
+    By username = By.cssSelector("#i0116");
 
     @FindBy(css = "#lightbox > div:nth-child(3) > div > div > div > div.win-button-pin-bottom.boilerplate-button-bottom > div > div > div > div")
     WebElement clickUser;
@@ -58,7 +57,8 @@ public class ConnectionPage extends BasePage {
     WebElement yesButton;
 
     public void connect() {
-        username.sendKeys(("ext.nvalero@gdmseeds.com"));
+        waitForElement().until(ExpectedConditions.presenceOfElementLocated(username));
+        getDriver().findElement(username).sendKeys(("ext.nvalero@gdmseeds.com"));
         clickUser.click();
         password.sendKeys("NV2023gdm+");
         clickPassword.click();
@@ -70,15 +70,16 @@ public class ConnectionPage extends BasePage {
     }
 
     public void validatesMicrosoftPopOpens() {
-        assertTrue(username.isDisplayed());
+        waitForElement().until(ExpectedConditions.visibilityOfElementLocated(username));
+        assertTrue(getDriver().findElement(username).isDisplayed());
     }
 
     public void enterValidEmail(String text) {
-        username.sendKeys(text); //ext.hmartin@gdmseeds.com"));
+        getDriver().findElement(username).sendKeys(text);
     }
 
     public void enterInvalidEmail(String email) {
-        username.sendKeys(email);
+        getDriver().findElement(username).sendKeys(email);
     }
 
     public void pressesNext() {
@@ -115,11 +116,7 @@ public class ConnectionPage extends BasePage {
 
     public void pressesReceiveTextMessage() {
         textMessageButton.click();
-        try {
-            Thread.sleep(20000); // Wait for 20 seconds
-        } catch (InterruptedException e) {
-            // Handle InterruptedException
-        }
+        sleep(20000);
     }
 
     public void validateEmailMessage(String message) {

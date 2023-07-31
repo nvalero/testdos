@@ -12,6 +12,9 @@ public class HomeSteps {
     @Steps
     com.headway.pageobjects.EnableDisableSeriePage enableDisableSeriePage;
 
+    @Steps
+    com.headway.pageobjects.CreateSeriePage createSeriePage;
+
     @Then("the Series Manager Page is displayed")
     public void canSeeHomePage() {
         homePage.validate();
@@ -20,6 +23,7 @@ public class HomeSteps {
     @And("it pressed the Create Series button")
     public void createSerie() {
         homePage.createSerie();
+        createSeriePage.createSerieWindowIsDisplayed(true);
     }
 
     @And("the Hamburger Menu is displayed")
@@ -81,4 +85,10 @@ public class HomeSteps {
     public void selectsSerieWithStatus(String status) {
         homePage.selectsSerieWithStatus(status.toLowerCase());
     }
+
+    @And("it has value {string} in field {string} in serie {string}")
+    public void hasValuesInLocationColumn(String value, String field, String serie) {
+        homePage.hasValuesInColumn(value, serie, field);
+    }
+
 }

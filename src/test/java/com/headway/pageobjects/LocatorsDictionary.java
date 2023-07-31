@@ -9,6 +9,7 @@ public class LocatorsDictionary {
 
     public Dictionary dropDownDictionary = new Hashtable();
     public Dictionary dropDownItemDictionary = new Hashtable();
+    public Dictionary columnDictionary = new Hashtable();
     private static final String COMPANY_ITEM_LOCATOR_TEMPLATE = "react-select-2-option-%s";
     private static final String YEAR_ITEM_LOCATOR_TEMPLATE = "react-select-3-option-%s";
     private static final String TRAIT_ITEM_LOCATOR_TEMPLATE = "react-select-4-option-%s";
@@ -23,7 +24,7 @@ public class LocatorsDictionary {
         dropDownDictionary.put("company", By.id("company"));
         dropDownDictionary.put("year", By.id("year"));
         dropDownDictionary.put("trait", By.id("trait"));
-        dropDownDictionary.put("breeding", By.id("breeding"));
+        dropDownDictionary.put("breed", By.id("breeding"));
         dropDownDictionary.put("cycle", By.id("cycle"));
         dropDownDictionary.put("location", By.id("location"));
         dropDownDictionary.put("environment", By.id("environment"));
@@ -32,11 +33,20 @@ public class LocatorsDictionary {
         dropDownItemDictionary.put("company", COMPANY_ITEM_LOCATOR_TEMPLATE);
         dropDownItemDictionary.put("year", YEAR_ITEM_LOCATOR_TEMPLATE);
         dropDownItemDictionary.put("trait", TRAIT_ITEM_LOCATOR_TEMPLATE);
-        dropDownItemDictionary.put("breeding", BREEDING_ITEM_LOCATOR_TEMPLATE);
+        dropDownItemDictionary.put("breed", BREEDING_ITEM_LOCATOR_TEMPLATE);
         dropDownItemDictionary.put("cycle", CYCLE_ITEM_LOCATOR_TEMPLATE);
         dropDownItemDictionary.put("location", LOCATION_ITEM_LOCATOR_TEMPLATE);
         dropDownItemDictionary.put("environment", ENVIRONMENT_ITEM_LOCATOR_TEMPLATE);
         dropDownItemDictionary.put("cycleyear", CYCLE_YEAR_ITEM_LOCATOR_TEMPLATE);
-    }
 
+
+        columnDictionary.put("year", 3);
+        columnDictionary.put("breed", 5);
+        columnDictionary.put("trait", 7);
+        columnDictionary.put("company", 8);
+        columnDictionary.put("cycle", 9);
+        columnDictionary.put("location", 10);
+        columnDictionary.put("environment", 11);
+        columnDictionary.put("cycleyear", 12);
+    }
 }
