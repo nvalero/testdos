@@ -1,9 +1,11 @@
 package com.headway.pageobjects;
 
+import com.google.inject.Inject;
 import net.serenitybdd.core.pages.PageObject;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
+import org.openqa.selenium.support.ui.ExpectedConditions;
 
 import java.util.Arrays;
 import java.util.List;
@@ -12,6 +14,9 @@ import java.util.stream.Collectors;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 
 public class ModifyNewSeriesPage extends BasePage {
+
+    @Inject
+    LocatorsDictionary locatorsDictionary = new LocatorsDictionary();
 
     @FindBy(css = "svg[data-testid='EditOutlinedIcon']")
     private WebElement editIconButton;
@@ -25,8 +30,10 @@ public class ModifyNewSeriesPage extends BasePage {
     @FindBy(className = "_large_ypyit_5")
     private WebElement editSeriesMessage;
 
-    @FindBy(xpath = "//span[contains(@class, '_large_ypyit_5 _bold_ypyit_45')]")
-    private WebElement seriesNameElement;
+    //@FindBy(xpath = "//span[contains(@class, '_large_ypyit_5 _bold_ypyit_45')]")
+    //_large_sz2ax_5 _bold_sz2ax_45
+    //_large_sz2ax_5 _bold_sz2ax_45"
+    private By seriesNameElement = By.cssSelector("._large_sz2ax_5._bold_sz2ax_45");
 
     @FindBy(className = "_children_1qoso_20[for='company'")
     private WebElement companyIconLabel;
@@ -94,8 +101,8 @@ public class ModifyNewSeriesPage extends BasePage {
     @FindBy(className = "_secondary_1cvem_39")
     private WebElement cancelButton;
 
-    @FindBy(css = "span._small_ypyit_21._bold_ypyit_45._textcolor_phx9n_142")
-    private WebElement informationElement;
+    @FindBy(css = "._contextual_phx9n_1")
+    WebElement informationElement;
 
     @FindBy(xpath = "//button[@class='_loading_1cvem_110' and @type='submit']")
     private WebElement editSeriesButton;
@@ -106,7 +113,7 @@ public class ModifyNewSeriesPage extends BasePage {
     @FindBy(id = "react-select-18-listbox")
     private WebElement noOptionMessage;
 
-    @FindBy(id = "react-select-19-listbox")
+    @FindBy(id = "react-select-19-listbox")//react-select__menu-notice--no-options
     private WebElement yearNoOptionMessage;
 
     @FindBy(id = "react-select-19-option-0")
@@ -114,7 +121,7 @@ public class ModifyNewSeriesPage extends BasePage {
 
     @FindBy(id = "react-select-19-option-1")
     private WebElement yearOption2024;
-
+//getDriver().findElement(By.cssSelector(".react-select__menu-notice--no-options"))
     @FindBy(css = ".react-select__menu.css-1nmdiq5-menu")
     private WebElement optionsMenuElement;
 
@@ -131,6 +138,7 @@ public class ModifyNewSeriesPage extends BasePage {
     }
 
     public void clickEditIconButton() {
+        waitForElement().until(ExpectedConditions.elementToBeClickable(editIconButton));
         editIconButton.click();
     }
 
@@ -147,9 +155,7 @@ public class ModifyNewSeriesPage extends BasePage {
     }
 
     public void getSeriesName() {
-        seriesNameElement.isDisplayed();
-        String seriesName = seriesNameElement.getText();
-        assertEquals(seriesNameElement.getText(), seriesName);
+        webElementIsDisplayed(seriesNameElement, true);
     }
 
     public void companyDropDownIsDisplayed() {
@@ -159,7 +165,8 @@ public class ModifyNewSeriesPage extends BasePage {
 
     public void YearDropDownIsDisplayed() {
         yearIconDropDown.isDisplayed();
-        assert !yearIconDropDown.getText().trim().isEmpty() : "Year dropdown is empty or does not have valid information";
+        assert !yearIconDropDown.getText().trim().isEmpty() : "Year dropdown is empty or does not have valid " +
+                "information";
 
     }
 
@@ -177,31 +184,26 @@ public class ModifyNewSeriesPage extends BasePage {
     public void breadingDropdownIsDisplayed() {
         breedingIconDropDown.isDisplayed();
         assert !breedingIconDropDown.getText().trim().isEmpty() : "Breeding dropdown is empty or does not have valid information";
-
     }
 
     public void cycleDropdownIsDisplayed() {
         cycleIconDropDown.isDisplayed();
         assert !cycleIconDropDown.getText().trim().isEmpty() : "Cycle dropdown is empty or does not have valid information";
-
     }
 
     public void locationDropdownIsDisplayed() {
         locationIconDropDown.isDisplayed();
         assert !locationIconDropDown.getText().trim().isEmpty() : "Location dropdown is empty or does not have valid information";
-
     }
 
     public void environmentDropdownIsDisplayed() {
         environmentIconDropDown.isDisplayed();
         assert !environmentIconDropDown.getText().trim().isEmpty() : "Environment dropdown is empty or does not have valid information";
-
     }
 
     public void cycleYearDropdownIsDisplayed() {
         cycleYearIconDropDown.isDisplayed();
         assert !cycleYearIconDropDown.getText().trim().isEmpty() : "Cycle Year dropdown is empty or does not have valid information";
-
     }
 
     public void messageInformation() {
@@ -272,7 +274,8 @@ public class ModifyNewSeriesPage extends BasePage {
     public void typeInTheFieldYear() {
         yearIconDropDown.click();
         sleep(5000);
-        yearIconDropDown.sendKeys("0");
+        //yearIconDropDown.sendKeys("0");
+        getDriver().findElement(By.id("react-select-3-input")).sendKeys("0");
         sleep(5000);
     }
 
@@ -281,7 +284,7 @@ public class ModifyNewSeriesPage extends BasePage {
     }
 
     public void displaysMessageNoOptionsForYear() {
-        yearNoOptionMessage.isDisplayed();
+        webElementIsDisplayed(By.cssSelector(".react-select__menu-notice--no-options"), true);
     }
 
     public void clickDropdownFieldBreeding() {
@@ -370,13 +373,19 @@ public class ModifyNewSeriesPage extends BasePage {
     private List<WebElement> columnRows;
 
     public void seriesNotModified() {
-        for (WebElement row : columnRows) {
+        WebElement row = columnRows.get(0);
             List<WebElement> spanElements = row.findElements(By.tagName("span"));
             System.out.println("print all the elements inside the row: " + spanElements);
              for (WebElement span : spanElements) {
                  String spanText = span.getText();
                  System.out.println("print a specific column inside the row: " + spanText);
              }
-        }
+    }
+
+    public void typesInDropDown(String text, String dropDown) {
+        waitForElement().until(ExpectedConditions.presenceOfElementLocated((By) locatorsDictionary.inputDictionary.get(
+                dropDown)));
+        getDriver().findElement((By) locatorsDictionary.inputDictionary.get(
+                dropDown)).sendKeys(text);
     }
 }

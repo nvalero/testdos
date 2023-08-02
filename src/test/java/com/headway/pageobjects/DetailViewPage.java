@@ -28,8 +28,8 @@ public class DetailViewPage extends BasePage {
     @FindBy(css = "._container_1rw5t_8._new_1rw5t_18")
     WebElement statusText; //-> PARENT ASSIGNED
 
-    @FindBy(css = "._infoText_9jsbb_79 ._small_ypyit_21._bold_ypyit_45")
-    WebElement parentSelectionMessage; //--> You have already added a List of Parents.
+    By parentSelectionMessage = By.cssSelector("#root div section main article div div"); //--> You have already added a List of
+    // Parents.
 
     By AddParentsListsButton = By.cssSelector("._requestSeedsbutton_9jsbb_21");
 
@@ -47,9 +47,8 @@ public class DetailViewPage extends BasePage {
         getDriver().findElement(AddParentsListsButton).click();
     }
 
-
     public void displaysInformativeText(String message) {
-        assertEquals(parentSelectionMessage.getText(), message);
+        assertEquals(getDriver().findElement(parentSelectionMessage).getText().replace("\n", " "), message);
     }
 
     public void validateStatusText(String message) {

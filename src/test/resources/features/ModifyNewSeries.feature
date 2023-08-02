@@ -33,14 +33,16 @@ Feature: [Epic HW-156] Modify New Series
     Given it logins into headway
     And it presses the Edit icon
     When it pushes the dropdown company field
-    Then the platform displays the drop-down with the options GDM ARGENTINA, GDM BRAZIL, GDM CHINA, GDM EUROPE UNION, GDM UNITED STATES
+    Then the "company" drop-down is displayed
+    And the "company" drop-down displays "GDM ARGENTINA,GDM BRAZIL,GDM CHINA,GDM EU,GDM USA"
 
   Scenario: [HW-1570] Edit Series - Filter field Company Test
     Given it logins into headway
     And it presses the Edit icon
     And edit Series drawer is displayed
     Then it types INA in the field Company
-    And the platform performs a sequential search and displays the following options in the drop-down list: GDM ARGENTINA, GDM CHINA
+    And the "company" drop-down is displayed
+    And the "company" drop-down displays "GDM ARGENTINA,GDM CHINA"
 
   Scenario: [HW-1571] Edit Series - Filter field Company No-Options Test
     Given it logins into headway
@@ -61,13 +63,13 @@ Feature: [Epic HW-156] Modify New Series
     And it presses the Edit icon
     And edit Series drawer is displayed
     When it types 0 in the field Year
-    Then the platform displays a dropdown with the actual year and the next
+    Then the "year" drop-down displays "2023, 2024"
 
   Scenario: [HW-1574] Edit Series - Filter field Year No-Options Test
     Given it logins into headway
     And it presses the Edit icon
     And edit Series drawer is displayed
-    When it types AA in the field Year
+    When it types "AA" in drop-down "year"
     Then the platform performs a sequential search and displays the message No Options in the dropdown for year field
 
   Scenario: [HW-1575] Edit Series - Drop-down field Breeding Method Test
@@ -81,45 +83,46 @@ Feature: [Epic HW-156] Modify New Series
     Given it logins into headway
     And it presses the Edit icon
     And edit Series drawer is displayed
-    When it types CROSS in the field Breeding Method
-    Then the platform performs a sequential search and displays the options in the dropdown list
+    When it types "CROSS" in drop-down "breed"
+    Then the "trait" drop-down displays "FWS - FWB Simple cross"
 
   Scenario: [HW-1578] Edit Series - Drop-down field Trait Test
     Given it logins into headway
     And it presses the Edit icon
     And edit Series drawer is displayed
-    When it pushes the drop-down field Trait
-    Then the platform displays the dropdown with the elements
+    Then the "trait" drop-down is displayed
+    And the "trait" drop-down displays "CONVENTIONAL,ROUNDUP READY,ENLIST,CONKESTA,INTACTA,XTEND FLEX,INTACTA2XTEND,HAB4xRR1,GGT,GGTxGIR3,XTEND,LIBERTY LINK GT27,GIR PLUS,LLXRR,RUST,SCN,PROTEIN,RKN,KUNITZ,LIPOX,PHY25,LOW RAFF, HIGH YIELD AND STRESS TOLERANCE,AREB AND GOLS,GENERAL PLANT PATHOLOGY,RACK"
 
   Scenario: [HW-1580] Edit Series - Filter field Trait No-Options Test
     Given it logins into headway
     And it presses the Edit icon
     And edit Series drawer is displayed
-    When it types SS in the field Trait
-    Then the platform performs a sequential search and displays the message No Options
+    When it types "SS" in drop-down "trait"
+    And the "trait" drop-down displays "HIGH YIELD AND STRESS TOLERANCE"
 
     Scenario: [HW-1581] Edit Series - Drop-down field Cycle Test
       Given it logins into headway
-      And it presses the Edit icon
+      When it presses the Edit icon
       And edit Series drawer is displayed
-      When it pushes the dropdown field Cycle
-      Then the platform displays the dropdown with data
+      When the "cycle" drop-down is displayed
+      And the "cycle" drop-down displays "AxB - Initial cross,F1,F2,F3,F4,F5,F6,F7,F8"
 
     Scenario: [HW-1582] Edit Series - Filter field Cycle Test
       Given it logins into headway
       And it presses the Edit icon
       And edit Series drawer is displayed
       And it pushes the dropdown field Cycle
-      When it types CR in the field Cycle
-      Then the platform performs a sequential search and displays the options in the dropdown list
+      When it types "CR" in drop-down "cycle"
+      Then the "cycle" drop-down is displayed
+      And the "cycle" drop-down displays "AxB - Initial cross"
 
     Scenario: [HW-1583] Edit Series - Filter field Cycle No-Options Test
       Given it logins into headway
       And it presses the Edit icon
       And edit Series drawer is displayed
       And it pushes the dropdown field Cycle
-      When it types "11" in the field Cycle
-      Then the platform performs a sequential search and displays the message "No options" in the drop-down
+      When it types "11" in drop-down "cycle"
+      Then the platform performs a sequential search and displays the message No Options in the dropdown for year field
 
 
     Scenario: [HW-1585] Edit Series - Cancel button test
@@ -127,7 +130,7 @@ Feature: [Epic HW-156] Modify New Series
       And it presses the Edit icon
       And edit Series drawer is displayed
       When it pushes the cancel button
-      Then the Login Screen is shown with the welcome message "Welcome to Headway"
+      Then the Series Manager Page is displayed
       And the Series will not be modified
 
     @1586

@@ -30,7 +30,6 @@ Feature: [Epic HW-148] - Login
     And it presses Next
     Then the Microsoft log in pop-up switches to allow entering the password
 
-
   Scenario: [HW-1536] Login - Log in error for invalid password
     Given a web browser is at headway login page with a registered user
     When it clicks on the Log In button

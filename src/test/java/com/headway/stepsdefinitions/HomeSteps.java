@@ -3,6 +3,7 @@ package com.headway.stepsdefinitions;
 import com.headway.pageobjects.HomePage;
 import io.cucumber.java.en.And;
 import io.cucumber.java.en.Then;
+import net.serenitybdd.core.Serenity;
 import net.thucydides.core.annotations.Steps;
 
 public class HomeSteps {
@@ -35,8 +36,8 @@ public class HomeSteps {
     @And("the Middle Section Menu is displayed")
     public void middleMenuIsDisplayed(){ homePage.isMiddleDisplayed(); }
 
-    @And("it selects disable serie {string}")
-    @And("it selects enable serie {string}")
+    @And("it selects option to disable serie {string}")
+    @And("it selects option to enable serie {string}")
     public void disableSerie(String serie){ homePage.disableSerieRow(serie); }
 
     @And("it selects serie {string}")
@@ -45,17 +46,17 @@ public class HomeSteps {
     @And("the serie {string} has status {string}")
     public void statusIsValue(String serie, String status) {
         String currentStatus= homePage.getStatus(serie);
-        if (currentStatus.toLowerCase().equals("new"))
-            currentStatus = "enabled";
-        homePage.validateValues(currentStatus.toLowerCase(), status.toLowerCase());
+        if (currentStatus.toUpperCase().equals("NEW"))
+            currentStatus = "ENABLED";
+        homePage.validateValues(currentStatus.toUpperCase(), status.toUpperCase());
     }
 
     @And("it sets serie {string} to status {string}")
     public void completeDisableSerie(String serie, String status){
         String currentStatus= homePage.getStatus(serie);
-        if (currentStatus.toLowerCase().equals("new"))
-            currentStatus = "enabled";
-        if (!currentStatus.equals(status.toLowerCase())){
+        if (currentStatus.toUpperCase().equals("NEW"))
+            currentStatus = "ENABLED";
+        if (!currentStatus.equals(status.toUpperCase())){
             homePage.disableSerieRow(serie);
             enableDisableSeriePage.clickSubmit();
             enableDisableSeriePage.disableSerieWindowIsDisplayed(false);
@@ -83,7 +84,7 @@ public class HomeSteps {
 
     @And("it selects serie with status {string}")
     public void selectsSerieWithStatus(String status) {
-        homePage.selectsSerieWithStatus(status.toLowerCase());
+        homePage.selectsSerieWithStatus(status);
     }
 
     @And("it has value {string} in field {string} in serie {string}")
