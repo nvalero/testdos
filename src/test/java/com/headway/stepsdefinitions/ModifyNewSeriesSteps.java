@@ -137,7 +137,7 @@ public class ModifyNewSeriesSteps {
 
     @Then("the platform performs a sequential search and displays the message No Options in the dropdown")
     public void displaysMessageNoOptions() {
-        //modifyNewSeriesPage.displaysMessageNoOptions();
+        modifyNewSeriesPage.displaysMessageNoOptions();
     }
 
     @When("it pushes the dropdown field Year")
@@ -155,10 +155,9 @@ public class ModifyNewSeriesSteps {
         modifyNewSeriesPage.typeInTheFieldYear();
     }
 
-
     @When("it types AA in the field Year")
     public void typesInTheFieldYearWrong() {
-        //modifyNewSeriesPage.typeInTheFieldYearWrong();
+        modifyNewSeriesPage.typeInTheFieldYearWrong();
     }
 
     @Then("the platform performs a sequential search and displays the message No Options in the dropdown for year field")
@@ -245,4 +244,10 @@ public class ModifyNewSeriesSteps {
     public void seriesNotModified() {
         modifyNewSeriesPage.seriesNotModified();
     }
+
+    @And("it types {string} in drop-down {string}")
+    public void selectYear(String text, String dropDown) {
+        modifyNewSeriesPage.typesInDropDown(text, dropDown);
+    }
+
 }

@@ -166,11 +166,11 @@ public class CreateSerieSteps {
         enableDisableSeriePage.disableSerieWindowIsDisplayed(false);
     }
 
-
     @And("the grey separator line is displayed")
     public void greySeparatorIsDisplayed() {
         enableDisableSeriePage.greySeparatorIsDisplayed(false);
     }
+
     @And("it presses the submit button in enable modal")
     public void pressesSubmitButtonEnableModal() {
         enableDisableSeriePage.clickSubmit();

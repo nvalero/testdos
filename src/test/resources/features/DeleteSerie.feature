@@ -20,6 +20,8 @@ Feature: Delete Serie
 
     @HW-1646
     Scenario: [FE] Delete a Series - Confirmation window before deleting a Series with no Parents Assigned
+      #TODO, where it selects serie with no Parents Assigned state
+      #TODO is the same test than before
       When the Series Manager Page is displayed
       And it pressed the Delete Series button
       And the Delete Serie Page is displayed
@@ -42,6 +44,7 @@ Feature: Delete Serie
 
     @HW-1656 @HW-1658
     Scenario: [FE] Delete a Series - Removal of an Enabled Series
+      #TODO, where it selects serie with enabled state
       When the Series Manager Page is displayed
       And it pressed the Delete Series button
       And the Delete Serie Page is displayed
@@ -50,6 +53,8 @@ Feature: Delete Serie
 
     @HW-1657 @HW-1659
     Scenario: [FE] Delete a Series - Removal of a Series with no Parents Assigned
+      #TODO, where it selects serie with no Parents Assigned state
+      #TODO is the same test than before
       When the Series Manager Page is displayed
       And it pressed the Delete Series button
       And the Delete Serie Page is displayed

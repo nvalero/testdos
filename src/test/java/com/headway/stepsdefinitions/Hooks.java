@@ -10,6 +10,5 @@ public class Hooks {
     @After
     public void afterScenario(){
         connectionPage.quitDriver();
-        System.out.println("This will run after the Scenario");
     }
 }

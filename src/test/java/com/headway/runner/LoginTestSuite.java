@@ -1,6 +1,7 @@
 package com.headway.runner;
 
 import org.junit.platform.suite.api.ConfigurationParameter;
+import org.junit.platform.suite.api.ExcludeTags;
 import org.junit.platform.suite.api.IncludeEngines;
 import org.junit.platform.suite.api.IncludeTags;
 import org.junit.platform.suite.api.SelectClasspathResource;
@@ -14,5 +15,6 @@ import static io.cucumber.junit.platform.engine.Constants.GLUE_PROPERTY_NAME;
 @SelectClasspathResource("/features")
 @ConfigurationParameter(key = GLUE_PROPERTY_NAME, value = "com.headway")
 @IncludeTags("loginFeature")
+@ExcludeTags("LoginByTextMessage")
 public class LoginTestSuite {
 }

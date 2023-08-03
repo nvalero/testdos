@@ -1,10 +1,9 @@
 package com.headway.pageobjects;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
-import static org.junit.jupiter.api.Assertions.assertTrue;
 
 import com.google.inject.Inject;
-import net.serenitybdd.core.annotations.findby.By;
+import org.openqa.selenium.By;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.ui.ExpectedConditions;
@@ -39,20 +38,16 @@ public class HomePage extends BasePage {
     @FindBy(className = "_companylogo_yahwz_54")
     WebElement companyLogo;
 
-    @FindBy(className = "_medium_1cvem_146_ghost_1cvem_75")
-    WebElement signOutBtn;
+    By signOutBtn = By.cssSelector("._medium_1cvem_146._ghost_1cvem_75");
 
-    @FindBy(className = "_xxl_ypyit_72")
-    WebElement seriesManagerLogo;
+    By seriesManagerLogo = By.cssSelector("._xxl_ypyit_72");
 
-    @FindBy(className = "_hamburgerMenu_yahwz_13")
-    WebElement hamburgerMenuBtn;
+    By hamburgerMenuBtn = By.cssSelector("._hamburgerMenu_yahwz_13");
 
     @FindBy(className = "_container_1bgk0_77")
     WebElement seriesContainer;
 
-    @FindBy(css = "#root > div > nav > div > ul > li:nth-child(2) > a > div > svg")
-    WebElement nurseryAppBtn;
+    By nurseryAppBtn = By.cssSelector("#root > div > nav > div > ul > li:nth-child(2) > a > div > svg");
 
     @FindBy(css = "#root > div > nav > div > ul > li:nth-child(4) > a > div > svg")
     WebElement seriesManagerBtn;
@@ -90,11 +85,11 @@ public class HomePage extends BasePage {
 
 
     public void statusIsValue(String serie, String status) {
-        assertEquals(getStatus(serie), status.toLowerCase());
+        assertEquals(getStatus(serie), status.toUpperCase());
     }
 
     public String getStatus(String serie) {
-        return getDriver().findElement(By.xpath(String.format(STATUS_SERIE_LINK_LOCATOR_TEMPLATE, serie))).getText().toLowerCase();
+        return getDriver().findElement(By.xpath(String.format(STATUS_SERIE_LINK_LOCATOR_TEMPLATE, serie))).getText().toUpperCase();
     }
 
     public void disableSerieRow(String serie) {
@@ -123,8 +118,9 @@ public class HomePage extends BasePage {
     }
 
     public void isHamburgerMenuDisplayed(){
-        hamburgerMenuBtn.click();
-        nurseryAppBtn.isDisplayed();
+        webElementIsEnabled(hamburgerMenuBtn, true);
+        getDriver().findElement(hamburgerMenuBtn).click();
+        webElementIsDisplayed(nurseryAppBtn, true);
         seriesManagerBtn.isDisplayed();
         addNewSeriesHamburgerBtn.isDisplayed();
         companyLogo.isDisplayed();
@@ -132,8 +128,8 @@ public class HomePage extends BasePage {
     }
 
     public void isHeaderDisplayed(){
-        signOutBtn.isDisplayed();
-        seriesManagerLogo.isDisplayed();
+        webElementIsDisplayed(signOutBtn, true);
+        companyLogo.isDisplayed();
     }
 
     public void isMiddleDisplayed(){

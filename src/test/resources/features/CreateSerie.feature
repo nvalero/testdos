@@ -99,8 +99,6 @@ Background: Login to GDM Headway
     Then it has value "CH" in field "location" in serie "Automation test"
     And it has value "GH" in field "environment" in serie "Automation test"
     And it has value "2023" in field "cycleyear" in serie "Automation test"
-#    Then the Series Manager displays the columns "Location", "Environment" and "Cycle Year" between "Cycle" and "Creation Date" columns
-#    And the displayed information matches the entered one in the "New Series" drawer
 
   Scenario:  [HW-1468] Confirmation Window component - Confirmation Window components Test
     When it pressed the Create Series button

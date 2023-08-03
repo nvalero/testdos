@@ -1,4 +1,4 @@
-@AssignParentsSerie
+@AssignParentsSerie @regression
 Feature: Login to GDM Headway
 Background: Login to GDM Headway
 
@@ -26,7 +26,7 @@ Background: Login to GDM Headway
 
   Scenario:  [HW-1950] Add Parents List drawer - Without selecting files from the list
     Given it logins into headway
-    When it selects serie "TESTTODELETENATHACHA"
+    When it selects serie "AUTOMATIONTESTENABLECASE"
     And it presses Parent Selection option
     And it presses Add Parents Lists Button in Detail View
     And it displays a list of files

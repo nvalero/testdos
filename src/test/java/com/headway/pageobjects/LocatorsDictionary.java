@@ -10,6 +10,7 @@ public class LocatorsDictionary {
     public Dictionary dropDownDictionary = new Hashtable();
     public Dictionary dropDownItemDictionary = new Hashtable();
     public Dictionary columnDictionary = new Hashtable();
+    public Dictionary inputDictionary = new Hashtable();
     private static final String COMPANY_ITEM_LOCATOR_TEMPLATE = "react-select-2-option-%s";
     private static final String YEAR_ITEM_LOCATOR_TEMPLATE = "react-select-3-option-%s";
     private static final String TRAIT_ITEM_LOCATOR_TEMPLATE = "react-select-4-option-%s";
@@ -39,7 +40,6 @@ public class LocatorsDictionary {
         dropDownItemDictionary.put("environment", ENVIRONMENT_ITEM_LOCATOR_TEMPLATE);
         dropDownItemDictionary.put("cycleyear", CYCLE_YEAR_ITEM_LOCATOR_TEMPLATE);
 
-
         columnDictionary.put("year", 3);
         columnDictionary.put("breed", 5);
         columnDictionary.put("trait", 7);
@@ -48,5 +48,13 @@ public class LocatorsDictionary {
         columnDictionary.put("location", 10);
         columnDictionary.put("environment", 11);
         columnDictionary.put("cycleyear", 12);
+
+        inputDictionary.put("company", By.id("react-select-2-input"));
+        inputDictionary.put("year", By.id("react-select-3-input"));
+        inputDictionary.put("trait", By.id("react-select-4-input"));
+        inputDictionary.put("breed", By.id("react-select-5-input"));
+        inputDictionary.put("cycle", By.id("react-select-6-input"));
+        inputDictionary.put("location", By.id("react-select-7-input"));
+        inputDictionary.put("environment", By.id("react-select-8-input"));
     }
 }
