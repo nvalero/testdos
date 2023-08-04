@@ -151,5 +151,16 @@ public class CreateSeriePage extends BasePage {
         crossCreatedMessage.click();
     }
 
+    public void completedFieldsNewSerie(String serie) {
+        selectItemInDropDown("company", 0);
+        selectItemInDropDown("year", 0);
+        editDescription(serie);
+        selectItemInDropDown("breed", 0);
+        selectItemInDropDown("trait", 0);
+        selectItemInDropDown("cycle", 0);
+        selectItemInDropDown("environment", 0);
+        selectItemInDropDown("location", 0);
+        clickSubmit();
+    }
 
 }

@@ -67,12 +67,12 @@ public class HomePage extends BasePage {
     @FindBy(css = "_container_1rw5t_8 _new_1rw5t_18")
     WebElement statusSerie;
 
-    private static final String SERIE_LINK_LOCATOR_TEMPLATE = "//span[@title=\"%s\"]";
+    private static final String SERIE_LINK_LOCATOR_TEMPLATE = "//td[@title=\"%s\"]";
     private static final String SERIE_ANCESTOR_LINK_LOCATOR_TEMPLATE = "//span[@title=\"%s\"]/ancestor::td/ancestor::tr";
     private static final String EDIT_SERIE_LINK_LOCATOR_TEMPLATE = "//td[@title=\"%s\"]/ancestor::tr/ancestor::tr//td" +
             "[14]//span//div//a[1]";
-    private static final String DELETE_SERIE_LINK_LOCATOR_TEMPLATE = "//td[@title=\"%s\"]/ancestor::tr/ancestor::tr" +
-            "//td[14]//span//div//a[2]";
+    //private static final String DELETE_SERIE_LINK_LOCATOR_TEMPLATE = "//td[@title=\"%s\"]/ancestor::tr/ancestor::tr" +
+    //        "//td[14]//span//div//a[2]";
 
     private static final String SERIE_LINK_LOCATOR_TEMPLATEXX = "//td[@title=\"%s\"]";
     private static final String DISABLE_SERIE_LINK_LOCATOR_TEMPLATE = "//td[@title=\"%s\"]//ancestor::tr//td[14]//span//div//span";
@@ -82,7 +82,8 @@ public class HomePage extends BasePage {
     private static final String COLUMN_LOCATOR_TEMPLATE = "//td[@title=\"%s\"]//ancestor::tr//td[%s]//span";
     private static final String ENVIRONMENT_LOCATOR_TEMPLATE = "//td[@title=\"%s\"]//ancestor::tr//td[11]//span";
     private static final String CYCLEYEAR_LOCATOR_TEMPLATE = "//td[@title=\"%s\"]//ancestor::tr//td[12]//span";
-
+    private static final String DELETE_SERIE_LINK_LOCATOR_TEMPLATE ="//td[@title='%s']//ancestor::tr//td[14]//span//a" +
+            "[2]";
 
     public void statusIsValue(String serie, String status) {
         assertEquals(getStatus(serie), status.toUpperCase());
@@ -120,7 +121,7 @@ public class HomePage extends BasePage {
     public void isHamburgerMenuDisplayed(){
         webElementIsEnabled(hamburgerMenuBtn, true);
         getDriver().findElement(hamburgerMenuBtn).click();
-        webElementIsDisplayed(nurseryAppBtn, true);
+        validateByIsDisplayed(nurseryAppBtn, true);
         seriesManagerBtn.isDisplayed();
         addNewSeriesHamburgerBtn.isDisplayed();
         companyLogo.isDisplayed();
@@ -128,7 +129,7 @@ public class HomePage extends BasePage {
     }
 
     public void isHeaderDisplayed(){
-        webElementIsDisplayed(signOutBtn, true);
+        validateByIsDisplayed(signOutBtn, true);
         companyLogo.isDisplayed();
     }
 
@@ -178,5 +179,28 @@ public class HomePage extends BasePage {
                 column)))));
         assert(getDriver().findElement(By.xpath(String.format(COLUMN_LOCATOR_TEMPLATE, serie, locatorsDictionary.columnDictionary.get(
                 column)))).getText().equals(value));
+    }
+
+    public void deleteOptionSerie(String serie) {
+        waitForElement().until(ExpectedConditions.visibilityOfElementLocated(By.xpath(String.format(DELETE_SERIE_LINK_LOCATOR_TEMPLATE, serie))));
+        deleteSerieRow(serie).click();
+    }
+
+    public void deleteOptionSerieDisplayed(String serie) {
+        validateByIsDisplayed(By.xpath(String.format(DELETE_SERIE_LINK_LOCATOR_TEMPLATE, serie)), true);
+    }
+
+    public boolean isSerieDisplayed(String serie, boolean displayed) {
+        return isByDisplayed(By.xpath(String.format(SERIE_LINK_LOCATOR_TEMPLATE, serie)), displayed);
+    }
+
+    public boolean isSerieDisplayed(String serie, String status, boolean displayed) {
+        boolean foundElement;
+        try{
+            foundElement = getStatus(serie).toUpperCase().equals(status);
+        } catch (Exception exception){
+            foundElement = false;
+        }
+        return foundElement;
     }
 }

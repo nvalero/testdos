@@ -22,4 +22,8 @@ public class DeleteSerieSteps {
     @And("it pressed the back button")
     public void backToMenu(){ deleteSeriePage.backButton(); }
 
+    @And("the delete window is not displayed")
+    public void deleteSerieWindowIsNotDisplayed() {
+        deleteSeriePage.disableSerieWindowIsDisplayed(false);
+    }
 }

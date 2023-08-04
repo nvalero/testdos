@@ -14,17 +14,9 @@ public class CreateSerieSteps {
     @Steps
     com.headway.pageobjects.SuccessCreateSeriePage successCreateSeriePage;
 
-    @And("it completed all fields with the correct data")
-    public void completedFieldsNewSerie() {
-        createSeriePage.selectItemInDropDown("company", 0);
-        createSeriePage.selectItemInDropDown("year", 0);
-        createSeriePage.editDescription("new test");
-        createSeriePage.selectItemInDropDown("breed", 0);
-        createSeriePage.selectItemInDropDown("trait", 0);
-        createSeriePage.selectItemInDropDown("cycle", 0);
-        createSeriePage.selectItemInDropDown("environment", 0);
-        createSeriePage.selectItemInDropDown("location", 0);
-        createSeriePage.clickSubmit();
+    @And("it completed all fields with the correct data and create serie {string}")
+    public void completedFieldsNewSerie(String serie) {
+        createSeriePage.completedFieldsNewSerie(serie);
     }
 
     @And("it displays the cross button")

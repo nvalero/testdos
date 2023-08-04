@@ -2,7 +2,6 @@ package com.headway.pageobjects;
 
 import net.serenitybdd.core.pages.PageObject;
 import org.openqa.selenium.By;
-import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
@@ -21,7 +20,7 @@ public class BasePage extends PageObject {
         waitFor(ExpectedConditions.urlContains(url));
     }
 
-    public void webElementIsDisplayed(By by, boolean isDisplayed) {
+    public void validateByIsDisplayed(By by, boolean isDisplayed) {
         boolean foundElement;
         try{
             foundElement = getDriver().findElement(by).isDisplayed();
@@ -30,7 +29,6 @@ public class BasePage extends PageObject {
         }
         assertEquals(isDisplayed, foundElement);
     }
-
 
     public void webElementIsEnabled(By by, boolean isEnabled) {
         boolean foundElement;
@@ -47,5 +45,15 @@ public class BasePage extends PageObject {
             Thread.sleep(i);
         } catch (InterruptedException e) {
         }
+    }
+
+    public boolean isByDisplayed(By by, boolean isDisplayed) {
+        boolean foundElement;
+        try{
+            foundElement = getDriver().findElement(by).isDisplayed();
+        } catch (Exception exception){
+            foundElement = false;
+        }
+        return isDisplayed == foundElement;
     }
 }

@@ -64,7 +64,7 @@ public class AddParentsListsPage extends BasePage {
     }
 
     public void AddParentsListsWindowIsDisplayed(boolean isDisplayed) {
-        webElementIsDisplayed(AddParentsListsWindow, isDisplayed);
+        validateByIsDisplayed(AddParentsListsWindow, isDisplayed);
     }
 
     public void listOfFilesIsDisplayed() {
@@ -72,10 +72,12 @@ public class AddParentsListsPage extends BasePage {
     }
 
     public void validateFilesSelected(String message) {
+        sleep(3000);
         assertEquals(filesSelectedText.getText(), message);
     }
 
     public void parentsAddedMessage(String message) {
+        sleep(6000);
         assertEquals(parentsAddedMessage.getText(), message);
     }
 

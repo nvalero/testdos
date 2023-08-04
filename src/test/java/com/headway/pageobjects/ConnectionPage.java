@@ -1,6 +1,5 @@
 package com.headway.pageobjects;
 
-import net.serenitybdd.core.pages.PageObject;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
@@ -85,7 +84,7 @@ public class ConnectionPage extends BasePage {
 
     public void validatesMicrosoftPasswordIsShown() {
         sleep(2000);
-        webElementIsDisplayed(password, true);
+        validateByIsDisplayed(password, true);
         assertTrue(getDriver().findElement(password).isDisplayed());
     }
 

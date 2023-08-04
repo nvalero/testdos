@@ -16,6 +16,9 @@ public class HomeSteps {
     @Steps
     com.headway.pageobjects.CreateSeriePage createSeriePage;
 
+    @Steps
+    com.headway.pageobjects.SuccessCreateSeriePage successCreateSeriePage;
+
     @Then("the Series Manager Page is displayed")
     public void canSeeHomePage() {
         homePage.validate();
@@ -92,4 +95,31 @@ public class HomeSteps {
         homePage.hasValuesInColumn(value, serie, field);
     }
 
+    @And("it selects option delete for serie {string}")
+    public void deleteOptionSerie(String serie){ homePage.deleteOptionSerie(serie); }
+
+    @And("option delete for serie {string} is displayed")
+    public void deleteOptionSerieDisplayed(String serie){ homePage.deleteOptionSerieDisplayed(serie); }
+
+    @And("serie {string} is already created")
+    public void createSerieIfNotCreated(String serie){
+        if (!homePage.isSerieDisplayed(serie, true)) {
+            homePage.createSerie();
+            createSeriePage.createSerieWindowIsDisplayed(true);
+            createSeriePage.completedFieldsNewSerie(serie);
+            successCreateSeriePage.clickGoToSeries();
+            createSeriePage.createSerieWindowIsDisplayed(false);
+        }
+    }
+
+    @And("serie {string} with status NEW is already created")
+    public void createSerieWithStatusIfNotCreated(String serie){
+        if (!homePage.isSerieDisplayed(serie, "NEW", true)) {
+            homePage.createSerie();
+            createSeriePage.createSerieWindowIsDisplayed(true);
+            createSeriePage.completedFieldsNewSerie(serie);
+            successCreateSeriePage.clickGoToSeries();
+            createSeriePage.createSerieWindowIsDisplayed(false);
+        }
+    }
 }
