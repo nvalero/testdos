@@ -2,6 +2,7 @@ package com.headway.pageobjects;
 
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertTrue;
 
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebElement;
@@ -9,6 +10,39 @@ import org.openqa.selenium.support.FindBy;
 
 public class DetailViewPage extends BasePage {
 
+
+    @FindBy(className = "_xxl_sz2ax_76")
+    WebElement title;
+
+    @FindBy(className = "_cycleCross_1lh8z_32")
+    WebElement cycleCross;
+
+    @FindBy(className = "_primaryNavigation_1gwdd_1")
+    WebElement primaryNav;
+
+    @FindBy(className = "_secondaryNavigation_z1ncb_1")
+    WebElement secondaryNave;
+
+    @FindBy(className = "_container_on69i_21")
+    WebElement serieContainer;
+
+    @FindBy(partialLinkText = "Back to Series Manager")
+    WebElement backToSeriesManager;
+
+    @FindBy(className = "_contentHeader_on69i_35")
+    WebElement serieBoxContentHeader;
+
+    @FindBy(css = "#root > div > section > main > article > span > span > svg")
+    WebElement dotMenu;
+
+    @FindBy(linkText = "Delete Series")
+    WebElement deleteSeries;
+
+    @FindBy(linkText = "Edit Series")
+    WebElement editSeries;
+
+    @FindBy(linkText = "Disable")
+    WebElement disableSeries;
 
     @FindBy(linkText = "Parents Selection")
     WebElement parentsSelectionLink;
@@ -59,5 +93,38 @@ public class DetailViewPage extends BasePage {
     public void AddParentsListsButtonIsEnabled(boolean enabled) {
         webElementIsEnabled(AddParentsListsButton, enabled);
     }
+
+    public void validateDetailViewHeaderIsDisplayed(){
+        assertTrue(title.isDisplayed());
+        assertTrue(cycleCross.isDisplayed()); }
+
+    public void validateNavBarsIsDisplayed(){
+        assertTrue(primaryNav.isDisplayed());
+        assertTrue(secondaryNave.isDisplayed()); }
+
+    public void validateSerieContainerIsDisplayed(){ assertTrue(serieContainer.isDisplayed()); }
+
+    public void backToSeriesManagerIsDisplayed(){ assertTrue(backToSeriesManager.isDisplayed()); }
+
+    public void serieBoxHeaderIsDisplayed(){ assertTrue(serieBoxContentHeader.isDisplayed()); }
+
+    public void clickBackToSeriesManager(){ backToSeriesManager.click();}
+
+    public void clickSeriesActionsMenu() { dotMenu.click(); }
+
+    public void validateSeriesActionMenu(){
+        assertTrue(deleteSeries.isDisplayed());
+        assertTrue(editSeries.isDisplayed());
+        assertTrue(disableSeries.isDisplayed());
+    }
+
+    public void clickDeleteSeries(){ deleteSeries.click();}
+
+    public void clickEditSeries(){ editSeries.click();}
+
+    public void clickDisableSeries(){ disableSeries.click();}
+
+
+
 
 }
