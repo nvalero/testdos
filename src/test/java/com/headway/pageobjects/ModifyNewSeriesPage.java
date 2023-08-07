@@ -1,7 +1,6 @@
 package com.headway.pageobjects;
 
 import com.google.inject.Inject;
-import net.serenitybdd.core.pages.PageObject;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
@@ -155,7 +154,7 @@ public class ModifyNewSeriesPage extends BasePage {
     }
 
     public void getSeriesName() {
-        webElementIsDisplayed(seriesNameElement, true);
+        validateByIsDisplayed(seriesNameElement, true);
     }
 
     public void companyDropDownIsDisplayed() {
@@ -284,7 +283,7 @@ public class ModifyNewSeriesPage extends BasePage {
     }
 
     public void displaysMessageNoOptionsForYear() {
-        webElementIsDisplayed(By.cssSelector(".react-select__menu-notice--no-options"), true);
+        validateByIsDisplayed(By.cssSelector(".react-select__menu-notice--no-options"), true);
     }
 
     public void clickDropdownFieldBreeding() {

@@ -31,7 +31,7 @@ public class DetailViewPage extends BasePage {
     By parentSelectionMessage = By.cssSelector("#root div section main article div div"); //--> You have already added a List of
     // Parents.
 
-    By AddParentsListsButton = By.cssSelector("._requestSeedsbutton_9jsbb_21");
+    By AddParentsListsButton = By.partialLinkText("Add Parents Lists +");
 
     By parentThTableBy = By.cssSelector("._columns_16dgm_11"); // lista de encabezados
     By parentTrRowsBy = By.cssSelector("._rows_16dgm_83"); // filas

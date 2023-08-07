@@ -54,12 +54,12 @@ Background: Login to GDM Headway
 
   Scenario:  [HW-1512] Confirmation Window component - Go to Series Manager button Test
     When it pressed the Create Series button
-    And it completed all fields with the correct data
+    And it completed all fields with the correct data and create serie "AUTOMATIONCREATETEST"
     Then it presses the button Go to Series Manager
 
   Scenario:  [HW-1513] Confirmation Window component - Add Parents List button Test
     When it pressed the Create Series button
-    And it completed all fields with the correct data
+    And it completed all fields with the correct data and create serie "AUTOMATIONCREATETEST"
     And it presses Add Parents List button
     Then the "parents/assign" page is displayed
 
@@ -102,7 +102,7 @@ Background: Login to GDM Headway
 
   Scenario:  [HW-1468] Confirmation Window component - Confirmation Window components Test
     When it pressed the Create Series button
-    And it completed all fields with the correct data
+    And it completed all fields with the correct data and create serie "AUTOMATIONCREATETEST"
     Then it displays the cross button
     And it displays the Success logo
     And it displays title "The Series was successfully Created"
