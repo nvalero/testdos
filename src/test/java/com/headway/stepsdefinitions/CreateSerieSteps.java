@@ -167,4 +167,7 @@ public class CreateSerieSteps {
     public void pressesSubmitButtonEnableModal() {
         enableDisableSeriePage.clickSubmit();
     }
+
+    @And("it presses the X icon on disable series window")
+    public void pressedCrossButtonEnableDisableModal(){ enableDisableSeriePage.pressesCrossButton(); }
 }

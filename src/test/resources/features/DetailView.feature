@@ -107,7 +107,7 @@ Feature: Detail View Serie
       And the Serie Detail Page is displayed
       And it has pressed over 3 dots icon in the series row
       And it presses "Disable series" option
-      And it presses the submit button
+      And it presses the submit button in enable modal
       Then the disable window is not displayed
 
 
@@ -149,7 +149,7 @@ Feature: Detail View Serie
       And the Serie Detail Page is displayed
       And it has pressed over 3 dots icon in the series row
       And it presses "Enable" option
-      And it presses the submit button
+      And it presses the submit button in enable modal
       Then the disable window is not displayed
 
 
