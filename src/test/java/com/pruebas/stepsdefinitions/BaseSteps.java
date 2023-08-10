@@ -1,6 +1,6 @@
-package com.headway.stepsdefinitions;
+package com.pruebas.stepsdefinitions;
 
-import com.headway.pageobjects.BasePage;
+import com.pruebas.pageobjects.BasePage;
 import io.cucumber.java.en.And;
 
 public class BaseSteps {

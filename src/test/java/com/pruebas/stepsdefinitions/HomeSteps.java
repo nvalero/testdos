@@ -1,9 +1,7 @@
-package com.headway.stepsdefinitions;
+package com.pruebas.stepsdefinitions;
 
-import com.headway.pageobjects.HomePage;
-import io.cucumber.java.en.And;
+import com.pruebas.pageobjects.HomePage;
 import io.cucumber.java.en.Then;
-import net.serenitybdd.core.Serenity;
 import net.thucydides.core.annotations.Steps;
 
 public class HomeSteps {

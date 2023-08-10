@@ -1,4 +1,4 @@
-package com.headway.pageobjects;
+package com.pruebas.pageobjects;
 
 
 import static org.junit.jupiter.api.Assertions.assertEquals;

@@ -1,6 +1,6 @@
-package com.headway.stepsdefinitions;
+package com.pruebas.stepsdefinitions;
 
-import com.headway.pageobjects.ConnectionPage;
+import com.pruebas.pageobjects.ConnectionPage;
 import io.cucumber.java.After;
 import io.cucumber.java.Before;
 

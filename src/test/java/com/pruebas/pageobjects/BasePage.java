@@ -1,4 +1,4 @@
-package com.headway.pageobjects;
+package com.pruebas.pageobjects;
 
 import net.serenitybdd.core.pages.PageObject;
 import org.openqa.selenium.By;
