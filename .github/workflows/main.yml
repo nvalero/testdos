@@ -1,0 +1,13 @@
+name: testdos-github-actions
+run-name:  is learning GitHub ActionsDOS
+on: [push]
+jobs:
+  build:
+    runs-on: windows-latest
+    steps:
+      - uses: actions/checkout@v1
+      - uses: actions/setup-java@v1
+        with:
+          java-version: 11.0.14
+      - run: mvn verify -f pom.xml
+      - run: ls -l
