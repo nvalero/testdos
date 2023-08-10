@@ -1,5 +1,5 @@
 name: testdos-github-actions
-run-name: ${{ github.actor }} is learning GitHub ActionsDOS
+run-name:  is learning GitHub ActionsDOS
 on: [push]
 jobs:
   build:
