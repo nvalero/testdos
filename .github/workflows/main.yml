@@ -10,4 +10,4 @@ jobs:
         with:
           java-version: 11.0.14
       - run: mvn verify -f pom.xml
-      - run: ls -l
+
