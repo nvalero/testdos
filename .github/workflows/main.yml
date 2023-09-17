@@ -17,8 +17,8 @@ jobs:
           echo "MMMMMMM____--------------------------->"
           echo "MMMMMMM____--------------------------->"
       - name: Store reports2
-        if: steps.XXX.outcome == 'failure'
-        uses: actions/upload-artifact@v3
+      - if: always()
+      - uses: actions/upload-artifact@v3
         with:
           name: linux-reports-2
           path: /target/site/serenity/
