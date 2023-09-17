@@ -14,9 +14,9 @@ jobs:
           mvn verify -f pom.xml
           echo "MMMMMMM____--------------------------->"
           echo "MMMMMMM____--------------------------->"
-      - name: Store reports2
-        uses: actions/upload-artifact@v3
-        with:
-          name: linux-reports-2
-          path: /target/site/serenity/
+      #- name: Store reports2
+      #  uses: actions/upload-artifact@v3
+      #  with:
+      #    name: linux-reports-2
+      #    path: /target/site/serenity/
 
