@@ -10,4 +10,9 @@ jobs:
         with:
           java-version: 11.0.14
       - run: mvn verify -f pom.xml
+      - name: Store reports2
+      - uses: actions/upload-artifact@v3
+        with:
+          name: linux-reports-2
+          path: /target/site/serenity/
 
