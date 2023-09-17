@@ -9,7 +9,9 @@ jobs:
       - uses: actions/setup-java@v1
         with:
           java-version: 11.0.14
-      - run: mvn verify -f pom.xml
+      - run:  |
+          echo "MMMMMMM____----ddddd----------------------->"
+          mvn verify -f pom.xml
           echo "MMMMMMM____--------------------------->"
           echo "MMMMMMM____--------------------------->"
       - name: Store reports2
