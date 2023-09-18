@@ -11,11 +11,6 @@ jobs:
       - uses: actions/setup-java@v1
         with:
           java-version: 11.0.14
-      - run:  |
-          echo "MMMMMMM____----ddddd----------------------->"
-          mvn verify -f pom.xml
-          echo "MMMMMMM____--------------------------->"
-          echo "MMMMMMM____--------------------------->"
       - name: Store reports2
       - if: always()
       - uses: actions/upload-artifact@v3
@@ -23,4 +18,8 @@ jobs:
           name: linux-reports-2
           path: /target/site/serenity/
       - run:  |
-          echo "AAAAA----------------------->"
+          echo "MMMMMMM____----ddddd----------------------->"
+          mvn verify -f pom.xml
+          echo "MMMMMMM____--------------------------->"
+          echo "MMMMMMM____--------------------------->"
+
