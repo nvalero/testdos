@@ -6,7 +6,7 @@ jobs:
     runs-on: windows-latest
     steps:
       - name: XXX
-      - id: XXX
+        id: XXX
         uses: actions/checkout@v1
       - name: XXY
         uses: actions/setup-java@v1
