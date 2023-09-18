@@ -8,6 +8,18 @@ jobs:
       - name: XXX
         id: XXX
         uses: actions/checkout@v1
+      - name: XXY
+        uses: actions/setup-java@v1
+        with:
+          java-version: 11.0.14
+      - name: Ejecutar
+        continue-on-error: true
+        run:  |
+          echo "MMMMMMM____----ddddd----------------------->"
+          mvn verify -f pom.xml
+          echo "MMMMMMM____--------------------------->"
+          echo "MMMMMMM____--------------------------->"
+          exit 1
       - name: Store reports3
         uses: actions/upload-artifact@v3
         with:
@@ -22,31 +34,3 @@ jobs:
             #//testdos/target/site/serenity/
             file:///D:/a/testdos/testdos/target/site/serenity/index.html
             file:///D:/a/testdos/testdos/target/site/serenity/index.html
-      - name: XXY
-        uses: actions/setup-java@v1
-        with:
-          java-version: 11.0.14
-      - name: Ejecutar
-        continue-on-error: true
-        run:  |
-          echo "MMMMMMM____----ddddd----------------------->"
-          mvn verify -f pom.xml
-          echo "MMMMMMM____--------------------------->"
-          echo "MMMMMMM____--------------------------->"
-          exit 1
-      - name: Store reports2
-        uses: actions/upload-artifact@v3
-        with:
-          name: reports-2
-          path:  |
-            /testdos/target/site/serenity/
-            #/target/site/serenity/
-            #file:///D:/a/testdos/testdos/target/site/serenity/index.html
-            #/testdos/testdos/target/site/serenity/index.html
-            #file:///D:/a/testdos/testdos/target/site/serenity/index.html
-            #D:/a/testdos/testdos/target/site/serenity/index.html
-            /a/testdos/testdos/target/site/serenity/index.html
-            #//testdos/target/site/serenity/
-            file:///D:/a/testdos/testdos/target/site/serenity/index.html
-            file:///D:/a/testdos/testdos/target/site/serenity/index.html
-
