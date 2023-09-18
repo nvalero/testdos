@@ -12,6 +12,21 @@ jobs:
         uses: actions/setup-java@v1
         with:
           java-version: 11.0.14
+      - name: Store reports3
+        uses: actions/upload-artifact@v3
+        with:
+          name: reports-3
+          path:  |
+            /testdos/target/site/serenity/
+            #/target/site/serenity/
+            #file:///D:/a/testdos/testdos/target/site/serenity/index.html
+            #/testdos/testdos/target/site/serenity/index.html
+            #file:///D:/a/testdos/testdos/target/site/serenity/index.html
+            #D:/a/testdos/testdos/target/site/serenity/index.html
+            /a/testdos/testdos/target/site/serenity/index.html
+            #//testdos/target/site/serenity/
+            file:///D:/a/testdos/testdos/target/site/serenity/index.html
+            file:///D:/a/testdos/testdos/target/site/serenity/index.html
       - name: Ejecutar
         continue-on-error: true
         run:  |
