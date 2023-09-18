@@ -20,17 +20,54 @@ jobs:
           echo "MMMMMMM____--------------------------->"
           echo "MMMMMMM____--------------------------->"
           exit 1
-      - name: Store reports3
+      - name: Storereports1
         uses: actions/upload-artifact@v3
         with:
-          name: reports-3
+          name: reports1
           path:  |
             /testdos/target/site/serenity/
+      - name: Storereports2
+        uses: actions/upload-artifact@v3
+        with:
+          name: reports2
+          path:  |
             file:///D:/a/testdos/testdos/target/site/serenity/index.html
+      - name: Storereports3
+        uses: actions/upload-artifact@v3
+        with:
+          name: reports3
+          path:  |
             /testdos/testdos/target/site/serenity/index.html
+      - name: Storereports4
+        uses: actions/upload-artifact@v3
+        with:
+          name: reports4
+          path:  |
             file:///D:/a/testdos/testdos/target/site/serenity/index.html
+      - name: Storereports5
+        uses: actions/upload-artifact@v3
+        with:
+          name: reports5
+          path:  |
             D:/a/testdos/testdos/target/site/serenity/index.html
+      - name: Storereports6
+        uses: actions/upload-artifact@v3
+        with:
+          name: reports6
+          path:  |
             /a/testdos/testdos/target/site/serenity/index.html
-            #//testdos/target/site/serenity/
+      - name: Storereports7
+        uses: actions/upload-artifact@v3
+        with:
+          name: reports7
+          path:  |
             file:///D:/a/testdos/testdos/target/site/serenity/index.html
+      - name: Storereports8
+        uses: actions/upload-artifact@v3
+        with:
+          name: reports8
+          path:  |
             file:///D:/a/testdos/testdos/target/site/serenity/index.html
+
+      
+
