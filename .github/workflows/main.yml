@@ -12,7 +12,6 @@ jobs:
         uses: actions/setup-java@v1
         with:
           java-version: 11.0.14
-          cache: 'maven'
       - name: Ejecutar
         continue-on-error: true
         run:  |
@@ -26,5 +25,7 @@ jobs:
         uses: actions/upload-artifact@v3
         with:
           name: linux-reports-2
-          path: /target/site/serenity/
+          path:  |
+            /testdos/target/site/serenity/
+            /target/site/serenity/
 
