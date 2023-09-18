@@ -12,6 +12,7 @@ jobs:
         uses: actions/setup-java@v1
         with:
           java-version: 11.0.14
+          cache: 'maven'
       - name: Ejecutar
         continue-on-error: true
         run:  |
