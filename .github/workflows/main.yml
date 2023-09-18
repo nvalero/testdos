@@ -49,7 +49,7 @@ jobs:
         with:
           name: reports5
           path:  |
-            D:/a/testdos/testdos/target/site/serenity/index.html
+            D:/a/testdos/testdos/target/site/serenity/*
       - name: Storereports6
         uses: actions/upload-artifact@v3
         with:
