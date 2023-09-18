@@ -12,12 +12,13 @@ jobs:
         with:
           java-version: 11.0.14
       - name: Store reports2
-      - if: always()
+        if: always()
       - uses: actions/upload-artifact@v3
         with:
           name: linux-reports-2
           path: /target/site/serenity/
-      - run:  |
+      - name: Ejecutar
+        run:  |
           echo "MMMMMMM____----ddddd----------------------->"
           mvn verify -f pom.xml
           echo "MMMMMMM____--------------------------->"
