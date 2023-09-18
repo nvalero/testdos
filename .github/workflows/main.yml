@@ -13,7 +13,7 @@ jobs:
         with:
           name: reports-3
           path:  |
-            /testdos/target/site/serenity/
+            #/testdos/target/site/serenity/
             file:///D:/a/testdos/testdos/target/site/serenity/index.html
             /testdos/testdos/target/site/serenity/index.html
             file:///D:/a/testdos/testdos/target/site/serenity/index.html
